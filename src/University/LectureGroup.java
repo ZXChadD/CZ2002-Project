@@ -2,24 +2,13 @@ package University;
 
 public class LectureGroup
 {
-	private int studId, lecId, profId, slots;
+	private int profId, slots;
+	private int[] studIds = new int[8];
 	
-	public LectureGroup(int studId, int lecId, int profId, int slots)
+	public LectureGroup(int profId, int slots)
 	{
-		this.studId = studId;
-		this.lecId = lecId;
 		this.profId = profId;
 		this.slots = slots;
-	}
-	
-	public int getStudId()
-	{
-		return studId;
-	}
-	
-	public int getLecId()
-	{
-		return lecId;
 	}
 	
 	public int getProfId()
