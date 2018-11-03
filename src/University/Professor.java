@@ -25,7 +25,7 @@ public class Professor
 		System.out.println("=================================================");
 		
 		int studId = -1, phoneNo = -1;
-		String studName = null, studEmail = null, faculty = null;
+		String studFName = null, studLName = null, studEmail = null, faculty = null;
 		int i;
 		
 		try
@@ -56,41 +56,48 @@ public class Professor
 		
 		if(studId != -1)
 		{
-			String firstName, lastName;
 			System.out.print("First Name: ");
-			firstName = input.next();
-			System.out.print("Last Name: ");
-			lastName = input.next();
-			if(studName.matches(".*\\d+.*"))
+			studFName = input.next();
+			if(!studFName.matches("[a-zA-Z]+"))
 			{
-				System.out.println("Invalid Student Name! Student Name should not contain any numbers.");
-				studName = null;
+				System.out.println("Invalid Student Name! Student Name should only contain alphabets.");
+				studFName = null;
+			}
+			System.out.print("Last Name: ");
+			studLName = input.next();
+			if(!studLName.matches("[a-zA-Z]+"))
+			{
+				System.out.println("Invalid Student Name! Student Name should only contain alphabets.");
+				studLName = null;
 			}
 		}
 		
-//		if(studName != null)
-//		{
-//			System.out.print("Student E-Mail: ");
-//			studEmail = input.next();
-//			Pattern pattern = Pattern.compile("[A-Za-z0-9_] + @[]");
-//			Matcher mat = pattern.matcher(studEmail);
-//			if(mat.matches())
-//			{
-//				System.out.println("pass");
-//			}
-//			else
-//			{
-//				System.out.println("fail");
-//			}
-//		}
+		if(studFName != null && studLName != null)
+		{
+			System.out.print("Student E-Mail: ");
+			studEmail = input.next();
+			Pattern pattern = Pattern.compile("[A-Z0-9_]+@e.uni.edu.sg");
+			Matcher mat = pattern.matcher(studEmail);
+			if(!mat.matches())
+			{
+				System.out.println("Invalid E-Mail Address! E-Mail Address should be in this format: _____@e.uni.edu.sg");
+				System.out.println("where _____ should only contain Uppercase Letters, Numbers or '_'(Underscores)");
+				System.out.println("Example: MNSH_0001@e.uni.edu.sg");
+				studEmail = null;
+			}
+		}
 		
+		if(studEmail != null)
+		{
+			
+		}
 		System.out.print("Phone Number: ");
 		phoneNo = input.nextInt();
 		System.out.print("Faculty: ");
 		faculty = input.next();
 		System.out.println();
 		
-		stud[stud.length] = new Student(studId, studName, studEmail, phoneNo, faculty);
+		stud[count] = new Student(studId, studFName, studLName, studEmail, phoneNo, faculty);
 		System.out.println("Student #" + studId + " added!");
 		
 		System.out.println("=================================================");
@@ -161,9 +168,9 @@ public class Professor
 		int count;
 		Student[] test = new Student[10];
 		Professor prof = new Professor(1, "Shaan", "sh44n96@gmail.com", 86601489, "01-01", "SCSE");
-		test[0] = new Student(1, "Dexter", "dexter@gmail.com", 12345678, "SCSE");
-		test[1] = new Student(2, "Chadd", "chadd@gmail.com", 23456789, "SCSE");
-		test[2] = new Student(3, "Akshaya", "akshaya@gmail.com", 34567890, "SCSE");
+		test[0] = new Student(1, "Dexter","Leow", "dexter@gmail.com", 12345678, "SCSE");
+		test[1] = new Student(2, "Chadd", "Lim", "chadd@gmail.com", 23456789, "SCSE");
+		test[2] = new Student(3, "Akshaya", "Muthu", "akshaya@gmail.com", 34567890, "SCSE");
 		count = 3;
 		prof.addStud(test, count);
 	}
