@@ -13,6 +13,21 @@ public class Student
 		this.phoneNo = phoneNo;
 		this.faculty = faculty;
 	}
+
+	public void regCourse()
+	{
+		
+	}
+	
+	public void checkAvail()
+	{
+		
+	}
+	
+	public void printTranscript()
+	{
+		
+	}
 	
 	public int getStudId()
 	{
