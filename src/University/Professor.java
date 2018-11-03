@@ -6,14 +6,15 @@ import java.util.regex.Matcher;
 
 public class Professor
 {
-	private int profId, phoneNo;
-	private String profName, profEmail, officeRm, faculty;
+	private int profId;
+	private String profFName, profLName, profEmail, officeRm, faculty, phoneNo;
 	Scanner input = new Scanner(System.in);
 	
-	public Professor(int profId, String profName, String profEmail, int phoneNo, String officeRm, String faculty)
+	public Professor(int profId, String profFName, String profLName, String profEmail, String phoneNo, String officeRm, String faculty)
 	{
 		this.profId = profId;
-		this.profName = profName;
+		this.profFName = profFName;
+		this.profLName = profLName;
 		this.profEmail = profEmail;
 		this.phoneNo = phoneNo;
 		this.officeRm = officeRm;
@@ -24,15 +25,15 @@ public class Professor
 	{
 		System.out.println("=================================================");
 		
-		int studId = -1, phoneNo = -1;
-		String studFName = null, studLName = null, studEmail = null, faculty = null;
+		int studId = -1;
+		String studFName = null, studLName = null, studEmail = null, faculty = null, phoneNo = null;
 		int i;
 		
 		try
 		{
 			System.out.print("Student ID: ");
 			studId = input.nextInt();
-			if(studId >= 1 && studId <= 999)
+			if(studId >= 1 && studId <= 99)
 			{
 				for(i = 0; i < count; i++)
 				{
@@ -74,7 +75,7 @@ public class Professor
 		
 		if(studFName != null && studLName != null)
 		{
-			System.out.print("Student E-Mail: ");
+			System.out.print("Student E-Mail (_____@e.uni.edu.sg): ");
 			studEmail = input.next();
 			Pattern pattern = Pattern.compile("[A-Z0-9_]+@e.uni.edu.sg");
 			Matcher mat = pattern.matcher(studEmail);
@@ -89,10 +90,9 @@ public class Professor
 		
 		if(studEmail != null)
 		{
-			
+			System.out.print("Phone Number: ");
+			phoneNo = input.next();			
 		}
-		System.out.print("Phone Number: ");
-		phoneNo = input.nextInt();
 		System.out.print("Faculty: ");
 		faculty = input.next();
 		System.out.println();
@@ -138,14 +138,14 @@ public class Professor
 		return profId;
 	}
 	
-	public int getPhoneNo()
+	public String getPhoneNo()
 	{
 		return phoneNo;
 	}
 	
 	public String getProfName()
 	{
-		return profName;
+		return (profFName + " " + profLName);
 	}
 	
 	public String getProfEmail()
@@ -167,10 +167,10 @@ public class Professor
 	{
 		int count;
 		Student[] test = new Student[10];
-		Professor prof = new Professor(1, "Shaan", "sh44n96@gmail.com", 86601489, "01-01", "SCSE");
-		test[0] = new Student(1, "Dexter","Leow", "dexter@gmail.com", 12345678, "SCSE");
-		test[1] = new Student(2, "Chadd", "Lim", "chadd@gmail.com", 23456789, "SCSE");
-		test[2] = new Student(3, "Akshaya", "Muthu", "akshaya@gmail.com", 34567890, "SCSE");
+		Professor prof = new Professor(1, "MN", "Shaanmugam", "sh44n96@gmail.com", "86601489", "01-01", "SCSE");
+		test[0] = new Student(1, "Dexter","Leow", "dexter@gmail.com", "12345678", "SCSE");
+		test[1] = new Student(2, "Chadd", "Lim", "chadd@gmail.com", "23456789", "SCSE");
+		test[2] = new Student(3, "Akshaya", "Muthu", "akshaya@gmail.com", "34567890", "SCSE");
 		count = 3;
 		prof.addStud(test, count);
 	}

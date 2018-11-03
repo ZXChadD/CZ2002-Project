@@ -2,10 +2,10 @@ package University;
 
 public class Student
 {
-	private int studId, phoneNo;
-	private String studFName, studLName, studEmail, faculty;
+	private int studId;
+	private String studFName, studLName, studEmail, faculty, phoneNo;
 	
-	public Student(int studId, String studFName, String studLName, String studEmail, int phoneNo, String faculty)
+	public Student(int studId, String studFName, String studLName, String studEmail, String phoneNo, String faculty)
 	{
 		this.studId = studId;
 		this.studFName = studFName;
@@ -35,7 +35,7 @@ public class Student
 		return studId;
 	}
 	
-	public int getPhoneNo()
+	public String getPhoneNo()
 	{
 		return phoneNo;
 	}
