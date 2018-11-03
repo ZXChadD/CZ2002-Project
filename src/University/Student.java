@@ -9,8 +9,8 @@ public class Student
 	public Student(int studId, String studFName, String studLName, String studEmail, String phoneNo, String faculty)
 	{
 		this.studId = studId;
-		this.studFName = studFName;
-		this.studLName = studLName;
+		this.studFName = studFName.toUpperCase();
+		this.studLName = studLName.toUpperCase();
 		this.studEmail = studEmail;
 		this.phoneNo = phoneNo;
 		this.faculty = faculty;

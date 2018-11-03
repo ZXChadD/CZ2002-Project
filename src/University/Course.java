@@ -4,10 +4,14 @@ public class Course
 {
 	private int courseId, slots, lec, lab, tut;
 	private String courseName, faculty;
+	Professor p;
 	
-	public Course(int courseId, int slots, int lec, int lab, int tut)
+	public Course(int courseId, String courseName, String faculty, Professor p, int slots, int lec, int lab, int tut)
 	{
 		this.courseId = courseId;
+		this.courseName = courseName;
+		this.faculty = faculty;
+		this.p = p;
 		this.slots = slots;
 		this.lec = lec;
 		this.lab = lab;
@@ -19,6 +23,21 @@ public class Course
 		return courseId;
 	}
 	
+	public String getCourseName()
+	{
+		return courseName;
+	}
+	
+	public String getFaculty()
+	{
+		return faculty;
+	}
+	
+	public Professor getProfessor()
+	{
+		return p;
+	}
+
 	public int getSlots()
 	{
 		return slots;
@@ -37,15 +56,5 @@ public class Course
 	public int getTut()
 	{
 		return tut;
-	}
-	
-	public String getCourseName()
-	{
-		return courseName;
-	}
-	
-	public String getFaculty()
-	{
-		return faculty;
 	}
 }
