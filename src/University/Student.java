@@ -50,6 +50,11 @@ public class Student
 		return studLName;
 	}
 	
+	public String getStudName()
+	{
+		return studFName + " " + studLName;
+	}
+	
 	public String getStudEmail()
 	{
 		return studEmail;
