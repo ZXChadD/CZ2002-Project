@@ -2,8 +2,8 @@ package University;
 
 public class Course
 {
-	private String courseName, Faculty;
 	private int courseId, slots, lec, lab, tut;
+	private String courseName, faculty;
 	
 	public Course(int courseId, int slots, int lec, int lab, int tut)
 	{
@@ -37,5 +37,15 @@ public class Course
 	public int getTut()
 	{
 		return tut;
+	}
+	
+	public String getCourseName()
+	{
+		return courseName;
+	}
+	
+	public String getFaculty()
+	{
+		return faculty;
 	}
 }
