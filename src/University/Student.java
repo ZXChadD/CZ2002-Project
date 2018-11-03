@@ -3,12 +3,13 @@ package University;
 public class Student
 {
 	private int studId, phoneNo;
-	private String studName, studEmail, faculty;
+	private String studFName, studLName, studEmail, faculty;
 	
-	public Student(int studId, String studName, String studEmail, int phoneNo, String faculty)
+	public Student(int studId, String studFName, String studLName, String studEmail, int phoneNo, String faculty)
 	{
 		this.studId = studId;
-		this.studName = studName;
+		this.studFName = studFName;
+		this.studLName = studLName;
 		this.studEmail = studEmail;
 		this.phoneNo = phoneNo;
 		this.faculty = faculty;
@@ -39,9 +40,14 @@ public class Student
 		return phoneNo;
 	}
 	
-	public String getStudName()
+	public String getStudFName()
 	{
-		return studName;
+		return studFName;
+	}
+	
+	public String getStudLName()
+	{
+		return studLName;
 	}
 	
 	public String getStudEmail()
