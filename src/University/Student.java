@@ -40,16 +40,6 @@ public class Student
 		return phoneNo;
 	}
 	
-	public String getStudFName()
-	{
-		return studFName;
-	}
-	
-	public String getStudLName()
-	{
-		return studLName;
-	}
-	
 	public String getStudName()
 	{
 		return studFName + " " + studLName;
