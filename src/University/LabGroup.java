@@ -3,7 +3,7 @@ package University;
 public class LabGroup
 {
 	private int profId, slots;
-	private int[] studIds = new int[5];
+	public int[] studIds = new int[4];
 	
 	public LabGroup(int profId, int slots)
 	{

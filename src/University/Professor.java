@@ -9,9 +9,6 @@ public class Professor
 	private int profId;
 	private String profFName, profLName, profEmail, officeRm, faculty, phoneNo;
 	Scanner input = new Scanner(System.in);
-	LectureGroup[] lecGrp = new LectureGroup[2];
-	LabGroup[] labGrp = new LabGroup[3];
-	TutorialGroup[] tutGrp = new TutorialGroup[5];
 	
 	public Professor(int profId, String profFName, String profLName, String profEmail, String phoneNo, String officeRm, String faculty)
 	{
@@ -37,7 +34,7 @@ public class Professor
 			
 			while(valid == false)
 			{
-				System.out.print("Student ID: ");
+				System.out.print("Student ID (#01 - #99): ");
 				studId = input.nextInt();
 				if(studId >= 1 && studId <= 99)
 				{
@@ -199,7 +196,7 @@ public class Professor
 			
 			while(valid == false)
 			{
-				System.out.print("Course ID: ");
+				System.out.print("Course ID (#01 - #10): ");
 				courseId = input.nextInt();
 				if(courseId >= 1 && courseId <= 10)
 				{
@@ -238,7 +235,7 @@ public class Professor
 			valid = false;
 			while(valid == false)
 			{
-				System.out.print("ID of Professor In-Charge: ");
+				System.out.print("ID of Professor In-Charge (#01 - #10): ");
 				int profId = input.nextInt();
 				if(profId >= 1 && profId <= 10)
 				{
@@ -261,7 +258,7 @@ public class Professor
 			valid = false;
 			while(valid == false)
 			{
-				System.out.print("Number of Slots: ");
+				System.out.print("Number of Slots (1 - 12): ");
 				slots = input.nextInt();
 				if(slots < 1)
 					System.out.println("Invalid Number of Slots! Each Course must have atleast 1 Slot.");
@@ -275,7 +272,7 @@ public class Professor
 			while(valid == false)
 			{
 				System.out.println();
-				System.out.print("Number of Lecture Groups: ");
+				System.out.print("Number of Lecture Groups (1 - 2): ");
 				lec = input.nextInt();
 				if(lec < 1)
 					System.out.println("Invalid Number of Lecture Groups! Each Course must have atleast 1 Lecture Group.");
@@ -325,13 +322,13 @@ public class Professor
 								id = true;
 						}
 
-						lecGrp[i] = new LectureGroup(professorId, slotId);
+						course[courseId].lecGrp[i] = new LectureGroup(professorId, slotId);
 						System.out.println("Lecture #" + (i + 1) + " added!");
 					}
 					
 					int temp = 0;
 					for(i = 0; i < lec; i++)
-						temp += lecGrp[i].getSlots();
+						temp += course[courseId].lecGrp[i].getSlots();
 					if(temp != slots)
 					{
 						System.out.println();
@@ -345,7 +342,7 @@ public class Professor
 			while(valid == false)
 			{
 				System.out.println();
-				System.out.print("Number of Lab Groups: ");
+				System.out.print("Number of Lab Groups (0 - 3): ");
 				lab = input.nextInt();
 				if(lab < 0)
 					System.out.println("Invalid Number of Lab Groups! The Number of Lab Groups cannot be a Negative Value.");
@@ -395,14 +392,14 @@ public class Professor
 								id = true;
 						}
 
-						labGrp[i] = new LabGroup(professorId, slotId);
+						course[courseId].labGrp[i] = new LabGroup(professorId, slotId);
 						System.out.println("Lab #" + (i + 1) + " added!");
 					}
 					if(lab != 0)
 					{
 						int temp = 0;
 						for(i = 0; i < lab; i++)
-							temp += labGrp[i].getSlots();
+							temp += course[courseId].labGrp[i].getSlots();
 						if(temp != slots)
 						{
 							System.out.println();
@@ -418,7 +415,7 @@ public class Professor
 			while(valid == false)
 			{
 				System.out.println();
-				System.out.print("Number of Tutorial Groups: ");
+				System.out.print("Number of Tutorial Groups (0 - 4): ");
 				tut = input.nextInt();
 				if(tut < 0)
 					System.out.println("Invalid Number of Tutorial Groups! The Number of Lab Groups cannot be a Negative Value.");
@@ -468,14 +465,14 @@ public class Professor
 								id = true;
 						}
 
-						tutGrp[i] = new TutorialGroup(professorId, slotId);
+						course[courseId].tutGrp[i] = new TutorialGroup(professorId, slotId);
 						System.out.println("Tutorial #" + (i + 1) + " added!");
 					}
 					if(tut != 0)
 					{
 						int temp = 0;
 						for(i = 0; i < tut; i++)
-							temp += tutGrp[i].getSlots();
+							temp += course[courseId].tutGrp[i].getSlots();
 						if(temp != slots)
 						{
 							System.out.println();
@@ -513,9 +510,153 @@ public class Professor
 		}
 	}
 		
-	public void printStud()
+	public void printStud(Student [] stud, int countS, Course[] course, int countC)
 	{
-		
+		System.out.println("=================================================");
+
+		try
+		{
+			String temp = null;
+			boolean  valid = false;
+			int courseId = -1, i = 0, index = 0;
+			
+			while(valid == false)
+			{
+				System.out.print("Course ID: ");
+				courseId = input.nextInt();
+				if(courseId >= 1 && courseId <= 10)
+				{
+					for(i = 0; i < countC; i++)
+					{
+						if(courseId == course[i].getCourseId())
+						{
+							valid = true;
+							index = i;
+							break;
+						}
+					}
+					if(valid == false)
+						System.out.println("Invalid Course ID! Course ID does not exist.");
+				}
+				else
+					System.out.println("Invalid Course ID! Course ID must be from #01 to #10.");
+			}
+
+			valid = false;
+			while(valid == false)
+			{
+				System.out.println("");
+				System.out.print("Print Student by Group (LEC/LAB/TUT): ");
+				temp = input.next();
+				
+				if(temp.equals("LEC"))
+				{
+					valid = true;
+					int tempId;
+					for(i = 0; i < course[index].getLec(); i++)
+					{
+						System.out.println();
+						if(courseId == 10)
+							System.out.println("Lecture #" + (i + 1) + " for Course #10: ");
+						else
+							System.out.println("Lecture #" + (i + 1) + " for Course #0" + courseId + ": ");
+						int j;
+						for(j = 0; j < course[index].lecGrp[i].getSlots(); j++)
+						{
+							tempId = course[index].lecGrp[i].studIds[j];
+							int k;
+							for(k = 0; k < countS; k++)
+							{
+								if(tempId == stud[k].getStudId())
+								{
+									System.out.println();
+									System.out.println("Student ID: " + tempId);
+									System.out.println("Name: " + stud[k].getStudName());
+									System.out.println("Faculty: " + stud[k].getFaculty());
+									break;
+								}
+							}
+						}
+					}					
+				}
+				else if(temp.equals("LAB"))
+				{
+					valid = true;
+					int tempId;
+					for(i = 0; i < course[index].getLab(); i++)
+					{
+						System.out.println();
+						if(courseId == 10)
+							System.out.println("Lab #" + (i + 1) + " for Course #10: ");
+						else
+							System.out.println("Lab #" + (i + 1) + " for Course #0" + courseId + ": ");
+						int j;
+						for(j = 0; j < course[index].labGrp[i].getSlots(); j++)
+						{
+							tempId = course[index].labGrp[i].studIds[j];
+							int k;
+							for(k = 0; k < countS; k++)
+							{
+								if(tempId == stud[k].getStudId())
+								{
+									System.out.println();
+									System.out.println("Student ID: " + tempId);
+									System.out.println("Name: " + stud[k].getStudName());
+									System.out.println("Faculty: " + stud[k].getFaculty());
+									break;
+								}
+							}
+						}
+					}					
+				}
+				else if(temp.equals("TUT"))
+				{
+					valid = true;
+					int tempId;
+					for(i = 0; i < course[index].getTut(); i++)
+					{
+						System.out.println();
+						if(courseId == 10)
+							System.out.println("Tutorial #" + (i + 1) + " for Course #10: ");
+						else
+							System.out.println("Tutorial #" + (i + 1) + " for Course #0" + courseId + ": ");
+						int j;
+						for(j = 0; j < course[index].tutGrp[i].getSlots(); j++)
+						{
+							tempId = course[index].tutGrp[i].studIds[j];
+							int k;
+							for(k = 0; k < countS; k++)
+							{
+								if(tempId == stud[k].getStudId())
+								{
+									System.out.println();
+									System.out.println("Student ID: " + tempId);
+									System.out.println("Name: " + stud[k].getStudName());
+									System.out.println("Faculty: " + stud[k].getFaculty());
+									break;
+								}
+							}
+						}
+					}					
+				}
+				else
+				{
+					System.out.println("Invalid Group! Group must only be on of the following: LEC/LAB/TUT");
+				}
+			}
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Invalid Course ID! Course ID must only contain Numbers.");			
+		}
+		finally
+		{
+			System.out.println("=================================================");			
+		}
 	}
 	
 	public void weightage()
@@ -574,15 +715,24 @@ public class Professor
 		Student[] testS = new Student[10];
 		Professor[] testP = new Professor[10];
 		Course[] testC = new Course[10];
-		testS[0] = new Student(1, "Dexter","Leow", "DEXTER@e.uni.edu.sg", "90073472", "SCSE");
-		testS[1] = new Student(2, "Chadd", "Lim", "CHADD@E.uni.edu.sg", "90073471", "SCSE");
-		testS[2] = new Student(30, "Akshaya", "Muthu", "AKSHAYA@e.uni.edu.sg", "90073470", "SCSE");
-		testC[0] = new Course(1, "COURSE1", "SCSE", testP[0], 10, 2, 0, 0);
-		testC[1] = new Course(2, "COURSE2", "SCSE", testP[0], 10, 2, 0, 0);
-		testC[2] = new Course(10, "COURSE3", "SCSE", testP[0], 10, 2, 0, 0);
 		testP[0] = new Professor(1, "MN", "Shaanmugam", "SH44N96@e.uni.edu.sg", "86601489", "S-B1-01", "SCSE");
 		testP[1] = new Professor(2, "MN", "Shaanmugar", "SH44N95@e.uni.edu.sg", "86601488", "S-B1-02", "SCSE");
 		testP[2] = new Professor(10, "MN", "Shaanmugan", "SH44N94@e.uni.edu.sg", "86601480", "S-B1-03", "SCSE");
-		testP[1].addCourse(testC, count, testP, count);
+		testS[0] = new Student(1, "Dexter","Leow", "DEXTER@e.uni.edu.sg", "90073472", "SCSE");
+		testS[1] = new Student(2, "Chadd", "Lim", "CHADD@E.uni.edu.sg", "90073471", "SCSE");
+		testS[2] = new Student(30, "Akshaya", "Muthu", "AKSHAYA@e.uni.edu.sg", "90073470", "SCSE");
+		testC[0] = new Course(1, "COURSE1", "SCSE", testP[0], 12, 2, 3, 4);
+		testC[0].lecGrp[0] = new LectureGroup(testP[0].getProfId(), 6);
+		testC[0].lecGrp[1] = new LectureGroup(testP[0].getProfId(), 6);
+		testC[0].lecGrp[0].studIds[0] = 1;
+		testC[0].lecGrp[0].studIds[1] = 2;
+		testC[0].lecGrp[0].studIds[2] = 30;
+		testC[0].lecGrp[1].studIds[0] = 1;
+		testC[0].lecGrp[1].studIds[2] = 30;
+		testC[1] = new Course(2, "COURSE2", "SCSE", testP[0], 12, 2, 3, 1);
+		testC[1].tutGrp[0] = new TutorialGroup(testP[0].getProfId(), 3);
+		testC[1].tutGrp[0].studIds[0] = 2;
+		testC[2] = new Course(10, "COURSE3", "SCSE", testP[0], 12, 2, 3, 4);
+		testP[0].printStud(testS, count, testC, count);
 	}
 }
