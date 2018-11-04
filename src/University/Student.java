@@ -16,7 +16,7 @@ public class Student
 		this.faculty = faculty;
 	}
 
-	public void regCourse(Course[] course, int courseCount, int courseSlot)
+	public void regCourse(Course[] course, int courseCount)
 	{
 		int i;
 		Scanner sc = new Scanner(System.in);
@@ -91,9 +91,44 @@ public class Student
 			System.out.println("Please enter a valid Course ID.");
 	}
 	
-	public void printTranscript()
+	public void printTranscript(Course[] course, int courseCount)
 	{
-		
+		System.out.println("Name: " + studFName + " " + studLName);
+		System.out.println("Student ID: " + studId);
+		System.out.println("Faculty: " + faculty);
+		//for(i=0; i<courseCount; i++)
+		//if(studId==course[i].lecgrp.studId)
+		//system.out.println("=============================================================");
+		//system.out.println("Course: " + course[i].getCourseName());
+		//system.out.println("Exam Mark: " + marks.course[i].getExam());
+		//system.out.println("Exam Percentage: " + course[i].exam.getPercentage()+"%");
+		//system.out.println("Coursework Mark: " + marks.course[i].getCourse());
+		//system.out.println("Coursework Percentage: " + course[i].coursework.getPercentage()+"%");
+		//system.out.println("Total: " + course[i].getOverall());
+		//String Grade;
+		//switch(course[i].getOverall()/10)
+		//case 10:
+				//Grade = "A";
+				//break;
+		//case 9:
+				//Grade = "A";
+				//break;
+		//case 8:
+		//Grade = "A";
+		//break;
+		//case 7:
+		//Grade = "B";
+		//break;
+		//case 6:
+				//Grade = "C";
+				//break;
+		//case 5:
+				//Grade = "D";
+				//break;
+		//default:
+		//Grade = "F";
+		//break;
+		//system.out.println("Grade: " + Grade);
 	}
 	
 	public int getStudId()
