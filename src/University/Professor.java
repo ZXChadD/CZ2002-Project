@@ -100,8 +100,21 @@ public class Professor
 					System.out.println("where _____ must contain only Uppercase Letters, Numbers or '_'(Underscores)");
 					System.out.println("Example: MNSH_0001@e.uni.edu.sg");
 				}
+				else if(studEmail.length() <= 17)
+					System.out.println("Invalid E-Mail Address! _____ must contain atleast 5 Characters");
 				else
+				{
 					valid = true;
+					for(i = 0; i < count; i++)
+					{
+						if(studEmail.equals(stud[i].getStudEmail()))
+						{
+							valid = false;
+							System.out.println("Invalid Student E-Mail Address! E-Mail Address already exists!");
+							break;
+						}
+					}
+				}
 			}
 			
 			valid = false;
@@ -116,7 +129,18 @@ public class Professor
 				else if(phoneNo.charAt(0) != '9' && phoneNo.charAt(0) != '8' && phoneNo.charAt(0) != '6')
 					System.out.println("Invalid Phone Number! Phone Number must start with only '9', '8', or '6'.");
 				else
+				{
 					valid = true;
+					for(i = 0; i < count; i++)
+					{
+						if(phoneNo.equals(stud[i].getPhoneNo()))
+						{
+							valid = false;
+							System.out.println("Invalid Student Phone Number! Phone Number already exists!");
+							break;
+						}
+					}
+				}
 			}
 			
 			valid = false;
@@ -146,6 +170,8 @@ public class Professor
 					System.out.println("ID: " + stud[i].getStudId());
 					System.out.println("Name: " + stud[i].getStudName());
 					System.out.println("Faculty: " + stud[i].getFaculty());
+					System.out.println("Phone Number: " + stud[i].getPhoneNo());
+					System.out.println("E-Mail Address: " + stud[i].getStudEmail());
 				}
 			}
 		}
@@ -163,8 +189,8 @@ public class Professor
 	{
 		System.out.println("=================================================");
 		
-//		try
-//		{
+		try
+		{
 			int courseId = -1, slots = -1, lec = -1, lab = -1, tut = -1;
 			String courseName = null; faculty = null;
 			Professor p;
@@ -197,7 +223,6 @@ public class Professor
 			
 			System.out.print("Course Name: ");
 			courseName = input.next();
-			courseName.toUpperCase();
 
 			valid = false;
 			while(valid == false)
@@ -241,7 +266,7 @@ public class Professor
 				if(slots < 1)
 					System.out.println("Invalid Number of Slots! Each Course must have atleast 1 Slot.");
 				else if(slots > 12)
-					System.out.println("Invalid Number of Slots! Each Course must not have more than 15 Slots.");
+					System.out.println("Invalid Number of Slots! Each Course must not have more than 12 Slots.");
 				else
 					valid = true;
 			}
@@ -295,7 +320,7 @@ public class Professor
 							if(slotId < 1)
 								System.out.println("Invalid Number of Slots! Each Lecture Group must have atleast 1 Slot.");
 							else if(slotId > 6)
-								System.out.println("Invalid Number of Slots! Each Lecture Group must not have more than 8 Slots.");
+								System.out.println("Invalid Number of Slots! Each Lecture Group must not have more than 6 Slots.");
 							else
 								id = true;
 						}
@@ -310,7 +335,7 @@ public class Professor
 					if(temp != slots)
 					{
 						System.out.println();
-						System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Lecture Group more carefully this time.");
+						System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Lecture Group again.");
 						valid = false;
 					}
 				}
@@ -365,7 +390,7 @@ public class Professor
 							if(slotId < 1)
 								System.out.println("Invalid Number of Slots! Each Lab Group must have atleast 1 Slot.");
 							else if(slotId > 4)
-								System.out.println("Invalid Number of Slots! Each Lab Group must not have more than 5 Slots.");
+								System.out.println("Invalid Number of Slots! Each Lab Group must not have more than 4 Slots.");
 							else
 								id = true;
 						}
@@ -373,15 +398,19 @@ public class Professor
 						labGrp[i] = new LabGroup(professorId, slotId);
 						System.out.println("Lab #" + (i + 1) + " added!");
 					}
-					int temp = 0;
-					for(i = 0; i < lab; i++)
-						temp += labGrp[i].getSlots();
-					if(temp != slots)
+					if(lab != 0)
 					{
-						System.out.println();
-						System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Lab Group more carefully this time.");
-						valid = false;
-					}					
+						int temp = 0;
+						for(i = 0; i < lab; i++)
+							temp += labGrp[i].getSlots();
+						if(temp != slots)
+						{
+							System.out.println();
+							System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Lab Group again.");
+							valid = false;
+						}
+						
+					}
 				}
 			}
 
@@ -394,7 +423,7 @@ public class Professor
 				if(tut < 0)
 					System.out.println("Invalid Number of Tutorial Groups! The Number of Lab Groups cannot be a Negative Value.");
 				else if(tut > 4)
-					System.out.println("Invalid Number of Tutorial Groups! Each Course must not have more than 3 Tutorial Groups.");
+					System.out.println("Invalid Number of Tutorial Groups! Each Course must not have more than 4 Tutorial Groups.");
 				else
 				{
 					valid = true;
@@ -442,14 +471,17 @@ public class Professor
 						tutGrp[i] = new TutorialGroup(professorId, slotId);
 						System.out.println("Tutorial #" + (i + 1) + " added!");
 					}
-					int temp = 0;
-					for(i = 0; i < tut; i++)
-						temp += tutGrp[i].getSlots();
-					if(temp != slots)
+					if(tut != 0)
 					{
-						System.out.println();
-						System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Tutorial Group more carefully this time.");
-						valid = false;
+						int temp = 0;
+						for(i = 0; i < tut; i++)
+							temp += tutGrp[i].getSlots();
+						if(temp != slots)
+						{
+							System.out.println();
+							System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Tutorial Group  again.");
+							valid = false;
+						}						
 					}
 				}
 			}
@@ -470,15 +502,15 @@ public class Professor
 				System.out.println("Professor In-Charge: " + p.getProfName());
 				System.out.println("Faculty: " + course[i].getFaculty());
 			}
-//		}
-//		catch(Exception e)
-//		{
-//			System.out.println("Invalid Input! Input must only contain Numbers.");
-//		}
-//		finally
-//		{
-//			System.out.println("=================================================");
-//		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("Invalid Input! Input must only contain Numbers.");
+		}
+		finally
+		{
+			System.out.println("=================================================");
+		}
 	}
 		
 	public void printStud()
@@ -542,15 +574,15 @@ public class Professor
 		Student[] testS = new Student[10];
 		Professor[] testP = new Professor[10];
 		Course[] testC = new Course[10];
-		testS[0] = new Student(1, "Dexter","Leow", "dexter@gmail.com", "12345678", "SCSE");
-		testS[1] = new Student(2, "Chadd", "Lim", "chadd@gmail.com", "23456789", "SCSE");
-		testS[2] = new Student(30, "Akshaya", "Muthu", "akshaya@gmail.com", "34567890", "SCSE");
+		testS[0] = new Student(1, "Dexter","Leow", "DEXTER@e.uni.edu.sg", "90073472", "SCSE");
+		testS[1] = new Student(2, "Chadd", "Lim", "CHADD@E.uni.edu.sg", "90073471", "SCSE");
+		testS[2] = new Student(30, "Akshaya", "Muthu", "AKSHAYA@e.uni.edu.sg", "90073470", "SCSE");
 		testC[0] = new Course(1, "COURSE1", "SCSE", testP[0], 10, 2, 0, 0);
 		testC[1] = new Course(2, "COURSE2", "SCSE", testP[0], 10, 2, 0, 0);
-		testC[2] = new Course(3, "COURSE3", "SCSE", testP[0], 10, 2, 0, 0);
-		testP[0] = new Professor(1, "MN", "Shaanmugam", "sh44n96@e.uni.edu.sg", "86601489", "S-B1-01", "SCSE");
-		testP[1] = new Professor(2, "MN", "Shaanmugar", "sh44n94@e.uni.edu.sg", "86601488", "S-B1-02", "SCSE");
-		testP[2] = new Professor(3, "MN", "Shaanmugan", "sh44n95@e.uni.edu.sg", "86601480", "S-B1-03", "SCSE");
+		testC[2] = new Course(10, "COURSE3", "SCSE", testP[0], 10, 2, 0, 0);
+		testP[0] = new Professor(1, "MN", "Shaanmugam", "SH44N96@e.uni.edu.sg", "86601489", "S-B1-01", "SCSE");
+		testP[1] = new Professor(2, "MN", "Shaanmugar", "SH44N95@e.uni.edu.sg", "86601488", "S-B1-02", "SCSE");
+		testP[2] = new Professor(10, "MN", "Shaanmugan", "SH44N94@e.uni.edu.sg", "86601480", "S-B1-03", "SCSE");
 		testP[1].addCourse(testC, count, testP, count);
 	}
 }
