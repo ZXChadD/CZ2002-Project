@@ -167,7 +167,11 @@ public class Professor
 				}
 			}
 		}
-		catch(Exception e)
+		catch(NullPointerException e)
+		{
+			System.out.println();
+		}
+		catch(Exception ex)
 		{
 			System.out.println("Invalid Student ID! Student ID must only contain Numbers.");
 		}
@@ -491,7 +495,11 @@ public class Professor
 				System.out.println("Faculty: " + course[i].getFaculty());
 			}
 		}
-		catch(Exception e)
+		catch(NullPointerException e)
+		{
+			System.out.println();
+		}
+		catch(Exception ex)
 		{
 			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
 		}
@@ -755,6 +763,10 @@ public class Professor
 			for(i = 0; i < cw; i++)
 				System.out.println(course[index].coursework[i].getName() + " (%): " + course[index].coursework[i].getPercentage());
 		}
+		catch(NullPointerException e)
+		{
+			System.out.println();
+		}
 		catch(Exception ex)
 		{
 			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
@@ -819,12 +831,6 @@ public class Professor
 										break;										
 									}
 								}
-//								if(Arrays.asList(course[indexC].lecGrp[j].studIds).contains(studentId))
-//								{
-//									valid = true;
-//									indexS = i;
-//									break;
-//								}
 							}
 						}
 					}
@@ -851,7 +857,7 @@ public class Professor
 			{
 				int marks = 0;
 				System.out.println();
-				System.out.println("Course Name: " + course[indexC].coursework[i].getName());
+				System.out.println("Coursework Name: " + course[indexC].coursework[i].getName());
 				valid = false;
 				while(valid == false)
 				{
@@ -870,13 +876,16 @@ public class Professor
 				marks = (int)(marksTemp);
 				ans += marks;
 				i++;
-				System.out.println(marks);
 			}
 
 			stud[indexS].mark[indexM].setCoursework(ans);
 			System.out.println();
 			System.out.println("Coursework Marks for Course#" + courseId + ": ");
 			System.out.println(course[indexC].getCourseName() + ": " + stud[indexS].mark[indexM].getCoursework() + "/" + full);
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println();
 		}
 		catch(Exception ex)
 		{
@@ -888,8 +897,117 @@ public class Professor
 		}
 	}
 	
-	public void examMark()
+	public void examMark(Student[] stud, int countS, Course[] course, int countC)
 	{
+		System.out.println("=================================================");
+
+		try
+		{
+			boolean  valid = false;
+			int courseId = -1, indexC = 0, studentId = -1, indexS = 0, indexM = 0, i = 0, j = 0;
+			
+			while(valid == false)
+			{
+				System.out.print("Course ID: ");
+				courseId = input.nextInt();
+				if(courseId >= 1 && courseId <= 10)
+				{
+					for(i = 0; i < countC; i++)
+					{
+						if(courseId == course[i].getCourseId())
+						{
+							valid = true;
+							indexC = i;
+							break;
+						}
+					}
+					if(valid == false)
+						System.out.println("Invalid Course ID! Course ID does not exist.");
+				}
+				else
+					System.out.println("Invalid Course ID! Course ID must be from #1 to #10.");
+			}
+			
+			valid = false;
+			while(valid == false)
+			{
+				System.out.print("Student ID: ");
+				studentId = input.nextInt();
+				if(studentId >= 1 && studentId <= 99)
+				{
+					for(i = 0; i < countS; i++)
+					{
+						if(studentId == stud[i].getStudId())
+						{
+							for(j = 0; j < course[indexC].getLec(); j++)
+							{
+								int k = 0;
+								for(k = 0; k < course[indexC].lecGrp[j].studIds.length; k++)
+								{
+									if(course[indexC].lecGrp[j].studIds[k] == studentId)
+									{
+										valid = true;
+										indexS = i;
+										break;										
+									}
+								}
+							}
+						}
+					}
+					if(valid == false)
+						System.out.println("Invalid Student ID! Student ID does not exist in the Course.");
+				}
+				else
+					System.out.println("Invalid Student ID! Student ID must be from #1 to #99.");
+			}
+			
+			for(i = 0; i < stud[indexS].mark.length; i++)
+			{
+				if(stud[indexS].mark[i] == null)
+				{
+					indexM = i;
+					stud[indexS].mark[indexM] = new Marks(courseId);
+					break;
+				}
+			}
+
+			int marks = 0;
+			System.out.println();
+
+			valid = false;
+			while(valid == false)
+			{
+				System.out.print("Exam Marks: ");
+				marks = input.nextInt();
+				if(marks < 0)
+					System.out.println("Invalid Marks! Marks cannot be a Negative Value.");
+				else if(marks > 100)
+					System.out.println("Invalid Marks! Marks must not be more than 100.");
+				else
+					valid = true;
+			}
+
+			int percent = course[indexC].e.getPercentage();
+			double marksTemp = (double)(marks) * (double)(percent) / (double)100;
+			marks = (int)(marksTemp);
+
+			stud[indexS].mark[indexM].setExam(marks);
+			System.out.println();
+			System.out.println("Exam Marks for Course#" + courseId + ": ");
+			System.out.println(course[indexC].getCourseName() + ": " + stud[indexS].mark[indexM].getExam() + "/" + percent);
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
+		}
+		finally
+		{
+			System.out.println("=================================================");
+		}
 		
 	}
 	
@@ -949,6 +1067,6 @@ public class Professor
 		testC[0].e = new Exam(60);
 		testC[1] = new Course(2, "Course2", "SCSE", testP[0], 12, 2, 3, 1);
 		testC[2] = new Course(10, "Course3", "SCSE", testP[0], 12, 2, 3, 4);
-		testP[0].cwMark(testS, count, testC, count);
+		testP[0].examMark(testS, count, testC, count);
 	}
 }
