@@ -8,6 +8,8 @@ public class Course
 	LectureGroup[] lecGrp = new LectureGroup[2];
 	LabGroup[] labGrp = new LabGroup[3];
 	TutorialGroup[] tutGrp = new TutorialGroup[4];
+	Exam e;
+	Coursework[] coursework = new Coursework[3];
 
 	public Course(int courseId, String courseName, String faculty, Professor p, int slots, int lec, int lab, int tut)
 	{
@@ -34,11 +36,6 @@ public class Course
 	public String getFaculty()
 	{
 		return faculty;
-	}
-	
-	public Professor getProfessor()
-	{
-		return p;
 	}
 
 	public int getSlots()
