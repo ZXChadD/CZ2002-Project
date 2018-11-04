@@ -5,6 +5,7 @@ public class Student
 {
 	private int studId;
 	private String studFName, studLName, studEmail, faculty, phoneNo;
+	Marks[] mark = new Marks[10];
 	
 	public Student(int studId, String studFName, String studLName, String studEmail, String phoneNo, String faculty)
 	{

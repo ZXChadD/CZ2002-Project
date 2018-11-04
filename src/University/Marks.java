@@ -2,14 +2,13 @@ package University;
 
 public class Marks
 {
-	private int courseId, overall, exam, coursework;
+	private int courseId, exam, coursework;
 	
-	public Marks(int courseId, int overall, int exam, int coursework)
+	public Marks(int courseId)
 	{
 		this.courseId = courseId;
-		this.overall = overall;
-		this.exam = exam;
-		this.coursework = coursework;
+		this.exam = 0;
+		this.coursework = 0;
 	}
 	
 	public int getCourseId()
@@ -19,7 +18,7 @@ public class Marks
 	
 	public int getOverall()
 	{
-		return overall;
+		return (exam + coursework);
 	}
 	
 	public int getExam()
@@ -30,5 +29,15 @@ public class Marks
 	public int getCoursework()
 	{
 		return coursework;
+	}
+	
+	public void setCoursework(int mark)
+	{
+		coursework = mark;
+	}
+
+	public void setExam(int mark)
+	{
+		exam = mark;
 	}
 }

@@ -3,6 +3,7 @@ package University;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.Arrays;
 
 public class Professor
 {
@@ -764,9 +765,127 @@ public class Professor
 		}
 	}
 	
-	public void cwMark()
+	public void cwMark(Student[] stud, int countS, Course[] course, int countC)
 	{
-		
+		System.out.println("=================================================");
+
+		try
+		{
+			boolean  valid = false;
+			int courseId = -1, indexC = 0, studentId = -1, indexS = 0, indexM = 0, i = 0, j = 0;
+			
+			while(valid == false)
+			{
+				System.out.print("Course ID: ");
+				courseId = input.nextInt();
+				if(courseId >= 1 && courseId <= 10)
+				{
+					for(i = 0; i < countC; i++)
+					{
+						if(courseId == course[i].getCourseId())
+						{
+							valid = true;
+							indexC = i;
+							break;
+						}
+					}
+					if(valid == false)
+						System.out.println("Invalid Course ID! Course ID does not exist.");
+				}
+				else
+					System.out.println("Invalid Course ID! Course ID must be from #1 to #10.");
+			}
+			
+			valid = false;
+			while(valid == false)
+			{
+				System.out.print("Student ID: ");
+				studentId = input.nextInt();
+				if(studentId >= 1 && studentId <= 99)
+				{
+					for(i = 0; i < countS; i++)
+					{
+						if(studentId == stud[i].getStudId())
+						{
+							for(j = 0; j < course[indexC].getLec(); j++)
+							{
+								int k = 0;
+								for(k = 0; k < course[indexC].lecGrp[j].studIds.length; k++)
+								{
+									if(course[indexC].lecGrp[j].studIds[k] == studentId)
+									{
+										valid = true;
+										indexS = i;
+										break;										
+									}
+								}
+//								if(Arrays.asList(course[indexC].lecGrp[j].studIds).contains(studentId))
+//								{
+//									valid = true;
+//									indexS = i;
+//									break;
+//								}
+							}
+						}
+					}
+					if(valid == false)
+						System.out.println("Invalid Student ID! Student ID does not exist in the Course.");
+				}
+				else
+					System.out.println("Invalid Student ID! Student ID must be from #1 to #99.");
+			}
+			
+			for(i = 0; i < stud[indexS].mark.length; i++)
+			{
+				if(stud[indexS].mark[i] == null)
+				{
+					indexM = i;
+					stud[indexS].mark[indexM] = new Marks(courseId);
+					break;
+				}
+			}
+
+			i = 0;
+			int ans = 0, full = 0;
+			while(course[indexC].coursework[i] != null)
+			{
+				int marks = 0;
+				System.out.println();
+				System.out.println("Course Name: " + course[indexC].coursework[i].getName());
+				valid = false;
+				while(valid == false)
+				{
+					System.out.print("Marks: ");
+					marks = input.nextInt();
+					if(marks < 0)
+						System.out.println("Invalid Marks! Marks cannot be a Negative Value.");
+					else if(marks > 100)
+						System.out.println("Invalid Marks! Marks must not be more than 100.");
+					else
+						valid = true;
+				}
+				int percent = course[indexC].coursework[i].getPercentage();
+				full += percent;
+				double marksTemp = (double)(marks) * (double)(percent) / (double)100;
+				marks = (int)(marksTemp);
+				ans += marks;
+				i++;
+				System.out.println(marks);
+			}
+
+			stud[indexS].mark[indexM].setCoursework(ans);
+			System.out.println();
+			System.out.println("Coursework Marks for Course#" + courseId + ": ");
+			System.out.println(course[indexC].getCourseName() + ": " + stud[indexS].mark[indexM].getCoursework() + "/" + full);
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
+		}
+		finally
+		{
+			System.out.println("=================================================");
+		}
 	}
 	
 	public void examMark()
@@ -821,9 +940,15 @@ public class Professor
 		testS[0] = new Student(1, "Dexter","Leow", "DEXTER@e.uni.edu.sg", "90073472", "SCSE");
 		testS[1] = new Student(2, "Chadd", "Lim", "CHADD@E.uni.edu.sg", "90073471", "SCSE");
 		testS[2] = new Student(30, "Akshaya", "Muthu", "AKSHAYA@e.uni.edu.sg", "90073470", "SCSE");
-		testC[0] = new Course(1, "Course1", "SCSE", testP[0], 12, 2, 3, 4);
+		testC[0] = new Course(1, "Course1", "SCSE", testP[0], 6, 1, 2, 2);
+		testC[0].lecGrp[0] = new LectureGroup(1,6);
+		testC[0].lecGrp[0].studIds[0] = 1;
+		testC[0].lecGrp[0].studIds[1] = 30;
+		testC[0].coursework[0] = new Coursework(20, "Quiz1");
+		testC[0].coursework[1] = new Coursework(20, "Quiz2");
+		testC[0].e = new Exam(60);
 		testC[1] = new Course(2, "Course2", "SCSE", testP[0], 12, 2, 3, 1);
 		testC[2] = new Course(10, "Course3", "SCSE", testP[0], 12, 2, 3, 4);
-		testP[0].weightage(testC, count);
+		testP[0].cwMark(testS, count, testC, count);
 	}
 }
