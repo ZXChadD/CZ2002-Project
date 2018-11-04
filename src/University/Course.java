@@ -5,7 +5,10 @@ public class Course
 	private int courseId, slots, lec, lab, tut;
 	private String courseName, faculty;
 	Professor p;
-	
+	LectureGroup[] lecGrp = new LectureGroup[2];
+	LabGroup[] labGrp = new LabGroup[3];
+	TutorialGroup[] tutGrp = new TutorialGroup[4];
+
 	public Course(int courseId, String courseName, String faculty, Professor p, int slots, int lec, int lab, int tut)
 	{
 		this.courseId = courseId;
