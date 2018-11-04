@@ -12,21 +12,23 @@ public class UniversityApp {
 			switch(userType) {
 				case 1: do{
 							System.out.println("Please enter your Student ID: ");
+							int studId = sc.nextInt();
 							// read student.txt
 							if(//id not in student)
 								System.out.println("Please enter a valid Student ID.");
 							else
-								//student function
+								//student function(studId)
 								break;
 						} while ();
 				
 				case 2: do{
 							System.out.println("Please enter your Professor ID: ");
+							int profId = sc.nextInt();
 							// read prof.txt
 							if(//id not in prof)
 								System.out.println("Please enter a valid Professor ID.");
 							else
-								//prof function
+								//prof function(profId)
 								break;
 						} while ();
 					
@@ -35,8 +37,11 @@ public class UniversityApp {
 		} while (userType > 2 || userType < 1);
 	}
 	
-	public void studFunc() {
+	public void studFunc(int studId) {
+		int studChoice;
 		Scanner sc = new Scanner(System.in);
+		//find same id in student.txt
+		//copy whole line to create new student object
 		Student stud = new Student(0, null, null, null, null, null);
 		System.out.println("List of actions:");
 		System.out.println("1: Register for a course");
@@ -44,28 +49,35 @@ public class UniversityApp {
 		System.out.println("3: Print transcript");
 		System.out.println("4: Exit");
 		System.out.println("Please enter your choice: ");
+		Course[] course = new Course[10];
+		//for(a=0;a<10;a++)
+		//read course.txt and input each line into course[a]
 		do {
-			int studChoice = sc.nextInt();
-			switch(studChoice)
+			studChoice = sc.nextInt();
+			switch(studChoice) {
 			case 1: 
-				stud.regCourse(course, courseCount, courseSlot);
+				stud.regCourse(course, a);
 				break;
 			case 2:
-				stud.checkAvail(course, courseCount);
+				stud.checkAvail(course, a);
 				break;
 			case 3:
-				stud.printTranscript();
+				stud.printTranscript(course, a);
 				break;
 			case 4:
 				System.out.println("Thank you for using the app");
 				break;
 			default:
 				System.out.println("Please enter a valid action.");
-		}while(studChoice>4 || studChoice<1)
+		}
+		}while(studChoice!=4);
 	}
 	
-	public void profFunc() {
+	public void profFunc(int profId) {
+		int profChoice;
 		Scanner sc = new Scanner(System.in);
+		//find same id in professor.txt
+		//copy whole line to create new professor object
 		Professor prof = new Professor(0, null, null, null, null, null, null);
 		System.out.println("List of actions:");
 		System.out.println("1: Add a student");
@@ -77,20 +89,32 @@ public class UniversityApp {
 		System.out.println("7: Print course statistics");
 		System.out.println("8: Exit");
 		System.out.println("Please enter your choice: ");
+		Course[] course = new Course[10];
+		//for(a=0;a<10;a++)
+		//read course.txt and input each line into course[a]
+		Student[] student = new Student[20];
+		//for(b=0;b<10;b++)
+				//read student.txt and input each line into student[b]
+		Professor[] professor = new Professor[5];
+		//for(c=0;c<10;c++)
+				//read course.txt and input each line into professor[c]
 		do {
-			int profChoice = sc.nextInt();
-			switch(profChoice)
+			profChoice = sc.nextInt();
+			switch(profChoice) {
 			case 1: 
-				prof.addStud(stud, count);
+				Student newStud = prof.addStud(student, b);
+				//write newStud to student.txt
 				break;
 			case 2:
-				prof.addCourse();
+				Course newCourse = prof.addCourse(course, a, professor, c);
+				//write newCourse to course.txt
 				break;
 			case 3:
-				prof.printStud();
+				prof.printStud(student, b, course, a);
 				break;
 			case 4:
-				prof.weightage();
+				prof.weightage(course, a);
+				//write weightage to ???.txt
 				break;
 			case 5:
 				prof.cwMark();
@@ -106,6 +130,7 @@ public class UniversityApp {
 				break;
 			default:
 				System.out.println("Please enter a valid action.");
-		}while(profChoice>8 || profChoice<1)
+			}
+		}while(profChoice != 8);
 	}
 }
