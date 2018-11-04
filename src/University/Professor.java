@@ -21,7 +21,7 @@ public class Professor
 		this.faculty = faculty;
 	}
 	
-	public void addStud(Student[] stud, int count)
+	public void addStud(Student[] stud, int countS)
 	{
 		System.out.println("=================================================");
 		
@@ -34,27 +34,24 @@ public class Professor
 			
 			while(valid == false)
 			{
-				System.out.print("Student ID (#01 - #99): ");
+				System.out.print("Student ID (#1 - #99): ");
 				studId = input.nextInt();
 				if(studId >= 1 && studId <= 99)
 				{
 					valid = true;
-					for(i = 0; i < count; i++)
+					for(i = 0; i < countS; i++)
 					{
 						if(studId == stud[i].getStudId())
 						{
 							valid = false;
-							if(studId >= 10)
-								System.out.println("Invalid Student ID! Student ID #" + studId + " already exists!");
-							else
-								System.out.println("Invalid Student ID! Student ID #0" + studId + " already exists!");
+							System.out.println("Invalid Student ID! Student ID #" + studId + " already exists!");
 							break;
 						}
 					}
 				}
 				else
 				{
-					System.out.println("Invalid Student ID! Student ID must be from #01 to #99.");
+					System.out.println("Invalid Student ID! Student ID must be from #1 to #99.");
 				}
 			}
 			
@@ -102,7 +99,7 @@ public class Professor
 				else
 				{
 					valid = true;
-					for(i = 0; i < count; i++)
+					for(i = 0; i < countS; i++)
 					{
 						if(studEmail.equals(stud[i].getStudEmail()))
 						{
@@ -128,7 +125,7 @@ public class Professor
 				else
 				{
 					valid = true;
-					for(i = 0; i < count; i++)
+					for(i = 0; i < countS; i++)
 					{
 						if(phoneNo.equals(stud[i].getPhoneNo()))
 						{
@@ -153,15 +150,12 @@ public class Professor
 			
 			if(valid == true)
 			{
-				stud[count] = new Student(studId, studFName, studLName, studEmail, phoneNo, faculty);
-				count++;
-				if(studId >= 10)
-					System.out.println("Student #" + studId + " added!");
-				else
-					System.out.println("Student #0" + studId + " added!");
+				stud[countS] = new Student(studId, studFName, studLName, studEmail, phoneNo, faculty);
+				countS++;
+				System.out.println("Student #" + studId + " added!");
 				System.out.println();
 				System.out.println("Currently Available Students: ");
-				for(i = 0; i < count; i++)
+				for(i = 0; i < countS; i++)
 				{
 					System.out.println();
 					System.out.println("ID: " + stud[i].getStudId());
@@ -196,7 +190,7 @@ public class Professor
 			
 			while(valid == false)
 			{
-				System.out.print("Course ID (#01 - #10): ");
+				System.out.print("Course ID (#1 - #10): ");
 				courseId = input.nextInt();
 				if(courseId >= 1 && courseId <= 10)
 				{
@@ -206,16 +200,13 @@ public class Professor
 						if(courseId == course[i].getCourseId())
 						{
 							valid = false;
-							if(courseId == 10)
-								System.out.println("Invalid Course ID! Course ID #" + courseId + " already exists!");
-							else
-								System.out.println("Invalid Course ID! Course ID #0" + courseId + " already exists!");
+							System.out.println("Invalid Course ID! Course ID #" + courseId + " already exists!");
 							break;
 						}
 					}
 				}
 				else
-					System.out.println("Invalid Course ID! Course ID must be from #01 to #10.");
+					System.out.println("Invalid Course ID! Course ID must be from #1 to #10.");
 			}
 			
 			System.out.print("Course Name: ");
@@ -235,7 +226,7 @@ public class Professor
 			valid = false;
 			while(valid == false)
 			{
-				System.out.print("ID of Professor In-Charge (#01 - #10): ");
+				System.out.print("ID of Professor In-Charge (#1 - #10): ");
 				int profId = input.nextInt();
 				if(profId >= 1 && profId <= 10)
 				{
@@ -251,7 +242,7 @@ public class Professor
 						System.out.println("Invalid Professor Id! Professor ID does not exist.");
 				}
 				else
-					System.out.println("Invalid Professor ID! Professor ID must be from #01 to #10.");
+					System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 			}
 			p = prof[i];
 			
@@ -306,7 +297,7 @@ public class Professor
 									System.out.println("Invalid Professor ID! Professor ID does not exist.");
 							}
 							else
-								System.out.println("Invalid Professor ID! Professor ID must be from #01 to #10.");
+								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
 	
 						id = false;
@@ -376,7 +367,7 @@ public class Professor
 									System.out.println("Invalid Professor ID! Professor ID does not exist.");
 							}
 							else
-								System.out.println("Invalid Professor ID! Professor ID must be from #01 to #10.");
+								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
 	
 						id = false;
@@ -395,6 +386,7 @@ public class Professor
 						course[courseId].labGrp[i] = new LabGroup(professorId, slotId);
 						System.out.println("Lab #" + (i + 1) + " added!");
 					}
+					
 					if(lab != 0)
 					{
 						int temp = 0;
@@ -449,7 +441,7 @@ public class Professor
 									System.out.println("Invalid Professor ID! Professor ID does not exist.");
 							}
 							else
-								System.out.println("Invalid Professor ID! Professor ID must be from #01 to #10.");
+								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
 	
 						id = false;
@@ -468,6 +460,7 @@ public class Professor
 						course[courseId].tutGrp[i] = new TutorialGroup(professorId, slotId);
 						System.out.println("Tutorial #" + (i + 1) + " added!");
 					}
+					
 					if(tut != 0)
 					{
 						int temp = 0;
@@ -485,10 +478,7 @@ public class Professor
 
 			course[countC] = new Course(courseId, courseName, faculty, p, slots, lec, lab, tut);
 			countC++;
-			if(courseId == 10)
-				System.out.println("Course #" + courseId + " added!");
-			else
-				System.out.println("Course #0" + courseId + " added!");
+			System.out.println("Course #" + courseId + " added!");
 			System.out.println();
 			System.out.println("Currently Available Courses: ");
 			for(i = 0; i < countC; i++)
@@ -502,7 +492,7 @@ public class Professor
 		}
 		catch(Exception e)
 		{
-			System.out.println("Invalid Input! Input must only contain Numbers.");
+			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
 		}
 		finally
 		{
@@ -539,7 +529,7 @@ public class Professor
 						System.out.println("Invalid Course ID! Course ID does not exist.");
 				}
 				else
-					System.out.println("Invalid Course ID! Course ID must be from #01 to #10.");
+					System.out.println("Invalid Course ID! Course ID must be from #1 to #10.");
 			}
 
 			valid = false;
@@ -556,10 +546,7 @@ public class Professor
 					for(i = 0; i < course[index].getLec(); i++)
 					{
 						System.out.println();
-						if(courseId == 10)
-							System.out.println("Lecture #" + (i + 1) + " for Course #10: ");
-						else
-							System.out.println("Lecture #" + (i + 1) + " for Course #0" + courseId + ": ");
+						System.out.println("Lecture #" + (i + 1) + " for Course #" + courseId + ": ");
 						int j;
 						for(j = 0; j < course[index].lecGrp[i].getSlots(); j++)
 						{
@@ -586,10 +573,7 @@ public class Professor
 					for(i = 0; i < course[index].getLab(); i++)
 					{
 						System.out.println();
-						if(courseId == 10)
-							System.out.println("Lab #" + (i + 1) + " for Course #10: ");
-						else
-							System.out.println("Lab #" + (i + 1) + " for Course #0" + courseId + ": ");
+						System.out.println("Lab #" + (i + 1) + " for Course #" + courseId + ": ");
 						int j;
 						for(j = 0; j < course[index].labGrp[i].getSlots(); j++)
 						{
@@ -616,10 +600,7 @@ public class Professor
 					for(i = 0; i < course[index].getTut(); i++)
 					{
 						System.out.println();
-						if(courseId == 10)
-							System.out.println("Tutorial #" + (i + 1) + " for Course #10: ");
-						else
-							System.out.println("Tutorial #" + (i + 1) + " for Course #0" + courseId + ": ");
+						System.out.println("Tutorial #" + (i + 1) + " for Course #" + courseId + ": ");
 						int j;
 						for(j = 0; j < course[index].tutGrp[i].getSlots(); j++)
 						{
@@ -651,17 +632,136 @@ public class Professor
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Invalid Course ID! Course ID must only contain Numbers.");			
+			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
 		}
 		finally
 		{
-			System.out.println("=================================================");			
+			System.out.println("=================================================");
 		}
 	}
 	
-	public void weightage()
+	public void weightage(Course[] course, int countC)
 	{
+		System.out.println("=================================================");
 		
+		try
+		{
+			boolean  valid = false;
+			int courseId = -1, i = 0, index = 0, cw = 0;
+			
+			while(valid == false)
+			{
+				System.out.print("Course ID: ");
+				courseId = input.nextInt();
+				if(courseId >= 1 && courseId <= 10)
+				{
+					for(i = 0; i < countC; i++)
+					{
+						if(courseId == course[i].getCourseId())
+						{
+							valid = true;
+							index = i;
+							break;
+						}
+					}
+					if(valid == false)
+						System.out.println("Invalid Course ID! Course ID does not exist.");
+				}
+				else
+					System.out.println("Invalid Course ID! Course ID must be from #1 to #10.");
+			}
+			
+			valid = false;
+			while(valid == false)
+			{
+				System.out.print("Number of Coursework Components: ");
+				cw = input.nextInt();
+				if(cw < 0)
+					System.out.println("Invalid Number of Coursework Components! The Number of Coursework Components cannot be a Negative Value.");
+				else if(cw > 3)
+					System.out.println("Invalid Number of Coursework Components! Each Course must not have more than 3 Coursework Components.");
+				else
+					valid = true;
+			}
+			
+			valid = false;
+			while(valid == false)
+			{
+				boolean valid2 = false;
+				int exam = 0;
+				
+				for(i = 0; i < cw; i++)
+				{
+					System.out.println();
+					String name = null;
+					int percent = 0;
+					
+					System.out.print("Coursework Component Name: ");
+					name = input.next();
+					
+					valid2 = false;
+					while(valid2 == false)
+					{
+						System.out.print("Weightage of " + name + " in Course #" + courseId + "(%): ");
+						percent = input.nextInt();
+						if(percent < 0)
+							System.out.println("Invalid Weightage Percentage! The Weightage Percentage cannot be a Negative Value.");
+						else if(percent > 100)
+							System.out.println("Invalid Weightage Percentage! Each Coursework must not have more than 100% Weightage.");
+						else
+						{
+							course[index].coursework[i] = new Coursework(percent, name);
+							System.out.println("Coursework Component " + name + " added for Course #" + courseId);
+							valid2 = true;
+						}
+					}
+				}
+				
+				valid2 = false;
+				while(valid2 == false)
+				{
+					System.out.println();
+					System.out.print("Weightage of Exam in Course #" + courseId + "(%): ");
+					exam = input.nextInt();
+					if(exam < 0)
+						System.out.println("Invalid Weightage Percentage! The Weightage Percentage cannot be a Negative Value.");
+					else if(exam > 100)
+						System.out.println("Invalid Weightage Percentage! The Weightage of the Exam must not have more than 100% Weightage.");
+					else
+						valid2 = true;
+				}
+				course[index].e = new Exam(exam);
+				
+				int temp = 0;
+				for(i = 0; i < cw; i++)
+					temp += course[index].coursework[i].getPercentage();
+				temp += course[index].e.getPercentage();
+				if(temp != 100)
+				{
+					System.out.println();
+					System.out.println("Total Weightage Percentage did not tally up to 100! Please re-enter the Coursework Components in the Course again.");
+					valid = false;
+				}
+				else
+					valid = true;
+			}
+
+			System.out.println();
+			System.out.println("Course Assessment Components Weightage: ");
+			System.out.println("Course ID: " + courseId);
+			System.out.println("Name: " + course[index].getCourseName());
+			System.out.println("Exam (%): " + course[index].e.getPercentage());
+			for(i = 0; i < cw; i++)
+				System.out.println(course[index].coursework[i].getName() + " (%): " + course[index].coursework[i].getPercentage());
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
+		}
+		finally
+		{
+			System.out.println("=================================================");
+		}
 	}
 	
 	public void cwMark()
@@ -721,18 +821,9 @@ public class Professor
 		testS[0] = new Student(1, "Dexter","Leow", "DEXTER@e.uni.edu.sg", "90073472", "SCSE");
 		testS[1] = new Student(2, "Chadd", "Lim", "CHADD@E.uni.edu.sg", "90073471", "SCSE");
 		testS[2] = new Student(30, "Akshaya", "Muthu", "AKSHAYA@e.uni.edu.sg", "90073470", "SCSE");
-		testC[0] = new Course(1, "COURSE1", "SCSE", testP[0], 12, 2, 3, 4);
-		testC[0].lecGrp[0] = new LectureGroup(testP[0].getProfId(), 6);
-		testC[0].lecGrp[1] = new LectureGroup(testP[0].getProfId(), 6);
-		testC[0].lecGrp[0].studIds[0] = 1;
-		testC[0].lecGrp[0].studIds[1] = 2;
-		testC[0].lecGrp[0].studIds[2] = 30;
-		testC[0].lecGrp[1].studIds[0] = 1;
-		testC[0].lecGrp[1].studIds[2] = 30;
-		testC[1] = new Course(2, "COURSE2", "SCSE", testP[0], 12, 2, 3, 1);
-		testC[1].tutGrp[0] = new TutorialGroup(testP[0].getProfId(), 3);
-		testC[1].tutGrp[0].studIds[0] = 2;
-		testC[2] = new Course(10, "COURSE3", "SCSE", testP[0], 12, 2, 3, 4);
-		testP[0].printStud(testS, count, testC, count);
+		testC[0] = new Course(1, "Course1", "SCSE", testP[0], 12, 2, 3, 4);
+		testC[1] = new Course(2, "Course2", "SCSE", testP[0], 12, 2, 3, 1);
+		testC[2] = new Course(10, "Course3", "SCSE", testP[0], 12, 2, 3, 4);
+		testP[0].weightage(testC, count);
 	}
 }

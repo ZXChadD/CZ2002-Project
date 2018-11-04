@@ -2,22 +2,22 @@ package University;
 
 public class Coursework
 {
-	private double percentage;
-	private int max;
+	private int percentage;
+	private String name;
 	
-	public Coursework(double percentage, int max)
+	public Coursework(int percentage, String name)
 	{
 		this.percentage = percentage;
-		this. max = max;
+		this.name = name;
 	}
 	
-	public double getPercentage()
+	public int getPercentage()
 	{
 		return percentage;
 	}
 	
-	public int getMax()
+	public String getName()
 	{
-		return max;
+		return name;
 	}
 }

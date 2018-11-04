@@ -2,22 +2,15 @@ package University;
 
 public class Exam
 {
-	private double percentage;
-	private int max;
+	private int percentage;
 	
-	public Exam(double percentage, int max)
+	public Exam(int percentage)
 	{
 		this.percentage = percentage;
-		this.max = max;
 	}
 	
-	public double getPercentage()
+	public int getPercentage()
 	{
 		return percentage;
-	}
-	
-	public int getMax()
-	{
-		return max;
 	}
 }
