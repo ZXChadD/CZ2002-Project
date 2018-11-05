@@ -1,8 +1,11 @@
 package University;
+
 import java.util.Scanner;
 
-public class UniversityApp {
-	public static void main(String[] args) {
+public class UniversityApp
+{
+	public static void main(String[] args)
+	{
 		int userType;
 		System.out.println("Welcome to the University App.");
 		System.out.println("Enter 1 if you are a student and 2 if you are a professor");
@@ -37,7 +40,8 @@ public class UniversityApp {
 		} while (userType > 2 || userType < 1);
 	}
 	
-	public void studFunc(int studId) {
+	public void studFunc(int studId)
+	{
 		int studChoice;
 		Scanner sc = new Scanner(System.in);
 		//find same id in student.txt
@@ -73,7 +77,8 @@ public class UniversityApp {
 		}while(studChoice!=4);
 	}
 	
-	public void profFunc(int profId) {
+	public void profFunc(int profId)
+	{
 		int profChoice;
 		Scanner sc = new Scanner(System.in);
 		//find same id in professor.txt
