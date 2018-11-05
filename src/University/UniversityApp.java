@@ -12,6 +12,7 @@ public class UniversityApp
 		Scanner sc = new Scanner(System.in);
 		do{
 			userType = sc.nextInt();
+			boolean valid = false;
 			switch(userType) {
 				case 1: do{
 							System.out.println("Please enter your Student ID: ");
@@ -20,9 +21,9 @@ public class UniversityApp
 							if(//id not in student)
 								System.out.println("Please enter a valid Student ID.");
 							else
-								//student function(studId)
-								break;
-						} while ();
+								studFunc(studId);
+								valid = true;
+						} while (!valid);
 				
 				case 2: do{
 							System.out.println("Please enter your Professor ID: ");
@@ -31,16 +32,16 @@ public class UniversityApp
 							if(//id not in prof)
 								System.out.println("Please enter a valid Professor ID.");
 							else
-								//prof function(profId)
-								break;
-						} while ();
+								profFunc(profId);
+								valid = true;
+						} while (!valid);
 					
 				default: System.out.println("Please enter a valid choice.");
 			}
 		} while (userType > 2 || userType < 1);
 	}
 	
-	public void studFunc(int studId)
+	public static void studFunc(int studId)
 	{
 		int studChoice;
 		Scanner sc = new Scanner(System.in);
@@ -79,7 +80,7 @@ public class UniversityApp
 		}while(studChoice!=4);
 	}
 	
-	public void profFunc(int profId)
+	public static void profFunc(int profId)
 	{
 		int profChoice;
 		Scanner sc = new Scanner(System.in);
