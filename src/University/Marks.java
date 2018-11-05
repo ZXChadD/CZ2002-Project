@@ -2,7 +2,8 @@ package University;
 
 public class Marks
 {
-	private int courseId, exam, coursework;
+	private int courseId, exam, coursework, overall;
+	private char gradeC, gradeE, gradeO;
 	
 	public Marks(int courseId)
 	{
@@ -18,9 +19,14 @@ public class Marks
 	
 	public int getOverall()
 	{
-		return (exam + coursework);
+		return (overall);
 	}
 	
+	public void calcOverall()
+	{
+		overall = coursework + exam;
+	}
+
 	public int getExam()
 	{
 		return exam;
@@ -39,5 +45,44 @@ public class Marks
 	public void setExam(int mark)
 	{
 		exam = mark;
+	}
+	
+	public void calcGrades()
+	{
+		if(overall >= 80)
+			gradeO = 'A';
+		else if(overall >= 70)
+			gradeO = 'B';
+		else if(overall >= 60)
+			gradeO = 'C';
+		else if(overall >= 50)
+			gradeO = 'D';
+		else
+			gradeO = 'F';
+}
+	
+	public char getGradeC()
+	{
+		return gradeC;
+	}
+
+	public char getGradeE()
+	{
+		return gradeE;
+	}
+
+	public void setGradeC(char letter)
+	{
+		gradeC = letter;
+	}
+
+	public void setGradeE(char letter)
+	{
+		gradeE = letter;;
+	}
+	
+	public char getGradeO()
+	{
+		return gradeO;
 	}
 }
