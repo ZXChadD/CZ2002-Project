@@ -2,25 +2,21 @@ package University;
 
 public class Course
 {
-	private int courseId, slots, lec, lab, tut;
+	private int courseId, profId, slots;
 	private String courseName, faculty;
-	Professor p;
 	LectureGroup[] lecGrp = new LectureGroup[2];
 	LabGroup[] labGrp = new LabGroup[3];
 	TutorialGroup[] tutGrp = new TutorialGroup[4];
 	Exam exam;
 	Coursework[] coursework = new Coursework[3];
-
-	public Course(int courseId, String courseName, String faculty, Professor p, int slots, int lec, int lab, int tut)
+	
+	public Course(int courseId, String courseName, String faculty, int profId, int slots)
 	{
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.faculty = faculty;
-		this.p = p;
+		this.profId = profId;
 		this.slots = slots;
-		this.lec = lec;
-		this.lab = lab;
-		this.tut = tut;
 	}
 	
 	public int getCourseId()
@@ -37,7 +33,12 @@ public class Course
 	{
 		return faculty;
 	}
-
+	
+	public int getProfId()
+	{
+		return profId;
+	}
+	
 	public int getSlots()
 	{
 		return slots;
@@ -45,16 +46,16 @@ public class Course
 	
 	public int getLec()
 	{
-		return lec;
+		return lecGrp.length;
 	}
 	
 	public int getLab()
 	{
-		return lab;
+		return labGrp.length;
 	}
 	
 	public int getTut()
 	{
-		return tut;
+		return tutGrp.length;
 	}
 }

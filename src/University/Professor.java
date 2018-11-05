@@ -3,12 +3,11 @@ package University;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import java.util.Arrays;
 
 public class Professor
 {
 	private int profId;
-	private String profFName, profLName, profEmail, officeRm, faculty, phoneNo;
+	private String profFName, profLName, profEmail, phoneNo, officeRm, faculty;
 	Scanner input = new Scanner(System.in);
 	
 	public Professor(int profId, String profFName, String profLName, String profEmail, String phoneNo, String officeRm, String faculty)
@@ -28,9 +27,8 @@ public class Professor
 		
 		try
 		{
-			int studId = -1;
-			String studFName = null, studLName = null, studEmail = null, faculty = null, phoneNo = null;
-			int i;
+			int studId = 0, i = 0;
+			String studFName = null, studLName = null, studEmail = null, phoneNo = null, faculty = null;
 			boolean valid = false;
 			
 			while(valid == false)
@@ -51,9 +49,7 @@ public class Professor
 					}
 				}
 				else
-				{
 					System.out.println("Invalid Student ID! Student ID must be from #1 to #99.");
-				}
 			}
 			
 			valid = false;
@@ -78,7 +74,6 @@ public class Professor
 						studLName.toUpperCase();
 						valid = true;
 					}
-					
 				}
 			}
 			
@@ -149,27 +144,22 @@ public class Professor
 					valid = true;
 			}
 			
-			if(valid == true)
+			stud[countS] = new Student(studId, studFName, studLName, studEmail, phoneNo, faculty);
+			countS++;
+			System.out.println("Student #" + studId + " added!");
+			System.out.println("\nCurrently Available Students: ");
+			for(i = 0; i < countS; i++)
 			{
-				stud[countS] = new Student(studId, studFName, studLName, studEmail, phoneNo, faculty);
-				countS++;
-				System.out.println("Student #" + studId + " added!");
-				System.out.println();
-				System.out.println("Currently Available Students: ");
-				for(i = 0; i < countS; i++)
-				{
-					System.out.println();
-					System.out.println("ID: " + stud[i].getStudId());
-					System.out.println("Name: " + stud[i].getStudName());
-					System.out.println("Faculty: " + stud[i].getFaculty());
-					System.out.println("Phone Number: " + stud[i].getPhoneNo());
-					System.out.println("E-Mail Address: " + stud[i].getStudEmail());
-				}
+				System.out.println("\nID: " + stud[i].getStudId());
+				System.out.println("Name: " + stud[i].getStudName());
+				System.out.println("Faculty: " + stud[i].getFaculty());
+				System.out.println("Phone Number: " + stud[i].getPhoneNo());
+				System.out.println("E-Mail Address: " + stud[i].getStudEmail());
 			}
 		}
 		catch(NullPointerException e)
 		{
-			System.out.println();
+			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
@@ -187,10 +177,8 @@ public class Professor
 		
 		try
 		{
-			int courseId = -1, slots = -1, lec = -1, lab = -1, tut = -1;
+			int courseId = 0, profId = 0, slots = -1, lec = -1, lab = -1, tut = -1, i = 0;
 			String courseName = null; faculty = null;
-			Professor p;
-			int i = 0;
 			boolean valid = false;
 			
 			while(valid == false)
@@ -216,7 +204,7 @@ public class Professor
 			
 			System.out.print("Course Name: ");
 			courseName = input.next();
-
+			
 			valid = false;
 			while(valid == false)
 			{
@@ -227,12 +215,12 @@ public class Professor
 				else
 					valid = true;
 			}
-
+			
 			valid = false;
 			while(valid == false)
 			{
 				System.out.print("ID of Professor In-Charge (#1 - #10): ");
-				int profId = input.nextInt();
+				profId = input.nextInt();
 				if(profId >= 1 && profId <= 10)
 				{
 					for(i = 0; i < countP; i++)
@@ -249,7 +237,6 @@ public class Professor
 				else
 					System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 			}
-			p = prof[i];
 			
 			valid = false;
 			while(valid == false)
@@ -264,11 +251,12 @@ public class Professor
 					valid = true;
 			}
 			
+			course[countC] = new Course(courseId, courseName, faculty, profId, slots);
+			countC++;
 			valid = false;
 			while(valid == false)
 			{
-				System.out.println();
-				System.out.print("Number of Lecture Groups (1 - 2): ");
+				System.out.print("\nNumber of Lecture Groups (1 - 2): ");
 				lec = input.nextInt();
 				if(lec < 1)
 					System.out.println("Invalid Number of Lecture Groups! Each Course must have atleast 1 Lecture Group.");
@@ -279,14 +267,12 @@ public class Professor
 					valid = true;
 					for(i = 0; i < lec; i++)
 					{
-						int professorId = -1, slotId = -1;
-						int j;
+						int professorId = 0, slotId = 0, j = 0;
 						boolean id = false;
-						System.out.println();
 						
 						while(id == false)
 						{
-							System.out.print("Professor ID for Lecture #" + (i + 1) + ": " );
+							System.out.print("\nProfessor ID for Lecture #" + (i + 1) + ": " );
 							professorId = input.nextInt();
 							if(professorId >= 1 && professorId <= 10)
 							{
@@ -304,7 +290,7 @@ public class Professor
 							else
 								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
-	
+						
 						id = false;
 						while(id == false)
 						{
@@ -317,28 +303,27 @@ public class Professor
 							else
 								id = true;
 						}
-
-						course[courseId].lecGrp[i] = new LectureGroup(professorId, slotId);
-						System.out.println("Lecture #" + (i + 1) + " added!");
+						
+						course[countC - 1].lecGrp[i] = new LectureGroup(professorId, slotId);
 					}
 					
 					int temp = 0;
 					for(i = 0; i < lec; i++)
-						temp += course[courseId].lecGrp[i].getSlots();
+						temp += course[countC - 1].lecGrp[i].getSlots();
 					if(temp != slots)
 					{
-						System.out.println();
-						System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Lecture Group again.");
+						System.out.println("\nNumber of Slots did not tally! Please re-enter the Number of Slots per Lecture Group again.");
 						valid = false;
 					}
+					else
+						System.out.println("\nLectures added!");
 				}
 			}
-
+			
 			valid = false;
 			while(valid == false)
 			{
-				System.out.println();
-				System.out.print("Number of Lab Groups (0 - 3): ");
+				System.out.print("\nNumber of Lab Groups (0 - 3): ");
 				lab = input.nextInt();
 				if(lab < 0)
 					System.out.println("Invalid Number of Lab Groups! The Number of Lab Groups cannot be a Negative Value.");
@@ -349,14 +334,12 @@ public class Professor
 					valid = true;
 					for(i = 0; i < lab; i++)
 					{
-						int professorId = -1, slotId = -1;
-						int j;
+						int professorId = 0, slotId = 0, j = 0;
 						boolean id = false;
-						System.out.println();
 						
 						while(id == false)
 						{
-							System.out.print("Professor ID for Lab #" + (i + 1) + ": " );
+							System.out.print("\nProfessor ID for Lab #" + (i + 1) + ": " );
 							professorId = input.nextInt();
 							if(professorId >= 1 && professorId <= 10)
 							{
@@ -374,7 +357,7 @@ public class Professor
 							else
 								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
-	
+						
 						id = false;
 						while(id == false)
 						{
@@ -387,32 +370,30 @@ public class Professor
 							else
 								id = true;
 						}
-
-						course[courseId].labGrp[i] = new LabGroup(professorId, slotId);
-						System.out.println("Lab #" + (i + 1) + " added!");
+						
+						course[countC - 1].labGrp[i] = new LabGroup(professorId, slotId);
 					}
 					
 					if(lab != 0)
 					{
 						int temp = 0;
 						for(i = 0; i < lab; i++)
-							temp += course[courseId].labGrp[i].getSlots();
+							temp += course[countC - 1].labGrp[i].getSlots();
 						if(temp != slots)
 						{
-							System.out.println();
-							System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Lab Group again.");
+							System.out.println("\nNumber of Slots did not tally! Please re-enter the Number of Slots per Lab Group again.");
 							valid = false;
 						}
-						
+						else
+							System.out.println("\nLabs added!");
 					}
 				}
 			}
-
+			
 			valid = false;
 			while(valid == false)
 			{
-				System.out.println();
-				System.out.print("Number of Tutorial Groups (0 - 4): ");
+				System.out.print("\nNumber of Tutorial Groups (0 - 4): ");
 				tut = input.nextInt();
 				if(tut < 0)
 					System.out.println("Invalid Number of Tutorial Groups! The Number of Lab Groups cannot be a Negative Value.");
@@ -423,14 +404,12 @@ public class Professor
 					valid = true;
 					for(i = 0; i < tut; i++)
 					{
-						int professorId = -1, slotId = -1;
-						int j;
+						int professorId = 0, slotId = 0, j = 0;
 						boolean id = false;
-						System.out.println();
 						
 						while(id == false)
 						{
-							System.out.print("Professor ID for Tutorial #" + (i + 1) + ": " );
+							System.out.print("\nProfessor ID for Tutorial #" + (i + 1) + ": " );
 							professorId = input.nextInt();
 							if(professorId >= 1 && professorId <= 10)
 							{
@@ -448,7 +427,7 @@ public class Professor
 							else
 								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
-	
+						
 						id = false;
 						while(id == false)
 						{
@@ -461,43 +440,39 @@ public class Professor
 							else
 								id = true;
 						}
-
-						course[courseId].tutGrp[i] = new TutorialGroup(professorId, slotId);
-						System.out.println("Tutorial #" + (i + 1) + " added!");
+						
+						course[countC - 1].tutGrp[i] = new TutorialGroup(professorId, slotId);
 					}
 					
 					if(tut != 0)
 					{
 						int temp = 0;
 						for(i = 0; i < tut; i++)
-							temp += course[courseId].tutGrp[i].getSlots();
+							temp += course[countC - 1].tutGrp[i].getSlots();
 						if(temp != slots)
 						{
-							System.out.println();
-							System.out.println("Number of Slots did not tally! Please re-enter the Number of Slots per Tutorial Group  again.");
+							System.out.println("\nNumber of Slots did not tally! Please re-enter the Number of Slots per Tutorial Group  again.");
 							valid = false;
-						}						
+						}
+						else
+							System.out.println("\nTutorials added!");
 					}
 				}
 			}
 
-			course[countC] = new Course(courseId, courseName, faculty, p, slots, lec, lab, tut);
-			countC++;
-			System.out.println("Course #" + courseId + " added!");
-			System.out.println();
-			System.out.println("Currently Available Courses: ");
+			System.out.println("\nCourse #" + courseId + " added!");
+			System.out.println("\nCurrently Available Courses: ");
 			for(i = 0; i < countC; i++)
 			{
-				System.out.println();
-				System.out.println("ID: " + course[i].getCourseId());
+				System.out.println("\nID: " + course[i].getCourseId());
 				System.out.println("Course Name: " + course[i].getCourseName());
-				System.out.println("Professor In-Charge: " + p.getProfName());
+				System.out.println("ID of Professor In-Charge: " + profId);
 				System.out.println("Faculty: " + course[i].getFaculty());
 			}
 		}
 		catch(NullPointerException e)
 		{
-			System.out.println();
+			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
@@ -508,16 +483,16 @@ public class Professor
 			System.out.println("=================================================");
 		}
 	}
-		
+	
 	public void printStud(Student [] stud, int countS, Course[] course, int countC)
 	{
 		System.out.println("=================================================");
-
+		
 		try
 		{
-			String temp = null;
+			int courseId = 0, i = 0, index = 0;
 			boolean  valid = false;
-			int courseId = -1, i = 0, index = 0;
+			String temp = null;
 			
 			while(valid == false)
 			{
@@ -540,7 +515,7 @@ public class Professor
 				else
 					System.out.println("Invalid Course ID! Course ID must be from #1 to #10.");
 			}
-
+			
 			valid = false;
 			while(valid == false)
 			{
@@ -551,93 +526,88 @@ public class Professor
 				if(temp.equals("LEC"))
 				{
 					valid = true;
-					int tempId;
+					int tempId = 0, j = 0, k = 0;
 					for(i = 0; i < course[index].getLec(); i++)
 					{
-						System.out.println();
-						System.out.println("Lecture #" + (i + 1) + " for Course #" + courseId + ": ");
-						int j;
-						for(j = 0; j < course[index].lecGrp[i].getSlots(); j++)
+						if(course[index].lecGrp[i] != null)
 						{
-							tempId = course[index].lecGrp[i].studIds[j];
-							int k;
-							for(k = 0; k < countS; k++)
+							System.out.println("\nLecture #" + (i + 1) + " for Course #" + courseId + ": ");
+							for(j = 0; j < course[index].lecGrp[i].getSlots(); j++)
 							{
-								if(tempId == stud[k].getStudId())
+								tempId = course[index].lecGrp[i].studIds[j];
+								for(k = 0; k < countS; k++)
 								{
-									System.out.println();
-									System.out.println("Student ID: " + tempId);
-									System.out.println("Name: " + stud[k].getStudName());
-									System.out.println("Faculty: " + stud[k].getFaculty());
-									break;
+									if(tempId == stud[k].getStudId())
+									{
+										System.out.println("\nStudent ID: " + tempId);
+										System.out.println("Name: " + stud[k].getStudName());
+										System.out.println("Faculty: " + stud[k].getFaculty());
+										break;
+									}
 								}
 							}
 						}
-					}					
+					}
 				}
 				else if(temp.equals("LAB"))
 				{
 					valid = true;
-					int tempId;
+					int tempId = 0, j = 0, k = 0;
 					for(i = 0; i < course[index].getLab(); i++)
 					{
-						System.out.println();
-						System.out.println("Lab #" + (i + 1) + " for Course #" + courseId + ": ");
-						int j;
-						for(j = 0; j < course[index].labGrp[i].getSlots(); j++)
+						if(course[index].labGrp[i] != null)
 						{
-							tempId = course[index].labGrp[i].studIds[j];
-							int k;
-							for(k = 0; k < countS; k++)
+							System.out.println("\nLab #" + (i + 1) + " for Course #" + courseId + ": ");
+							for(j = 0; j < course[index].labGrp[i].getSlots(); j++)
 							{
-								if(tempId == stud[k].getStudId())
+								tempId = course[index].labGrp[i].studIds[j];
+								for(k = 0; k < countS; k++)
 								{
-									System.out.println();
-									System.out.println("Student ID: " + tempId);
-									System.out.println("Name: " + stud[k].getStudName());
-									System.out.println("Faculty: " + stud[k].getFaculty());
-									break;
+									if(tempId == stud[k].getStudId())
+									{
+										System.out.println("\nStudent ID: " + tempId);
+										System.out.println("Name: " + stud[k].getStudName());
+										System.out.println("Faculty: " + stud[k].getFaculty());
+										break;
+									}
 								}
-							}
+							}							
 						}
-					}					
+					}
 				}
 				else if(temp.equals("TUT"))
 				{
 					valid = true;
-					int tempId;
+					int tempId = 0, j = 0, k = 0;
 					for(i = 0; i < course[index].getTut(); i++)
 					{
-						System.out.println();
-						System.out.println("Tutorial #" + (i + 1) + " for Course #" + courseId + ": ");
-						int j;
-						for(j = 0; j < course[index].tutGrp[i].getSlots(); j++)
+						if(course[index].tutGrp[i] != null)
 						{
-							tempId = course[index].tutGrp[i].studIds[j];
-							int k;
-							for(k = 0; k < countS; k++)
+							System.out.println("\nTutorial #" + (i + 1) + " for Course #" + courseId + ": ");
+							for(j = 0; j < course[index].tutGrp[i].getSlots(); j++)
 							{
-								if(tempId == stud[k].getStudId())
+								tempId = course[index].tutGrp[i].studIds[j];
+								for(k = 0; k < countS; k++)
 								{
-									System.out.println();
-									System.out.println("Student ID: " + tempId);
-									System.out.println("Name: " + stud[k].getStudName());
-									System.out.println("Faculty: " + stud[k].getFaculty());
-									break;
+									if(tempId == stud[k].getStudId())
+									{
+										System.out.println("\nStudent ID: " + tempId);
+										System.out.println("Name: " + stud[k].getStudName());
+										System.out.println("Faculty: " + stud[k].getFaculty());
+										break;
+									}
 								}
-							}
+							}							
 						}
-					}					
+					}
 				}
 				else
-				{
-					System.out.println("Invalid Group! Group must only be on of the following: LEC/LAB/TUT");
-				}
+					System.out.println("Invalid Group Name! Group must only be on of the following: LEC/LAB/TUT");
 			}
 		}
 		catch(NullPointerException e)
 		{
-			System.out.println();
+			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
@@ -655,8 +625,8 @@ public class Professor
 		
 		try
 		{
+			int courseId = 0, i = 0, index = 0, cw = 0;
 			boolean  valid = false;
-			int courseId = -1, i = 0, index = 0, cw = 0;
 			
 			while(valid == false)
 			{
@@ -696,16 +666,15 @@ public class Professor
 			valid = false;
 			while(valid == false)
 			{
+				int exam = 0, temp = 0;
 				boolean valid2 = false;
-				int exam = 0;
 				
 				for(i = 0; i < cw; i++)
 				{
-					System.out.println();
 					String name = null;
 					int percent = 0;
 					
-					System.out.print("Coursework Component Name: ");
+					System.out.print("\nCoursework Component Name: ");
 					name = input.next();
 					
 					valid2 = false;
@@ -720,7 +689,7 @@ public class Professor
 						else
 						{
 							course[index].coursework[i] = new Coursework(percent, name);
-							System.out.println("Coursework Component " + name + " added for Course #" + courseId);
+							System.out.println("Coursework Component '" + name + "' added for Course #" + courseId);
 							valid2 = true;
 						}
 					}
@@ -729,8 +698,7 @@ public class Professor
 				valid2 = false;
 				while(valid2 == false)
 				{
-					System.out.println();
-					System.out.print("Weightage of Exam in Course #" + courseId + "(%): ");
+					System.out.print("\nWeightage of Exam in Course #" + courseId + "(%): ");
 					exam = input.nextInt();
 					if(exam < 0)
 						System.out.println("Invalid Weightage Percentage! The Weightage Percentage cannot be a Negative Value.");
@@ -739,33 +707,30 @@ public class Professor
 					else
 						valid2 = true;
 				}
-				course[index].e = new Exam(exam);
+				course[index].exam = new Exam(exam);
 				
-				int temp = 0;
 				for(i = 0; i < cw; i++)
 					temp += course[index].coursework[i].getPercentage();
-				temp += course[index].e.getPercentage();
+				temp += course[index].exam.getPercentage();
 				if(temp != 100)
 				{
-					System.out.println();
-					System.out.println("Total Weightage Percentage did not tally up to 100! Please re-enter the Coursework Components in the Course again.");
+					System.out.println("\nTotal Weightage Percentage did not tally up to 100! Please re-enter the Coursework Components in the Course again.");
 					valid = false;
 				}
 				else
 					valid = true;
 			}
-
-			System.out.println();
-			System.out.println("Course Assessment Components Weightage: ");
-			System.out.println("Course ID: " + courseId);
+			
+			System.out.println("\nCourse Assessment Components Weightage: ");
+			System.out.println("\nCourse ID: " + courseId);
 			System.out.println("Name: " + course[index].getCourseName());
-			System.out.println("Exam (%): " + course[index].e.getPercentage());
+			System.out.println("Exam (%): " + course[index].exam.getPercentage());
 			for(i = 0; i < cw; i++)
 				System.out.println(course[index].coursework[i].getName() + " (%): " + course[index].coursework[i].getPercentage());
 		}
 		catch(NullPointerException e)
 		{
-			System.out.println();
+			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
@@ -780,11 +745,11 @@ public class Professor
 	public void cwMark(Student[] stud, int countS, Course[] course, int countC)
 	{
 		System.out.println("=================================================");
-
+		
 		try
 		{
+			int courseId = 0, indexC = 0, studentId = 0, indexS = 0, indexM = 0, ans = 0, full = 0, i = 0, j = 0, k = 0;
 			boolean  valid = false;
-			int courseId = -1, indexC = 0, studentId = -1, indexS = 0, indexM = 0, i = 0, j = 0;
 			
 			while(valid == false)
 			{
@@ -821,14 +786,16 @@ public class Professor
 						{
 							for(j = 0; j < course[indexC].getLec(); j++)
 							{
-								int k = 0;
-								for(k = 0; k < course[indexC].lecGrp[j].studIds.length; k++)
+								for(k = 0; k < course[indexC].getLec(); k++)
 								{
-									if(course[indexC].lecGrp[j].studIds[k] == studentId)
+									if(course[indexC].lecGrp[j] != null)
 									{
-										valid = true;
-										indexS = i;
-										break;										
+										if(course[indexC].lecGrp[j].studIds[k] == studentId)
+										{
+											valid = true;
+											indexS = i;
+											break;
+										}
 									}
 								}
 							}
@@ -850,14 +817,12 @@ public class Professor
 					break;
 				}
 			}
-
+			
 			i = 0;
-			int ans = 0, full = 0;
 			while(course[indexC].coursework[i] != null)
 			{
 				int marks = 0;
-				System.out.println();
-				System.out.println("Coursework Name: " + course[indexC].coursework[i].getName());
+				System.out.println("\nCoursework Name: " + course[indexC].coursework[i].getName());
 				valid = false;
 				while(valid == false)
 				{
@@ -887,15 +852,14 @@ public class Professor
 				else
 					stud[indexS].mark[indexM].setGradeC('E');
 			}
-
+			
 			stud[indexS].mark[indexM].setCoursework(ans);
-			System.out.println();
-			System.out.println("Coursework Marks for Course#" + courseId + ": ");
-			System.out.println(course[indexC].getCourseName() + ": " + stud[indexS].mark[indexM].getCoursework() + "/" + full);
+			System.out.println("\nCoursework Marks for Course#" + courseId + ": ");
+			System.out.println("Total Coursework Component Marks: " + stud[indexS].mark[indexM].getCoursework() + "/" + full);
 		}
 		catch(NullPointerException e)
 		{
-			System.out.println();
+			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
@@ -910,11 +874,11 @@ public class Professor
 	public void examMark(Student[] stud, int countS, Course[] course, int countC)
 	{
 		System.out.println("=================================================");
-
+		
 		try
 		{
+			int courseId = 0, indexC = 0, studentId = 0, indexS = 0, indexM = 0, marks = 0, i = 0, j = 0, k = 0;
 			boolean  valid = false;
-			int courseId = -1, indexC = 0, studentId = -1, indexS = 0, indexM = 0, i = 0, j = 0;
 			
 			while(valid == false)
 			{
@@ -951,14 +915,16 @@ public class Professor
 						{
 							for(j = 0; j < course[indexC].getLec(); j++)
 							{
-								int k = 0;
-								for(k = 0; k < course[indexC].lecGrp[j].studIds.length; k++)
+								for(k = 0; k < course[indexC].getLec(); k++)
 								{
-									if(course[indexC].lecGrp[j].studIds[k] == studentId)
+									if(course[indexC].lecGrp[j] != null)
 									{
-										valid = true;
-										indexS = i;
-										break;										
+										if(course[indexC].lecGrp[j].studIds[k] == studentId)
+										{
+											valid = true;
+											indexS = i;
+											break;
+										}
 									}
 								}
 							}
@@ -973,20 +939,20 @@ public class Professor
 			
 			for(i = 0; i < stud[indexS].mark.length; i++)
 			{
-				if(stud[indexS].mark[i].getCourseId() == courseId)
+				if(stud[indexS].mark[i] != null)
 				{
-					indexM = i;
-					break;
+					if(stud[indexS].mark[i].getCourseId() == courseId)
+					{
+						indexM = i;
+						break;
+					}					
 				}
 			}
-
-			int marks = 0;
-			System.out.println();
-
+			
 			valid = false;
 			while(valid == false)
 			{
-				System.out.print("Exam Marks: ");
+				System.out.print("\nExam Marks: ");
 				marks = input.nextInt();
 				if(marks < 0)
 					System.out.println("Invalid Marks! Marks cannot be a Negative Value.");
@@ -995,30 +961,28 @@ public class Professor
 				else
 					valid = true;
 			}
+			
+				if(marks >= 80)
+					stud[indexS].mark[indexM].setGradeE('A');
+				else if(marks >= 70)
+					stud[indexS].mark[indexM].setGradeE('B');
+				else if(marks >= 60)
+					stud[indexS].mark[indexM].setGradeE('C');
+				else if(marks >= 50)
+					stud[indexS].mark[indexM].setGradeE('D');
+				else
+					stud[indexS].mark[indexM].setGradeE('E');
 
-			if(marks >= 80)
-				stud[indexS].mark[indexM].setGradeE('A');
-			else if(marks >= 70)
-				stud[indexS].mark[indexM].setGradeE('B');
-			else if(marks >= 60)
-				stud[indexS].mark[indexM].setGradeE('C');
-			else if(marks >= 50)
-				stud[indexS].mark[indexM].setGradeE('D');
-			else
-				stud[indexS].mark[indexM].setGradeE('E');
-
-			int percent = course[indexC].e.getPercentage();
+			int percent = course[indexC].exam.getPercentage();
 			double marksTemp = (double)(marks) * (double)(percent) / (double)100;
 			int finalMarks = (int)(marksTemp);
-
+			
 			stud[indexS].mark[indexM].setExam(finalMarks);
-			System.out.println();
-			System.out.println("Exam Marks for Course#" + courseId + ": ");
-			System.out.println(course[indexC].getCourseName() + ": " + stud[indexS].mark[indexM].getExam() + "/" + percent);
+			System.out.println("\nExam Marks for Course#" + courseId + ": " + stud[indexS].mark[indexM].getExam() + "/" + percent);
 		}
 		catch(NullPointerException e)
 		{
-			System.out.println();
+			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
@@ -1027,17 +991,20 @@ public class Professor
 		finally
 		{
 			System.out.println("=================================================");
-		}		
+		}
 	}
 	
 	public void printStats(Course[] course, int countC, Student[] stud, int countS)
 	{
 		System.out.println("=================================================");
-
+		
 		try
 		{
+			int courseId = 0, indexC = 0, studentId = 0, indexS = 0, indexM = 0, i = 0, j = 0;
+			int full = 0, a = 0, b = 0, c = 0, d = 0, f = 0;
+			double ans = 0.0;
+			String answer = null;
 			boolean  valid = false;
-			int courseId = -1, indexC = 0, studentId = 0, indexS = 0, indexM = 0, i = 0, j = 0;
 			
 			while(valid == false)
 			{
@@ -1066,7 +1033,6 @@ public class Professor
 			
 			j = 0;
 			studentId = course[indexC].lecGrp[0].studIds[j];
-			int full = 0, a = 0, b = 0, c = 0, d = 0, f = 0;
 			while(studentId != 0)
 			{
 				for(i = 0; i < countS; i++)
@@ -1088,9 +1054,9 @@ public class Professor
 				}
 				
 				stud[indexS].mark[indexM].calcOverall();
-				stud[indexS].mark[indexM].calcGrades();
+				stud[indexS].mark[indexM].calcGradesO();
 				full++;
-
+				
 				if(stud[indexS].mark[indexM].getGradeO() == 'A')
 					a++;
 				else if(stud[indexS].mark[indexM].getGradeO() == 'B')
@@ -1105,7 +1071,7 @@ public class Professor
 				j++;
 				studentId = course[indexC].lecGrp[0].studIds[j];
 			}
-				
+			
 			j = 0;
 			studentId = course[indexC].lecGrp[1].studIds[j];
 			while(studentId != 0)
@@ -1129,7 +1095,7 @@ public class Professor
 				}
 				
 				stud[indexS].mark[indexM].calcOverall();
-				stud[indexS].mark[indexM].calcGrades();
+				stud[indexS].mark[indexM].calcGradesO();
 				full++;
 				
 				if(stud[indexS].mark[indexM].getGradeO() == 'A')
@@ -1146,11 +1112,8 @@ public class Professor
 				j++;
 				studentId = course[indexC].lecGrp[1].studIds[j];
 			}
-
-			double ans = 0;
-			String answer;
-			System.out.println();
-			System.out.println("Grade Percentage for Overall Marks: ");
+			
+			System.out.println("\nGrade Percentage for Overall Marks: ");
 			ans = (double)a / (double)full * 100;
 			answer = String.format("%.1f", ans);
 			System.out.println("A: " + answer + "%");
@@ -1166,7 +1129,7 @@ public class Professor
 			ans = (double)f / (double)full * 100;
 			answer = String.format("%.1f", ans);
 			System.out.println("F: " + answer + "%");
-
+			
 			j = 0;
 			studentId = course[indexC].lecGrp[0].studIds[j];
 			full = a = b = c = d = f = 0;
@@ -1191,7 +1154,6 @@ public class Professor
 				}
 				
 				full++;
-
 				if(stud[indexS].mark[indexM].getGradeE() == 'A')
 					a++;
 				else if(stud[indexS].mark[indexM].getGradeE() == 'B')
@@ -1206,7 +1168,7 @@ public class Professor
 				j++;
 				studentId = course[indexC].lecGrp[0].studIds[j];
 			}
-				
+			
 			j = 0;
 			studentId = course[indexC].lecGrp[1].studIds[0];
 			while(studentId != 0)
@@ -1230,7 +1192,6 @@ public class Professor
 				}
 				
 				full++;
-				
 				if(stud[indexS].mark[indexM].getGradeE() == 'A')
 					a++;
 				else if(stud[indexS].mark[indexM].getGradeE() == 'B')
@@ -1245,9 +1206,8 @@ public class Professor
 				j++;
 				studentId = course[indexC].lecGrp[1].studIds[j];
 			}
-
-			System.out.println();
-			System.out.println("Grade Percentage for Exam Marks Only: ");
+			
+			System.out.println("\nGrade Percentage for Exam Marks Only: ");
 			ans = (double)a / (double)full * 100;
 			answer = String.format("%.1f", ans);
 			System.out.println("A: " + answer + "%");
@@ -1263,7 +1223,7 @@ public class Professor
 			ans = (double)f / (double)full * 100;
 			answer = String.format("%.1f", ans);
 			System.out.println("F: " + answer + "%");
-
+			
 			j = 0;
 			studentId = course[indexC].lecGrp[0].studIds[j];
 			full = a = b = c = d = f = 0;
@@ -1288,7 +1248,6 @@ public class Professor
 				}
 				
 				full++;
-
 				if(stud[indexS].mark[indexM].getGradeC() == 'A')
 					a++;
 				else if(stud[indexS].mark[indexM].getGradeC() == 'B')
@@ -1303,7 +1262,7 @@ public class Professor
 				j++;
 				studentId = course[indexC].lecGrp[0].studIds[j];
 			}
-				
+			
 			j = 0;
 			studentId = course[indexC].lecGrp[1].studIds[0];
 			while(studentId != 0)
@@ -1327,7 +1286,6 @@ public class Professor
 				}
 				
 				full++;
-				
 				if(stud[indexS].mark[indexM].getGradeC() == 'A')
 					a++;
 				else if(stud[indexS].mark[indexM].getGradeC() == 'B')
@@ -1342,9 +1300,8 @@ public class Professor
 				j++;
 				studentId = course[indexC].lecGrp[1].studIds[j];
 			}
-
-			System.out.println();
-			System.out.println("Grade Percentage for Coursework Marks Only: ");
+			
+			System.out.println("\nGrade Percentage for Coursework Marks Only: ");
 			ans = (double)a / (double)full * 100;
 			answer = String.format("%.1f", ans);
 			System.out.println("A: " + answer + "%");
@@ -1360,11 +1317,10 @@ public class Professor
 			ans = (double)f / (double)full * 100;
 			answer = String.format("%.1f", ans);
 			System.out.println("F: " + answer + "%");
-
-}
+		}
 		catch(NullPointerException e)
 		{
-			System.out.println();
+			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
@@ -1381,11 +1337,6 @@ public class Professor
 		return profId;
 	}
 	
-	public String getPhoneNo()
-	{
-		return phoneNo;
-	}
-	
 	public String getProfName()
 	{
 		return ("PROF. " + profFName + " " + profLName);
@@ -1394,6 +1345,11 @@ public class Professor
 	public String getProfEmail()
 	{
 		return profEmail;
+	}
+	
+	public String getPhoneNo()
+	{
+		return phoneNo;
 	}
 	
 	public String getOfficeRm()
@@ -1408,18 +1364,41 @@ public class Professor
 	
 	public static void main(String args[])
 	{
-		int count = 3;
 		Student[] testS = new Student[10];
 		Professor[] testP = new Professor[10];
 		Course[] testC = new Course[10];
+		int countS = 0, countC = 0;
 		testP[0] = new Professor(1, "MN", "Shaanmugam", "SH44N96@e.uni.edu.sg", "86601489", "S-B1-01", "SCSE");
-		testP[1] = new Professor(2, "MN", "Shaanmugar", "SH44N95@e.uni.edu.sg", "86601488", "S-B1-02", "SCSE");
-		testP[2] = new Professor(10, "MN", "Shaanmugan", "SH44N94@e.uni.edu.sg", "86601480", "S-B1-03", "SCSE");
-		testS[0] = new Student(1, "Dexter","Leow", "DEXTER@e.uni.edu.sg", "90073472", "SCSE");
-		testS[1] = new Student(2, "Chadd", "Lim", "CHADD@E.uni.edu.sg", "90073471", "SCSE");
-		testS[2] = new Student(30, "Akshaya", "Muthu", "AKSHAYA@e.uni.edu.sg", "90073470", "SCSE");
-		testC[0] = new Course(1, "Course1", "SCSE", testP[0], 3, 2, 1, 1);
-		testC[1] = new Course(2, "Course2", "SCSE", testP[0], 12, 2, 3, 4);
-		testC[2] = new Course(10, "Course3", "SCSE", testP[0], 12, 2, 3, 4);
+		testP[1] = new Professor(2, "MN", "Shaanmugar", "SH44N69@e.uni.edu.sg", "86601488", "S-B1-02", "SCSE");
+		testP[0].addStud(testS, countS);
+		countS++;
+		testP[0].addStud(testS, countS);
+		countS++;
+		testP[0].addStud(testS, countS);
+		countS++;
+		testP[0].addCourse(testC, countC, testP, 2);
+		countC++;
+		testP[0].addCourse(testC, countC, testP, 2);
+		countC++;
+		testC[0].lecGrp[0].studIds[0] = 69;
+		testC[0].labGrp[0].studIds[0] = 69;
+		testC[0].tutGrp[0].studIds[0] = 69;
+		testC[1].lecGrp[0].studIds[0] = 1;
+		testC[1].lecGrp[0].studIds[1] = 69;
+		testC[1].lecGrp[1].studIds[0] = 3;
+		testC[1].tutGrp[0].studIds[0] = 69;
+		testC[1].tutGrp[0].studIds[1] = 3;
+		testC[1].tutGrp[0].studIds[2] = 1;
+		testP[0].printStud(testS, countS, testC, countC);
+		testP[0].printStud(testS, countS, testC, countC);
+		testP[0].weightage(testC, countC);
+		testP[0].weightage(testC, countC);
+		testP[0].cwMark(testS, countS, testC, countC);
+		testP[0].examMark(testS, countS, testC, countC);
+		testP[0].examMark(testS, countS, testC, countC);
+		testP[0].examMark(testS, countS, testC, countC);
+		testP[0].examMark(testS, countS, testC, countC);
+		testP[0].printStats(testC, countC, testS, countS);
+		testP[0].printStats(testC, countC, testS, countS);
 	}
 }

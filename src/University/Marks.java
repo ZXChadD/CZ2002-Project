@@ -2,14 +2,14 @@ package University;
 
 public class Marks
 {
-	private int courseId, exam, coursework, overall;
+	private int courseId, coursework, exam, overall;
 	private char gradeC, gradeE, gradeO;
 	
 	public Marks(int courseId)
 	{
 		this.courseId = courseId;
-		this.exam = 0;
 		this.coursework = 0;
+		this.exam = 0;
 	}
 	
 	public int getCourseId()
@@ -17,19 +17,9 @@ public class Marks
 		return courseId;
 	}
 	
-	public int getOverall()
+	public void setCoursework(int mark)
 	{
-		return (overall);
-	}
-	
-	public void calcOverall()
-	{
-		overall = coursework + exam;
-	}
-
-	public int getExam()
-	{
-		return exam;
+		coursework = mark;
 	}
 	
 	public int getCoursework()
@@ -37,17 +27,47 @@ public class Marks
 		return coursework;
 	}
 	
-	public void setCoursework(int mark)
-	{
-		coursework = mark;
-	}
-
 	public void setExam(int mark)
 	{
 		exam = mark;
 	}
 	
-	public void calcGrades()
+	public int getExam()
+	{
+		return exam;
+	}
+	
+	public void calcOverall()
+	{
+		overall = coursework + exam;
+	}
+	
+	public int getOverall()
+	{
+		return (overall);
+	}
+	
+	public void setGradeC(char letter)
+	{
+		gradeC = letter;
+	}
+	
+	public char getGradeC()
+	{
+		return gradeC;
+	}
+	
+	public void setGradeE(char letter)
+	{
+		gradeE = letter;
+	}
+	
+	public char getGradeE()
+	{
+		return gradeE;
+	}
+	
+	public void calcGradesO()
 	{
 		if(overall >= 80)
 			gradeO = 'A';
@@ -59,26 +79,6 @@ public class Marks
 			gradeO = 'D';
 		else
 			gradeO = 'F';
-}
-	
-	public char getGradeC()
-	{
-		return gradeC;
-	}
-
-	public char getGradeE()
-	{
-		return gradeE;
-	}
-
-	public void setGradeC(char letter)
-	{
-		gradeC = letter;
-	}
-
-	public void setGradeE(char letter)
-	{
-		gradeE = letter;;
 	}
 	
 	public char getGradeO()

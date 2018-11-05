@@ -1,10 +1,11 @@
 package University;
+
 import java.util.Scanner;
 
 public class Student
 {
 	private int studId;
-	private String studFName, studLName, studEmail, faculty, phoneNo;
+	private String studFName, studLName, studEmail, phoneNo, faculty;
 	Marks[] mark = new Marks[10];
 	
 	public Student(int studId, String studFName, String studLName, String studEmail, String phoneNo, String faculty)
@@ -16,7 +17,7 @@ public class Student
 		this.phoneNo = phoneNo;
 		this.faculty = faculty;
 	}
-
+	
 	public void regCourse(Course[] course, int courseCount)
 	{
 		int i;
@@ -137,11 +138,6 @@ public class Student
 		return studId;
 	}
 	
-	public String getPhoneNo()
-	{
-		return phoneNo;
-	}
-	
 	public String getStudName()
 	{
 		return studFName + " " + studLName;
@@ -150,6 +146,11 @@ public class Student
 	public String getStudEmail()
 	{
 		return studEmail;
+	}
+	
+	public String getPhoneNo()
+	{
+		return phoneNo;
 	}
 	
 	public String getFaculty()
