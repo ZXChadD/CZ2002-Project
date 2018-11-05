@@ -50,6 +50,7 @@ public class UniversityApp {
 		System.out.println("4: Exit");
 		System.out.println("Please enter your choice: ");
 		Course[] course = new Course[10];
+		Marks [] marks = new Marks[10];
 		//for(a=0;a<10;a++)
 		//read course.txt and input each line into course[a]
 		do {
@@ -57,12 +58,13 @@ public class UniversityApp {
 			switch(studChoice) {
 			case 1: 
 				stud.regCourse(course, a);
+				//overwrite lab, tut, lec
 				break;
 			case 2:
 				stud.checkAvail(course, a);
 				break;
 			case 3:
-				stud.printTranscript(course, a);
+				stud.printTranscript(course, a, marks);
 				break;
 			case 4:
 				System.out.println("Thank you for using the app");
