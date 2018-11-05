@@ -154,12 +154,14 @@ public class Student
 					System.out.println("Course: " + course[i].getCourseName());
 					System.out.println("Exam Mark: " + marks[k].getExam());
 					System.out.println("Exam Percentage: " + course[i].exam.getPercentage()+"%");
-					for(int l=0; l<course[i].coursework.length; l++) {
+					/*for(int l=0; l<course[i].coursework.length; l++) {
 						System.out.println(course[i].coursework[l].getName() + " Mark: " + );
 						System.out.println(course[i].coursework[l].getName() + " Percentage: " + course[i].coursework[l].getPercentage() +"%");
-					}
+					}*/
+					System.out.println("Coursework Mark: " + marks[k].getCoursework());
+					System.out.println("Coursework Percentage: " + (100-course[i].exam.getPercentage()+"%"));
 					marks[k].calcOverall();
-					marks[k].calcGrades();
+					marks[k].calcGradesO();
 					System.out.println("Total: " + marks[k].getOverall());
 					System.out.println("Grade: " + marks[k].getGradeO());
 				}
@@ -174,12 +176,14 @@ public class Student
 					System.out.println("Course: " + course[i].getCourseName());
 					System.out.println("Exam Mark: " + marks[k].getExam());
 					System.out.println("Exam Percentage: " + course[i].exam.getPercentage()+"%");
-					for(int l=0; l<course[i].coursework.length; l++) {
+					/*for(int l=0; l<course[i].coursework.length; l++) {
 						System.out.println(course[i].coursework[l].getName() + " Mark: " + );
 						System.out.println(course[i].coursework[l].getName() + " Percentage: " + course[i].coursework[l].getPercentage() +"%");
-					}
+					}*/
+					System.out.println("Coursework Mark: " + marks[k].getCoursework());
+					System.out.println("Coursework Percentage: " + (100-course[i].exam.getPercentage()+"%"));
 					marks[k].calcOverall();
-					marks[k].calcGrades();
+					marks[k].calcGradesO();
 					System.out.println("Total: " + marks[k].getOverall());
 					System.out.println("Grade: " + marks[k].getGradeO());
 				}
