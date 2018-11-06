@@ -3,7 +3,7 @@ package University;
 public class Marks
 {
 	private int courseId, coursework, exam, overall;
-	private char gradeC, gradeE, gradeO;
+	private String gradeC, gradeE, gradeO;
 	
 	public Marks(int courseId)
 	{
@@ -47,22 +47,22 @@ public class Marks
 		return (overall);
 	}
 	
-	public void setGradeC(char letter)
+	public void setGradeC(String letter)
 	{
 		gradeC = letter;
 	}
 	
-	public char getGradeC()
+	public String getGradeC()
 	{
 		return gradeC;
 	}
 	
-	public void setGradeE(char letter)
+	public void setGradeE(String letter)
 	{
 		gradeE = letter;
 	}
 	
-	public char getGradeE()
+	public String getGradeE()
 	{
 		return gradeE;
 	}
@@ -70,18 +70,18 @@ public class Marks
 	public void calcGradesO()
 	{
 		if(overall >= 80)
-			gradeO = 'A';
+			gradeO = "A";
 		else if(overall >= 70)
-			gradeO = 'B';
+			gradeO = "B";
 		else if(overall >= 60)
-			gradeO = 'C';
+			gradeO = "C";
 		else if(overall >= 50)
-			gradeO = 'D';
+			gradeO = "D";
 		else
-			gradeO = 'F';
+			gradeO = "F";
 	}
 	
-	public char getGradeO()
+	public String getGradeO()
 	{
 		return gradeO;
 	}

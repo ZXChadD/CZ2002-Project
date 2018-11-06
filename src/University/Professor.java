@@ -21,7 +21,7 @@ public class Professor
 		this.faculty = faculty;
 	}
 	
-	public void addStud(Student[] stud, int countS)
+	public int addStud(Student[] stud, int countS)
 	{
 		System.out.println("=================================================");
 		
@@ -171,7 +171,7 @@ public class Professor
 		}
 	}
 	
-	public void addCourse(Course[] course, int countC, Professor[] prof, int countP)
+	public int addCourse(Course[] course, int countC, Professor[] prof, int countP)
 	{
 		System.out.println("=================================================");
 		
@@ -619,7 +619,7 @@ public class Professor
 		}
 	}
 	
-	public void weightage(Course[] course, int countC)
+	public int weightage(Course[] course, int countC)
 	{
 		System.out.println("=================================================");
 		
@@ -842,15 +842,15 @@ public class Professor
 				ans += finalMarks;
 				i++;
 				if(marks >= 80)
-					stud[indexS].mark[indexM].setGradeC('A');
+					stud[indexS].mark[indexM].setGradeC("A");
 				else if(marks >= 70)
-					stud[indexS].mark[indexM].setGradeC('B');
+					stud[indexS].mark[indexM].setGradeC("B");
 				else if(marks >= 60)
-					stud[indexS].mark[indexM].setGradeC('C');
+					stud[indexS].mark[indexM].setGradeC("C");
 				else if(marks >= 50)
-					stud[indexS].mark[indexM].setGradeC('D');
+					stud[indexS].mark[indexM].setGradeC("D");
 				else
-					stud[indexS].mark[indexM].setGradeC('E');
+					stud[indexS].mark[indexM].setGradeC("E");
 			}
 			
 			stud[indexS].mark[indexM].setCoursework(ans);
@@ -963,15 +963,15 @@ public class Professor
 			}
 			
 				if(marks >= 80)
-					stud[indexS].mark[indexM].setGradeE('A');
+					stud[indexS].mark[indexM].setGradeE("A");
 				else if(marks >= 70)
-					stud[indexS].mark[indexM].setGradeE('B');
+					stud[indexS].mark[indexM].setGradeE("B");
 				else if(marks >= 60)
-					stud[indexS].mark[indexM].setGradeE('C');
+					stud[indexS].mark[indexM].setGradeE("C");
 				else if(marks >= 50)
-					stud[indexS].mark[indexM].setGradeE('D');
+					stud[indexS].mark[indexM].setGradeE("D");
 				else
-					stud[indexS].mark[indexM].setGradeE('E');
+					stud[indexS].mark[indexM].setGradeE("E");
 
 			int percent = course[indexC].exam.getPercentage();
 			double marksTemp = (double)(marks) * (double)(percent) / (double)100;
@@ -1057,15 +1057,15 @@ public class Professor
 				stud[indexS].mark[indexM].calcGradesO();
 				full++;
 				
-				if(stud[indexS].mark[indexM].getGradeO() == 'A')
+				if(stud[indexS].mark[indexM].getGradeO() == "A")
 					a++;
-				else if(stud[indexS].mark[indexM].getGradeO() == 'B')
+				else if(stud[indexS].mark[indexM].getGradeO() == "B")
 					b++;
-				else if(stud[indexS].mark[indexM].getGradeO() == 'C')
+				else if(stud[indexS].mark[indexM].getGradeO() == "C")
 					c++;
-				else if(stud[indexS].mark[indexM].getGradeO() == 'D')
+				else if(stud[indexS].mark[indexM].getGradeO() == "D")
 					d++;
-				else if(stud[indexS].mark[indexM].getGradeO() == 'F')
+				else if(stud[indexS].mark[indexM].getGradeO() == "F")
 					f++;
 				
 				j++;
@@ -1098,15 +1098,15 @@ public class Professor
 				stud[indexS].mark[indexM].calcGradesO();
 				full++;
 				
-				if(stud[indexS].mark[indexM].getGradeO() == 'A')
+				if(stud[indexS].mark[indexM].getGradeO() == "A")
 					a++;
-				else if(stud[indexS].mark[indexM].getGradeO() == 'B')
+				else if(stud[indexS].mark[indexM].getGradeO() == "B")
 					b++;
-				else if(stud[indexS].mark[indexM].getGradeO() == 'C')
+				else if(stud[indexS].mark[indexM].getGradeO() == "C")
 					c++;
-				else if(stud[indexS].mark[indexM].getGradeO() == 'D')
+				else if(stud[indexS].mark[indexM].getGradeO() == "D")
 					d++;
-				else if(stud[indexS].mark[indexM].getGradeO() == 'F')
+				else if(stud[indexS].mark[indexM].getGradeO() == "F")
 					f++;
 				
 				j++;
@@ -1154,15 +1154,15 @@ public class Professor
 				}
 				
 				full++;
-				if(stud[indexS].mark[indexM].getGradeE() == 'A')
+				if(stud[indexS].mark[indexM].getGradeE() == "A")
 					a++;
-				else if(stud[indexS].mark[indexM].getGradeE() == 'B')
+				else if(stud[indexS].mark[indexM].getGradeE() == "B")
 					b++;
-				else if(stud[indexS].mark[indexM].getGradeE() == 'C')
+				else if(stud[indexS].mark[indexM].getGradeE() == "C")
 					c++;
-				else if(stud[indexS].mark[indexM].getGradeE() == 'D')
+				else if(stud[indexS].mark[indexM].getGradeE() == "D")
 					d++;
-				else if(stud[indexS].mark[indexM].getGradeE() == 'F')
+				else if(stud[indexS].mark[indexM].getGradeE() == "F")
 					f++;
 				
 				j++;
@@ -1192,15 +1192,15 @@ public class Professor
 				}
 				
 				full++;
-				if(stud[indexS].mark[indexM].getGradeE() == 'A')
+				if(stud[indexS].mark[indexM].getGradeE() == "A")
 					a++;
-				else if(stud[indexS].mark[indexM].getGradeE() == 'B')
+				else if(stud[indexS].mark[indexM].getGradeE() == "B")
 					b++;
-				else if(stud[indexS].mark[indexM].getGradeE() == 'C')
+				else if(stud[indexS].mark[indexM].getGradeE() == "C")
 					c++;
-				else if(stud[indexS].mark[indexM].getGradeE() == 'D')
+				else if(stud[indexS].mark[indexM].getGradeE() == "D")
 					d++;
-				else if(stud[indexS].mark[indexM].getGradeE() == 'F')
+				else if(stud[indexS].mark[indexM].getGradeE() == "F")
 					f++;
 				
 				j++;
@@ -1248,15 +1248,15 @@ public class Professor
 				}
 				
 				full++;
-				if(stud[indexS].mark[indexM].getGradeC() == 'A')
+				if(stud[indexS].mark[indexM].getGradeC() == "A")
 					a++;
-				else if(stud[indexS].mark[indexM].getGradeC() == 'B')
+				else if(stud[indexS].mark[indexM].getGradeC() == "B")
 					b++;
-				else if(stud[indexS].mark[indexM].getGradeC() == 'C')
+				else if(stud[indexS].mark[indexM].getGradeC() == "C")
 					c++;
-				else if(stud[indexS].mark[indexM].getGradeC() == 'D')
+				else if(stud[indexS].mark[indexM].getGradeC() == "D")
 					d++;
-				else if(stud[indexS].mark[indexM].getGradeC() == 'F')
+				else if(stud[indexS].mark[indexM].getGradeC() == "F")
 					f++;
 				
 				j++;
@@ -1286,15 +1286,15 @@ public class Professor
 				}
 				
 				full++;
-				if(stud[indexS].mark[indexM].getGradeC() == 'A')
+				if(stud[indexS].mark[indexM].getGradeC() == "A")
 					a++;
-				else if(stud[indexS].mark[indexM].getGradeC() == 'B')
+				else if(stud[indexS].mark[indexM].getGradeC() == "B")
 					b++;
-				else if(stud[indexS].mark[indexM].getGradeC() == 'C')
+				else if(stud[indexS].mark[indexM].getGradeC() == "C")
 					c++;
-				else if(stud[indexS].mark[indexM].getGradeC() == 'D')
+				else if(stud[indexS].mark[indexM].getGradeC() == "D")
 					d++;
-				else if(stud[indexS].mark[indexM].getGradeC() == 'F')
+				else if(stud[indexS].mark[indexM].getGradeC() == "F")
 					f++;
 				
 				j++;
@@ -1360,6 +1360,34 @@ public class Professor
 	public String getFaculty()
 	{
 		return faculty;
+	}
+	
+	public void setProfId(int profId) {
+		this.profId=profId;
+	}
+	
+	public void setProfFName(String profFName) {
+		this.profFName=profFName;
+	}
+	
+	public void setProfLName(String profLName) {
+		this.profLName=profLName;
+	}
+	
+	public void setProfEmail(String profEmail) {
+		this.profEmail=profEmail;
+	}
+	
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo=phoneNo;
+	}
+	
+	public void setOfficeRm(String officeRm) {
+		this.officeRm=officeRm;
+	}
+	
+	public void setFaculty(String faculty) {
+		this.faculty=faculty;
 	}
 	
 	public static void main(String args[])

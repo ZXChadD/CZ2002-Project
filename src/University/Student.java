@@ -18,7 +18,7 @@ public class Student
 		this.faculty = faculty;
 	}
 	
-	public void regCourse(Course[] course, int courseCount)
+	public int regCourse(Course[] course, int courseCount)
 	{
 		int i;
 		Scanner sc = new Scanner(System.in);
@@ -46,57 +46,53 @@ public class Student
 						System.out.println("Please enter a valid group.");
 						break;
 					}
-					for(int c=0;c<course[i].lecGrp[lecgrpChoice-1].getSlots();c++) {
-						if(course[i].lecGrp[lecgrpChoice-1].studIds.length>=course[i].lecGrp[lecgrpChoice-1].getSlots()) {
-							System.out.println("No more vacancies.");
+					else if(course[i].lecGrp[lecgrpChoice-1].studIds.length>=course[i].lecGrp[lecgrpChoice-1].getSlots()) {
+						System.out.println("No more vacancies.");
+						break;
+						}
+					else {
+						System.out.println("Number of tutorial groups for this course: " + course[i].getTut());
+						System.out.println("Please enter tutorial group of your choice: ");
+						int tutgrpChoice = sc.nextInt();
+						if(tutgrpChoice>course[i].getTut() || tutgrpChoice<1) {
+							System.out.println("Please enter a valid group.");
 							break;
 						}
+						else if(course[i].tutGrp[tutgrpChoice-1].studIds.length>=course[i].tutGrp[tutgrpChoice-1].getSlots()) {
+							System.out.println("No more vacancies.");
+							break;
+							}
 						else {
-							System.out.println("Number of tutorial groups for this course: " + course[i].getTut());
-							System.out.println("Please enter tutorial group of your choice: ");
-							int tutgrpChoice = sc.nextInt();
-							if(tutgrpChoice>course[i].getTut() || tutgrpChoice<1) {
+							System.out.println("Number of lab groups for this course: " + course[i].getLab());
+							System.out.println("Please enter lab group of your choice: ");
+							int labgrpChoice = sc.nextInt();
+							if(labgrpChoice>course[i].getLab() || labgrpChoice<1) {
 								System.out.println("Please enter a valid group.");
 								break;
 							}
-							for(int d=0;d<course[i].tutGrp[tutgrpChoice-1].getSlots();d++) {
-								if(course[i].tutGrp[tutgrpChoice-1].studIds.length>=course[i].tutGrp[tutgrpChoice-1].getSlots()) {
-									System.out.println("No more vacancies.");
-									break;
+							else if(course[i].labGrp[labgrpChoice-1].studIds.length>=course[i].labGrp[labgrpChoice-1].getSlots()) {
+								System.out.println("No more vacancies.");
+								break;
 								}
-								else {
-									System.out.println("Number of lab groups for this course: " + course[i].getLab());
-									System.out.println("Please enter lab group of your choice: ");
-									int labgrpChoice = sc.nextInt();
-									if(labgrpChoice>course[i].getLab() || labgrpChoice<1) {
-										System.out.println("Please enter a valid group.");
-										break;
-									}
-									for(int e=0;e<course[i].labGrp[labgrpChoice-1].getSlots();e++) {
-										if(course[i].labGrp[labgrpChoice-1].studIds.length>=course[i].labGrp[labgrpChoice-1].getSlots()) {
-											System.out.println("No more vacancies.");
-											break;
-										}
-										else {
-											int x = course[i].lecGrp[lecgrpChoice].studIds.length;
-											course[i].lecGrp[lecgrpChoice].studIds[x] = studId;
-											int y = course[i].tutGrp[tutgrpChoice].studIds.length;
-											course[i].tutGrp[tutgrpChoice].studIds[y] = studId;
-											int z = course[i].labGrp[labgrpChoice].studIds.length;
-											course[i].labGrp[labgrpChoice].studIds[z] = studId;
-										}
-									}
+							else {
+								int x = course[i].lecGrp[lecgrpChoice].studIds.length;
+								course[i].lecGrp[lecgrpChoice].studIds[x] = studId;
+								int y = course[i].tutGrp[tutgrpChoice].studIds.length;
+								course[i].tutGrp[tutgrpChoice].studIds[y] = studId;
+								int z = course[i].labGrp[labgrpChoice].studIds.length;
+								course[i].labGrp[labgrpChoice].studIds[z] = studId;
+								return i;
 								}
 							}
 						}
 					}
-				}
 				else
 					System.out.println("No more vacancies. ");
 			}
 		}
 		if(i>=courseCount)
 			System.out.println("Please enter a valid Course ID.");
+		return -1;
 	}
 	
 	public void checkAvail(Course[] course, int courseCount)
@@ -117,17 +113,19 @@ public class Student
 					System.out.println("Enter a tutorial group: ");
 					int tutChoice = sc.nextInt();
 					if(tutChoice>course[i].getTut() || tutChoice<1)
-						System.out.println("Slots left: " + (course[i].tutGrp[tutChoice-1].getSlots() -course[i].tutGrp[tutChoice-1].studIds.length) + "/" + course[i].tutGrp[tutChoice-1].getSlots());
-					else
 						System.out.println("Please enter a valid tutorial group.");
+					else
+						System.out.println("Slots left: " + (course[i].tutGrp[tutChoice-1].getSlots() -course[i].tutGrp[tutChoice-1].studIds.length) + "/" + course[i].tutGrp[tutChoice-1].getSlots());
+						
 				case 2:
 					System.out.println("Number of lab groups for this course: " + course[i].getLab());
 					System.out.println("Enter a lab group: ");
 					int labChoice = sc.nextInt();
 					if(labChoice>course[i].getLab() || labChoice<1)
-						System.out.println("Slots left: " + (course[i].labGrp[labChoice-1].getSlots() - course[i].labGrp[labChoice-1].studIds.length) + "/" + course[i].labGrp[labChoice-1].getSlots());
+						System.out.println("Please enter a valid lab group.");
 					else
-						System.out.println("Please enter a valid lab group (1 to 3).");
+						System.out.println("Slots left: " + (course[i].labGrp[labChoice-1].getSlots() - course[i].labGrp[labChoice-1].studIds.length) + "/" + course[i].labGrp[labChoice-1].getSlots());
+
 				default:
 					System.out.println("Please enter 1 or 2.");
 				}
@@ -215,5 +213,29 @@ public class Student
 	public String getFaculty()
 	{
 		return faculty;
+	}
+	
+	public void setStudId(int studId) {
+		this.studId = studId;
+	}
+	
+	public void setStudFName(String studFName) {
+		this.studFName = studFName;
+	}
+	
+	public void setStudLName(String studLName) {
+		this.studLName = studLName;
+	}
+	
+	public void setStudEmail(String studEmail) {
+		this.studEmail = studEmail;
+	}
+	
+	public void setStudPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	
+	public void setStudFaculty(String faculty) {
+		this.faculty = faculty;
 	}
 }
