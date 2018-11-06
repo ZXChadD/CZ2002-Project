@@ -742,7 +742,7 @@ public class Professor
 		}
 	}
 	
-	public void cwMark(Student[] stud, int countS, Course[] course, int countC)
+	public String[] cwMark(Student[] stud, int countS, Course[] course, int countC)
 	{
 		System.out.println("=================================================");
 		
@@ -871,7 +871,7 @@ public class Professor
 		}
 	}
 	
-	public void examMark(Student[] stud, int countS, Course[] course, int countC)
+	public String[] examMark(Student[] stud, int countS, Course[] course, int countC)
 	{
 		System.out.println("=================================================");
 		
