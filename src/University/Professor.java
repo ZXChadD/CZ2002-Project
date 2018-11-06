@@ -169,6 +169,7 @@ public class Professor
 		{
 			System.out.println("=================================================");
 		}
+		return countS-1;
 	}
 	
 	public int addCourse(Course[] course, int countC, Professor[] prof, int countP)
@@ -482,6 +483,7 @@ public class Professor
 		{
 			System.out.println("=================================================");
 		}
+		return countC - 1;
 	}
 	
 	public void printStud(Student [] stud, int countS, Course[] course, int countC)
@@ -727,6 +729,7 @@ public class Professor
 			System.out.println("Exam (%): " + course[index].exam.getPercentage());
 			for(i = 0; i < cw; i++)
 				System.out.println(course[index].coursework[i].getName() + " (%): " + course[index].coursework[i].getPercentage());
+			return index;
 		}
 		catch(NullPointerException e)
 		{
@@ -740,10 +743,12 @@ public class Professor
 		{
 			System.out.println("=================================================");
 		}
+		return -1;
 	}
 	
 	public String[] cwMark(Student[] stud, int countS, Course[] course, int countC)
 	{
+		String [] ar = new String[2];
 		System.out.println("=================================================");
 		
 		try
@@ -856,6 +861,8 @@ public class Professor
 			stud[indexS].mark[indexM].setCoursework(ans);
 			System.out.println("\nCoursework Marks for Course#" + courseId + ": ");
 			System.out.println("Total Coursework Component Marks: " + stud[indexS].mark[indexM].getCoursework() + "/" + full);
+			ar[0] = String.valueOf(indexS);
+			ar[1] = String.valueOf(indexC);
 		}
 		catch(NullPointerException e)
 		{
@@ -869,10 +876,12 @@ public class Professor
 		{
 			System.out.println("=================================================");
 		}
+		return ar;
 	}
 	
 	public String[] examMark(Student[] stud, int countS, Course[] course, int countC)
 	{
+		String ar[] = new String[2];
 		System.out.println("=================================================");
 		
 		try
@@ -979,6 +988,8 @@ public class Professor
 			
 			stud[indexS].mark[indexM].setExam(finalMarks);
 			System.out.println("\nExam Marks for Course#" + courseId + ": " + stud[indexS].mark[indexM].getExam() + "/" + percent);
+			ar[0] = String.valueOf(indexS);
+			ar[1] = String.valueOf(indexC);
 		}
 		catch(NullPointerException e)
 		{
@@ -992,6 +1003,7 @@ public class Professor
 		{
 			System.out.println("=================================================");
 		}
+		return ar;
 	}
 	
 	public void printStats(Course[] course, int countC, Student[] stud, int countS)

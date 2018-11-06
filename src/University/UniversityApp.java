@@ -154,23 +154,38 @@ public class UniversityApp
 			}
 			int m = 0;
 			try {
-				reader = new BufferedReader(new FileReader("marks.txt"));
+				reader = new BufferedReader(new FileReader("cwMarks.txt"));
 				String line = reader.readLine();
 				while (line != null) {
 					String[] tokens = line.split(", ");
 					int sId = Integer.parseInt(tokens[0]);
 					int cId = Integer.parseInt(tokens[1]);
 					int cw = Integer.parseInt(tokens[2]);
-					int exam = Integer.parseInt(tokens[3]);
-					int overall = Integer.parseInt(tokens[4]);
-					String gradeC = tokens[5];
-					String gradeE = tokens[6];
-					String gradeO = tokens[7];
+					String gradeC = tokens[3];
 					if(sId == studId) {
 						marks[m] = new Marks(cId);
 						marks[m].setCoursework(cw);
-						marks[m].setExam(exam);
 						marks[m].setGradeC(gradeC);
+						m++;
+					}
+					line = reader.readLine();
+				}
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			m = 0;
+			try {
+				reader = new BufferedReader(new FileReader("eMarks.txt"));
+				String line = reader.readLine();
+				while (line != null) {
+					String[] tokens = line.split(", ");
+					int sId = Integer.parseInt(tokens[0]);
+					int cId = Integer.parseInt(tokens[1]);
+					int e = Integer.parseInt(tokens[2]);
+					String gradeE = tokens[3];
+					if(sId == studId) {
+						marks[m].setExam(e);
 						marks[m].setGradeE(gradeE);
 						m++;
 					}
@@ -608,24 +623,40 @@ public class UniversityApp
 			int presId = 0;
 			int c=0;
 			try {
-				reader = new BufferedReader(new FileReader("marks.txt"));
+				reader = new BufferedReader(new FileReader("cwMarks.txt"));
 				String line = reader.readLine();
 				while (line != null) {
 					String[] tokens = line.split(", ");
 					int sId = Integer.parseInt(tokens[0]);
 					int cId = Integer.parseInt(tokens[1]);
 					int coursework = Integer.parseInt(tokens[2]);
-					int exam = Integer.parseInt(tokens[3]);
-					int overall = Integer.parseInt(tokens[4]);
-					String gradeC = tokens[5];
-					String gradeE = tokens[6];
-					String gradeO = tokens[7];
+					String gradeC = tokens[3];
 					if(presId != sId)
 						c=0;
 					student[sId].mark[c] = new Marks(cId);
 					student[sId].mark[c].setCoursework(coursework);
-					student[sId].mark[c].setExam(exam);
 					student[sId].mark[c].setGradeC(gradeC);
+					c++;
+					line = reader.readLine();
+				}
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			presId = 0;
+			c=0;
+			try {
+				reader = new BufferedReader(new FileReader("marks.txt"));
+				String line = reader.readLine();
+				while (line != null) {
+					String[] tokens = line.split(", ");
+					int sId = Integer.parseInt(tokens[0]);
+					int cId = Integer.parseInt(tokens[1]);
+					int exam = Integer.parseInt(tokens[2]);
+					String gradeE = tokens[3];
+					if(presId != sId)
+						c=0;
+					student[sId].mark[c].setExam(exam);
 					student[sId].mark[c].setGradeE(gradeE);
 					c++;
 					line = reader.readLine();
@@ -736,10 +767,72 @@ public class UniversityApp
 					}
 				break;
 			case 5:
-				prof.cwMark(student, studentCount, course, courseCount);
+				String[] cwString = prof.cwMark(student, studentCount, course, courseCount);
+				int s1 = Integer.parseInt(cwString[0]);
+				int c1 = Integer.parseInt(cwString[1]);
+				int i;
+				BufferedWriter bw4 = null;
+				FileWriter fw4 = null;
+				try {
+					int sId = student[s1].getStudId();
+					int cId = course[c1].getCourseId();
+					for(i=0;i<student[s1].mark.length;i++) {
+						if(cId==student[s1].mark[i].getCourseId())
+							break;
+					}
+					int cwMark = student[s1].mark[i].getCoursework();
+					String cwGrade = student[s1].mark[i].getGradeC();
+					
+					fw4 = new FileWriter("cwMarks.txt", true);
+					bw4 = new BufferedWriter(fw4);
+					bw4.write(sId + ", "+ cId + ", " + cwMark + ", " + cwGrade);
+					bw4.newLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						if (bw4 != null)
+							bw4.close();
+						if (fw4 != null)
+							fw4.close();
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
 				break;
 			case 6:
-				prof.examMark(student, studentCount, course, courseCount);
+				String[] eString = prof.examMark(student, studentCount, course, courseCount);
+				int s2 = Integer.parseInt(eString[0]);
+				int c2 = Integer.parseInt(eString[1]);
+				int j;
+				BufferedWriter bw5 = null;
+				FileWriter fw5 = null;
+				try {
+					int sId = student[s2].getStudId();
+					int cId = course[c2].getCourseId();
+					for(j=0;j<student[s2].mark.length;j++) {
+						if(cId==student[s2].mark[j].getCourseId())
+							break;
+					}
+					int eMark = student[s2].mark[j].getExam();
+					String eGrade = student[s2].mark[j].getGradeE();
+					
+					fw5 = new FileWriter("eMarks.txt", true);
+					bw5 = new BufferedWriter(fw5);
+					bw5.write(sId + ", "+ cId + ", " + eMark + ", " + eGrade);
+					bw5.newLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						if (bw5 != null)
+							bw5.close();
+						if (fw5 != null)
+							fw5.close();
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				}
 				break;
 			case 7:
 				prof.printStats(course, courseCount, student, studentCount);
