@@ -1,0 +1,4 @@
+1, 40, Quiz
+2, 20, Quiz
+2, 20, Assignment
+3, 30, Quiz

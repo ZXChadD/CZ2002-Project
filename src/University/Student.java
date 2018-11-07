@@ -11,8 +11,8 @@ public class Student
 	public Student(int studId, String studFName, String studLName, String studEmail, String phoneNo, String faculty)
 	{
 		this.studId = studId;
-		this.studFName = studFName.toUpperCase();
-		this.studLName = studLName.toUpperCase();
+		this.studFName = studFName;
+		this.studLName = studLName;
 		this.studEmail = studEmail;
 		this.phoneNo = phoneNo;
 		this.faculty = faculty;
@@ -115,7 +115,8 @@ public class Student
 					if(tutChoice>course[i].getTut() || tutChoice<1)
 						System.out.println("Please enter a valid tutorial group.");
 					else
-						System.out.println("Slots left: " + (course[i].tutGrp[tutChoice-1].getSlots() -course[i].tutGrp[tutChoice-1].studIds.length) + "/" + course[i].tutGrp[tutChoice-1].getSlots());
+						System.out.println("Slots left: " + (course[i].tutGrp[tutChoice-1].studIds.length) + "/" + course[i].tutGrp[tutChoice-1].getSlots());
+					break;
 						
 				case 2:
 					System.out.println("Number of lab groups for this course: " + course[i].getLab());
@@ -124,14 +125,18 @@ public class Student
 					if(labChoice>course[i].getLab() || labChoice<1)
 						System.out.println("Please enter a valid lab group.");
 					else
-						System.out.println("Slots left: " + (course[i].labGrp[labChoice-1].getSlots() - course[i].labGrp[labChoice-1].studIds.length) + "/" + course[i].labGrp[labChoice-1].getSlots());
+						System.out.println("Slots left: " + (course[i].labGrp[labChoice-1].studIds.length) + "/" + course[i].labGrp[labChoice-1].getSlots());
+					break;
 
 				default:
 					System.out.println("Please enter 1 or 2.");
+					break;
 				}
+				break;
 			}
+			i=0;
 		}
-		if(i>=courseCount)
+		if(i>=courseCount) 
 			System.out.println("Please enter a valid Course ID.");
 	}
 	

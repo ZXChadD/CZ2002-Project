@@ -13,8 +13,8 @@ public class Professor
 	public Professor(int profId, String profFName, String profLName, String profEmail, String phoneNo, String officeRm, String faculty)
 	{
 		this.profId = profId;
-		this.profFName = profFName.toUpperCase();
-		this.profLName = profLName.toUpperCase();
+		this.profFName = profFName;
+		this.profLName = profLName;
 		this.profEmail = profEmail;
 		this.phoneNo = phoneNo;
 		this.officeRm = officeRm;
@@ -172,10 +172,10 @@ public class Professor
 		return countS-1;
 	}
 	
-	public int addCourse(Course[] course, int countC, Professor[] prof, int countP)
+	public String[] addCourse(Course[] course, int countC, Professor[] prof, int countP)
 	{
 		System.out.println("=================================================");
-		
+		String [] ar = new String[3];
 		try
 		{
 			int courseId = 0, profId = 0, slots = -1, lec = -1, lab = -1, tut = -1, i = 0;
@@ -203,7 +203,7 @@ public class Professor
 					System.out.println("Invalid Course ID! Course ID must be from #1 to #10.");
 			}
 			
-			System.out.print("Course Name: ");
+			System.out.print("Course Name(no space in between words, eg. DataStructure): ");
 			courseName = input.next();
 			
 			valid = false;
@@ -326,6 +326,7 @@ public class Professor
 			{
 				System.out.print("\nNumber of Lab Groups (0 - 3): ");
 				lab = input.nextInt();
+				ar[0] = String.valueOf(lab);
 				if(lab < 0)
 					System.out.println("Invalid Number of Lab Groups! The Number of Lab Groups cannot be a Negative Value.");
 				else if(lab > 3)
@@ -396,6 +397,7 @@ public class Professor
 			{
 				System.out.print("\nNumber of Tutorial Groups (0 - 4): ");
 				tut = input.nextInt();
+				ar[1] = String.valueOf(tut);
 				if(tut < 0)
 					System.out.println("Invalid Number of Tutorial Groups! The Number of Lab Groups cannot be a Negative Value.");
 				else if(tut > 4)
@@ -483,7 +485,8 @@ public class Professor
 		{
 			System.out.println("=================================================");
 		}
-		return countC - 1;
+		ar[2] = String.valueOf(countC-1);
+		return ar;
 	}
 	
 	public void printStud(Student [] stud, int countS, Course[] course, int countC)
@@ -1400,45 +1403,5 @@ public class Professor
 	
 	public void setFaculty(String faculty) {
 		this.faculty=faculty;
-	}
-	
-	public static void main(String args[])
-	{
-		Student[] testS = new Student[10];
-		Professor[] testP = new Professor[10];
-		Course[] testC = new Course[10];
-		int countS = 0, countC = 0;
-		testP[0] = new Professor(1, "MN", "Shaanmugam", "SH44N96@e.uni.edu.sg", "86601489", "S-B1-01", "SCSE");
-		testP[1] = new Professor(2, "MN", "Shaanmugar", "SH44N69@e.uni.edu.sg", "86601488", "S-B1-02", "SCSE");
-		testP[0].addStud(testS, countS);
-		countS++;
-		testP[0].addStud(testS, countS);
-		countS++;
-		testP[0].addStud(testS, countS);
-		countS++;
-		testP[0].addCourse(testC, countC, testP, 2);
-		countC++;
-		testP[0].addCourse(testC, countC, testP, 2);
-		countC++;
-		testC[0].lecGrp[0].studIds[0] = 69;
-		testC[0].labGrp[0].studIds[0] = 69;
-		testC[0].tutGrp[0].studIds[0] = 69;
-		testC[1].lecGrp[0].studIds[0] = 1;
-		testC[1].lecGrp[0].studIds[1] = 69;
-		testC[1].lecGrp[1].studIds[0] = 3;
-		testC[1].tutGrp[0].studIds[0] = 69;
-		testC[1].tutGrp[0].studIds[1] = 3;
-		testC[1].tutGrp[0].studIds[2] = 1;
-		testP[0].printStud(testS, countS, testC, countC);
-		testP[0].printStud(testS, countS, testC, countC);
-		testP[0].weightage(testC, countC);
-		testP[0].weightage(testC, countC);
-		testP[0].cwMark(testS, countS, testC, countC);
-		testP[0].examMark(testS, countS, testC, countC);
-		testP[0].examMark(testS, countS, testC, countC);
-		testP[0].examMark(testS, countS, testC, countC);
-		testP[0].examMark(testS, countS, testC, countC);
-		testP[0].printStats(testC, countC, testS, countS);
-		testP[0].printStats(testC, countC, testS, countS);
 	}
 }
