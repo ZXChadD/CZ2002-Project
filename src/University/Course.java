@@ -48,16 +48,16 @@ public class Course
 	
 	public int getLec()
 	{
-		return lecGrp.length;
+		return lecGrp.size();
 	}
 	
 	public int getLab()
 	{
-		return labGrp.length;
+		return labGrp.size();
 	}
 	
 	public int getTut()
 	{
-		return tutGrp.length;
+		return tutGrp.size();
 	}
 }

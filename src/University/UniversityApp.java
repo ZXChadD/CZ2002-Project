@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UniversityApp
@@ -135,8 +136,8 @@ public class UniversityApp
 		System.out.println("2: Check availability for a tutorial/lab group");
 		System.out.println("3: Print transcript");
 		System.out.println("4: Exit");
-		Course[] course = new Course[10];
-		Marks [] marks = new Marks[10];
+		ArrayList<Course> course = new ArrayList<>();
+		ArrayList<Marks> marks = new ArrayList<>();
 		do {
 			System.out.println("Please enter your choice: ");
 			studChoice = sc.nextInt();
@@ -468,9 +469,9 @@ public class UniversityApp
 		System.out.println("6: Enter exam mark");
 		System.out.println("7: Print course statistics");
 		System.out.println("8: Exit");
-		Course[] course = new Course[10];
-		Student[] student = new Student[20];
-		Professor[] professor = new Professor[5];
+		ArrayList<Course> course = new ArrayList<>();
+		ArrayList<Student> student = new ArrayList<>();
+		ArrayList<Professor> prof = new ArrayList<>();
 		do {
 			System.out.println("Please enter your choice: ");
 			profChoice = sc.nextInt();
