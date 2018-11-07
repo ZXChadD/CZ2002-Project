@@ -1,14 +1,16 @@
 package University;
 
+import java.util.ArrayList;
+
 public class Course
 {
 	private int courseId, profId, slots;
 	private String courseName, faculty;
-	LectureGroup[] lecGrp = new LectureGroup[2];
-	LabGroup[] labGrp = new LabGroup[3];
-	TutorialGroup[] tutGrp = new TutorialGroup[4];
+	ArrayList<LectureGroup> lecGrp = new ArrayList<>();
+	ArrayList<LabGroup> labGrp = new ArrayList<>();
+	ArrayList<TutorialGroup> tutGrp = new ArrayList<>();
 	Exam exam;
-	Coursework[] coursework = new Coursework[4];
+	ArrayList<Coursework> coursework = new ArrayList<>();
 	
 	public Course(int courseId, String courseName, String faculty, int profId, int slots)
 	{
