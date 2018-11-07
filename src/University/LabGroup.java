@@ -1,9 +1,11 @@
 package University;
 
+import java.util.ArrayList;
+
 public class LabGroup
 {
 	private int profId, slots;
-	public int[] studIds = new int[4];
+	public ArrayList<Integer> studIds = new ArrayList<>();
 	
 	public LabGroup(int profId, int slots)
 	{
