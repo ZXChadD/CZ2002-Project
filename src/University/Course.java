@@ -8,7 +8,7 @@ public class Course
 	LabGroup[] labGrp = new LabGroup[3];
 	TutorialGroup[] tutGrp = new TutorialGroup[4];
 	Exam exam;
-	Coursework[] coursework = new Coursework[3];
+	Coursework[] coursework = new Coursework[4];
 	
 	public Course(int courseId, String courseName, String faculty, int profId, int slots)
 	{
