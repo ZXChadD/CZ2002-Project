@@ -970,8 +970,8 @@ public class UniversityApp
 						for(int markSize=0;markSize<student.get(studSize).mark.size();markSize++) {
 							int a = student.get(studSize).getStudId();
 							int b = student.get(studSize).mark.get(markSize).getCourseId();
-							int e = student.get(studSize).mark.get(markSize).getCoursework();
-							String f = student.get(studSize).mark.get(markSize).getGradeC();
+							int e = student.get(studSize).mark.get(markSize).getExam();
+							String f = student.get(studSize).mark.get(markSize).getGradeE();
 							bw5.write(a + ", " + b + ", " + e + ", " + f);
 							bw5.newLine();
 						}
