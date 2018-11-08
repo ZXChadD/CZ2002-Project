@@ -131,14 +131,14 @@ public class UniversityApp
 			e.printStackTrace();
 		}
 		System.out.println("Welcome " + stud.getStudName());
-		System.out.println("List of actions:");
-		System.out.println("1: Register for a course");
-		System.out.println("2: Check availability for a tutorial/lab group");
-		System.out.println("3: Print transcript");
-		System.out.println("4: Exit");
 		ArrayList<Course> course = new ArrayList<>();
 		ArrayList<Marks> marks = new ArrayList<>();
 		do {
+			System.out.println("List of actions:");
+			System.out.println("1: Register for a course");
+			System.out.println("2: Check availability for a tutorial/lab group");
+			System.out.println("3: Print transcript");
+			System.out.println("4: Exit");
 			System.out.println("Please enter your choice: ");
 			studChoice = sc.nextInt();
 			int courseCount = 0;
@@ -357,11 +357,11 @@ public class UniversityApp
 			case 1: 
 				String[] out = stud.regCourse(course, courseCount);
 				int result = Integer.parseInt(out[0]);
-				int output = Integer.parseInt(out[1]);
-				int a = Integer.parseInt(out[2]);
-				int b = Integer.parseInt(out[3]);
-				int c = Integer.parseInt(out[4]);
 				if(result == 1) {
+					int output = Integer.parseInt(out[1]);
+					int a = Integer.parseInt(out[2]);
+					int b = Integer.parseInt(out[3]);
+					int c = Integer.parseInt(out[4]);
 					BufferedWriter bw = null;
 					FileWriter fw = null;
 					try {
@@ -447,19 +447,19 @@ public class UniversityApp
 			e.printStackTrace();
 		}
 		System.out.println("Welcome  " + prof.getProfName());
-		System.out.println("List of actions:");
-		System.out.println("1: Add a student");
-		System.out.println("2: Add a course");
-		System.out.println("3: Print student list");
-		System.out.println("4: Enter course assessment component weightage");
-		System.out.println("5: Enter coursework mark");
-		System.out.println("6: Enter exam mark");
-		System.out.println("7: Print course statistics");
-		System.out.println("8: Exit");
 		ArrayList<Course> course = new ArrayList<>();
 		ArrayList<Student> student = new ArrayList<>();
 		ArrayList<Professor> professor = new ArrayList<>();
 		do {
+			System.out.println("List of actions:");
+			System.out.println("1: Add a student");
+			System.out.println("2: Add a course");
+			System.out.println("3: Print student list");
+			System.out.println("4: Enter course assessment component weightage");
+			System.out.println("5: Enter coursework mark");
+			System.out.println("6: Enter exam mark");
+			System.out.println("7: Print course statistics");
+			System.out.println("8: Exit");
 			System.out.println("Please enter your choice: ");
 			profChoice = sc.nextInt();
 			int courseCount = 0;
