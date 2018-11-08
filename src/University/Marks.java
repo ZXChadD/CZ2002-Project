@@ -1,10 +1,19 @@
+/**
+ * Represents a marking scheme for a course
+ */
+
 package University;
 
 public class Marks
 {
 	private int courseId, coursework, exam, overall;
 	private String gradeC, gradeE, gradeO;
-	
+
+	/**
+	 * Create marking scheme for a course
+	 * Coursework and exam components initialised to 0
+	 * @param courseId course id
+	 */
 	public Marks(int courseId)
 	{
 		this.courseId = courseId;
@@ -66,6 +75,10 @@ public class Marks
 	{
 		return gradeE;
 	}
+
+    /**
+     * Calculate the grade a student obtains based on marks
+     */
 	
 	public void calcGradesO()
 	{

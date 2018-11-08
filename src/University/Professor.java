@@ -10,7 +10,10 @@ public class Professor
 	private int profId;
 	private String profFName, profLName, profEmail, phoneNo, officeRm, faculty;
 	Scanner input = new Scanner(System.in);
-	
+
+	/**
+	 *  Creates a professor based on various attributes
+	**/
 	public Professor(int profId, String profFName, String profLName, String profEmail, String phoneNo, String officeRm, String faculty)
 	{
 		this.profId = profId;
