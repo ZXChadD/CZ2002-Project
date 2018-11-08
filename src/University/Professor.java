@@ -541,7 +541,7 @@ public class Professor
 						if(course.get(index).lecGrp.get(i) != null)
 						{
 							System.out.println("\nLecture #" + (i + 1) + " for Course #" + courseId + ": ");
-							for(j = 0; j < course.get(index).lecGrp.get(i).getSlots(); j++)
+							for(j = 0; j < course.get(index).lecGrp.get(i).studIds.size(); j++)
 							{
 								tempId = course.get(index).lecGrp.get(i).studIds.get(j);
 								for(k = 0; k < countS; k++)
@@ -567,7 +567,7 @@ public class Professor
 						if(course.get(index).labGrp.get(i) != null)
 						{
 							System.out.println("\nLab #" + (i + 1) + " for Course #" + courseId + ": ");
-							for(j = 0; j < course.get(index).labGrp.get(i).getSlots(); j++)
+							for(j = 0; j < course.get(index).labGrp.get(i).studIds.size(); j++)
 							{
 								tempId = course.get(index).labGrp.get(i).studIds.get(j);
 								for(k = 0; k < countS; k++)
@@ -593,7 +593,7 @@ public class Professor
 						if(course.get(index).tutGrp.get(i) != null)
 						{
 							System.out.println("\nTutorial #" + (i + 1) + " for Course #" + courseId + ": ");
-							for(j = 0; j < course.get(index).tutGrp.get(i).getSlots(); j++)
+							for(j = 0; j < course.get(index).tutGrp.get(i).studIds.size(); j++)
 							{
 								tempId = course.get(index).tutGrp.get(i).studIds.get(j);
 								for(k = 0; k < countS; k++)
@@ -797,9 +797,9 @@ public class Professor
 					{
 						if(studentId == stud.get(i).getStudId())
 						{
-							for(j = 0; j < course.get(indexC).getLec(); j++)
+							for(j = 0; j < course.get(indexC).lecGrp.size(); j++)
 							{
-								for(k = 0; k < course.get(indexC).getLec(); k++)
+								for(k = 0; k < course.get(indexC).lecGrp.get(j).studIds.size(); k++)
 								{
 									if(course.get(indexC).lecGrp.get(j) != null)
 									{
@@ -855,6 +855,8 @@ public class Professor
 				int finalMarks = (int)(marksTemp);
 				ans += finalMarks;
 				i++;
+				System.out.println(marks +", "+ ans);
+				System.out.println(indexS + ", " + indexM);
 				if(marks >= 80)
 					stud.get(indexS).mark.get(indexM).setGradeC("A");
 				else if(marks >= 70)
@@ -873,14 +875,14 @@ public class Professor
 			ar[0] = String.valueOf(indexS);
 			ar[1] = String.valueOf(indexC);
 		}
-		catch(NullPointerException e)
+		/*catch(NullPointerException e)
 		{
 			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
 			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
-		}
+		}*/
 		finally
 		{
 			System.out.println("=================================================");

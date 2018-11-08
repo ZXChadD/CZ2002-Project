@@ -105,6 +105,7 @@ public class Student
 			}
 		if(courseChoice>courseCount)
 			System.out.println("Please enter a valid Course ID.");
+		System.out.println("=================================================");
 		return ar;
 	}
 	
@@ -116,7 +117,6 @@ public class Student
 		int courseChoice = sc.nextInt();
 		for(i=0;i<courseCount;i++) {
 			if(course.get(i).getCourseId()==courseChoice) {
-				System.out.println(courseCount);
 				System.out.println("1. Tutorial group availability");
 				System.out.println("2. Lab group availability");
 				System.out.println("Enter your choice: ");
@@ -151,6 +151,7 @@ public class Student
 		}
 		if(i>=courseCount) 
 			System.out.println("Please enter a valid Course ID.");
+		System.out.println("=================================================");
 	}
 	
 	public void printTranscript(ArrayList<Course> course, int courseCount, ArrayList<Marks> marks)
@@ -205,7 +206,7 @@ public class Student
 				}
 			}
 		}
-	
+		System.out.println("=================================================");
 	}
 	
 	public int getStudId()
