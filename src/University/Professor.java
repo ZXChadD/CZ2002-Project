@@ -1026,7 +1026,7 @@ public class Professor
 			double ans = 0.0;
 			String answer = null;
 			boolean  valid = false;
-			
+					
 			while(valid == false)
 			{
 				System.out.print("Course ID: ");
@@ -1053,9 +1053,10 @@ public class Professor
 			System.out.println("Print Course Statistics: ");
 			
 			j = 0;
-			studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
+			
 			while(j<course.get(indexC).lecGrp.get(0).studIds.size())
 			{
+				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
 					if(studentId == stud.get(i).getStudId())
@@ -1089,23 +1090,18 @@ public class Professor
 				else if(stud.get(indexS).mark.get(indexM).getGradeO() == "F")
 					f++;
 				
-				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j)+1;
 				j++;
-				
-				
 			}
 			
 			j = 0;
-			studentId = course.get(indexC).lecGrp.get(1).studIds.get(j);
 			while(j<course.get(indexC).lecGrp.get(1).studIds.size())
 			{
+				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
 					if(studentId == stud.get(i).getStudId())
 					{	
-						System.out.println("hi");
 						indexS = i;
-						System.out.println(indexS);
 						break;
 					}
 				}
@@ -1114,13 +1110,10 @@ public class Professor
 				{
 					if(stud.get(indexS).mark.get(i).getCourseId() == courseId)
 					{
-						System.out.println("bye");
 						indexM = i;
-						System.out.println(indexM);
 						break;
 					}
 				}
-				System.out.println(indexS+", "+indexM);
 				stud.get(indexS).mark.get(indexM).calcOverall();
 				stud.get(indexS).mark.get(indexM).calcGradesO();
 				full++;
@@ -1136,9 +1129,7 @@ public class Professor
 				else if(stud.get(indexS).mark.get(indexM).getGradeO() == "F")
 					f++;
 				
-				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j)+1;
 				j++;
-				System.out.println("a");
 			}
 			
 			System.out.println("\nGrade Percentage for Overall Marks: ");
@@ -1159,10 +1150,10 @@ public class Professor
 			System.out.println("F: " + answer + "%");
 			
 			j = 0;
-			studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
 			full = a = b = c = d = f = 0;
 			while(j<course.get(indexC).lecGrp.get(0).studIds.size())
 			{
+				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
 					if(studentId == stud.get(i).getStudId())
@@ -1182,25 +1173,24 @@ public class Professor
 				}
 				
 				full++;
-				if(stud.get(indexS).mark.get(indexM).getGradeE() == "A")
+				if(stud.get(indexS).mark.get(indexM).getGradeE().equals("A"))
 					a++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeE() == "B")
+				else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("B"))
 					b++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeE() == "C")
+				else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("C"))
 					c++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeE() == "D")
+				else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("D"))
 					d++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeE() == "F")
+				else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("E"))
 					f++;
 				
-				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j)+1;
 				j++;
 			}
 			
 			j = 0;
-			studentId = course.get(indexC).lecGrp.get(1).studIds.get(0);
 			while(j<course.get(indexC).lecGrp.get(1).studIds.size())
 			{
+				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
 					if(studentId == stud.get(i).getStudId())
@@ -1218,21 +1208,19 @@ public class Professor
 						break;
 					}
 				}
-				
+
 				full++;
-				if(stud.get(indexS).mark.get(indexM).getGradeE() == "A")
+				if(stud.get(indexS).mark.get(indexM).getGradeE().equals("A"))
 					a++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeE() == "B")
+				else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("B"))
 					b++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeE() == "C")
+				else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("C"))
 					c++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeE() == "D")
+				else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("D"))
 					d++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeE() == "F")
+				else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("F"))
 					f++;
 				
-				
-				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j)+1;
 				j++;
 			}
 			
@@ -1254,10 +1242,10 @@ public class Professor
 			System.out.println("F: " + answer + "%");
 			
 			j = 0;
-			studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
 			full = a = b = c = d = f = 0;
 			while(j<course.get(indexC).lecGrp.get(0).studIds.size())
 			{
+				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
 					if(studentId == stud.get(i).getStudId())
@@ -1277,25 +1265,24 @@ public class Professor
 				}
 				
 				full++;
-				if(stud.get(indexS).mark.get(indexM).getGradeC() == "A")
+				if(stud.get(indexS).mark.get(indexM).getGradeC().equals("A"))
 					a++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeC() == "B")
+				else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("B"))
 					b++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeC() == "C")
+				else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("C"))
 					c++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeC() == "D")
+				else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("D"))
 					d++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeC() == "F")
+				else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("E"))
 					f++;
 			
-				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j)+1;
 				j++;
 			}
 			
 			j = 0;
-			studentId = course.get(indexC).lecGrp.get(1).studIds.get(0);
 			while(j<course.get(indexC).lecGrp.get(1).studIds.size())
 			{
+				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
 					if(studentId == stud.get(i).getStudId())
@@ -1315,19 +1302,17 @@ public class Professor
 				}
 				
 				full++;
-				if(stud.get(indexS).mark.get(indexM).getGradeC() == "A")
+				if(stud.get(indexS).mark.get(indexM).getGradeC().equals("A"))
 					a++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeC() == "B")
+				else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("B"))
 					b++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeC() == "C")
+				else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("C"))
 					c++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeC() == "D")
+				else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("D"))
 					d++;
-				else if(stud.get(indexS).mark.get(indexM).getGradeC() == "F")
+				else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("E"))
 					f++;
 				
-				
-				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j)+1;
 				j++;
 			}
 			
@@ -1348,14 +1333,14 @@ public class Professor
 			answer = String.format("%.1f", ans);
 			System.out.println("F: " + answer + "%");
 		}
-		/*catch(NullPointerException e)
+		catch(NullPointerException e)
 		{
 			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
 			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
-		}*/
+		}
 		finally
 		{
 			System.out.println("=================================================");
