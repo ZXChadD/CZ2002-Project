@@ -356,43 +356,45 @@ public class UniversityApp
 			switch(studChoice) {
 			case 1: 
 				String[] out = stud.regCourse(course, courseCount);
-				int output = Integer.parseInt(out[0]);
-				int a = Integer.parseInt(out[1]);
-				int b = Integer.parseInt(out[2]);
-				int c = Integer.parseInt(out[2]);
-				BufferedWriter bw = null;
-				FileWriter fw = null;
-				try {
-					fw = new FileWriter("lecgrplist.txt", true);
-					bw = new BufferedWriter(fw);
-					bw.write((output+1) + ", " + (a) + ", " + stud.getStudId());
-					bw.newLine();
-					bw.flush();
-					fw = new FileWriter("tutgrplist.txt", true);
-					bw = new BufferedWriter(fw);
-					bw.write((output+1) + ", " + (b) + ", " + stud.getStudId());
-					bw.newLine();
-					bw.flush();
-					fw = new FileWriter("labgrplist.txt", true);
-					bw = new BufferedWriter(fw);
-					bw.write((output+1) + ", " + (c) + ", " + stud.getStudId());
-					bw.newLine();
-					bw.flush();
-					System.out.println("Course registered");
+				int result = Integer.parseInt(out[0]);
+				int output = Integer.parseInt(out[1]);
+				int a = Integer.parseInt(out[2]);
+				int b = Integer.parseInt(out[3]);
+				int c = Integer.parseInt(out[4]);
+				if(result == 1) {
+					BufferedWriter bw = null;
+					FileWriter fw = null;
+					try {
+						fw = new FileWriter("lecgrplist.txt", true);
+						bw = new BufferedWriter(fw);
+						bw.write((output+1) + ", " + (a) + ", " + stud.getStudId());
+						bw.newLine();
+						bw.flush();
+						fw = new FileWriter("tutgrplist.txt", true);
+						bw = new BufferedWriter(fw);
+						bw.write((output+1) + ", " + (b) + ", " + stud.getStudId());
+						bw.newLine();
+						bw.flush();
+						fw = new FileWriter("labgrplist.txt", true);
+						bw = new BufferedWriter(fw);
+						bw.write((output+1) + ", " + (c) + ", " + stud.getStudId());
+						bw.newLine();
+						bw.flush();
 
-					} catch (IOException e) {
-						e.printStackTrace();
-					} finally {
-						try {
-							if (bw != null)
-								bw.close();
-							if (fw != null)
-								fw.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						} finally {
+							try {
+								if (bw != null)
+									bw.close();
+								if (fw != null)
+									fw.close();
 
-						} catch (IOException ex) {
-							ex.printStackTrace();
+							} catch (IOException ex) {
+								ex.printStackTrace();
+							}
 						}
-					}
+				}
 				break;
 			case 2:
 				stud.checkAvail(course, courseCount);
