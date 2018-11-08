@@ -21,8 +21,10 @@ public class Student
 	
 	public String[] regCourse(ArrayList<Course> course, int courseCount)
 	{
-		String[] ar = new String[4];
+		String[] ar = new String[5];
+		ar[0]="0";
 		int i;
+		boolean valid = true;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Course ID: ");
 		int courseChoice = sc.nextInt();
@@ -31,75 +33,77 @@ public class Student
 			if(course.get(i).getCourseId()==courseChoice)
 			{
 				if(course.get(i).getSlots() > (course.get(i).lecGrp.get(0).studIds.size() + course.get(i).lecGrp.get(1).studIds.size())) {
-					for(int a=0;a<course.get(i).lecGrp.get(0).getSlots();a++)
-						if(course.get(i).lecGrp.get(0).studIds.size()>0) {
-							if(studId == course.get(i).lecGrp.get(0).studIds.get(a)){
-								System.out.println("You are already registered for this course.");
-								break;
+					for(int b=0; b<course.get(i).lecGrp.size(); b++) {
+						for(int a=0;a<course.get(i).lecGrp.get(b).studIds.size();a++) {
+							if(course.get(i).lecGrp.get(b).studIds.size()>0) {
+								if(studId == course.get(i).lecGrp.get(b).studIds.get(a)){
+									System.out.println("You are already registered for this course.");
+									valid = false;
+									break;
+									}
 								}
+							}
 						}
-					for(int b=0;b<course.get(i).lecGrp.get(1).getSlots();b++)
-						if(course.get(i).lecGrp.get(1).studIds.size()>0) {
-							if(studId == course.get(i).lecGrp.get(1).studIds.get(b)) {
-								System.out.println("You are already registered for this course.");
-								break;
-								}
-						}
-					System.out.println("Number of lecture groups for this course: " + course.get(i).getLec());
-					System.out.println("Please enter lecture group of your choice: ");
-					int lecgrpChoice = sc.nextInt();
-					if(lecgrpChoice>course.get(i).getLec() || lecgrpChoice<1) {
-						System.out.println("Please enter a valid group.");
-						break;
-					}
-					else if(course.get(i).lecGrp.get(lecgrpChoice-1).studIds.size()>=course.get(i).lecGrp.get(lecgrpChoice-1).getSlots()) {
-						System.out.println("No more vacancies.");
-						break;
-						}
-					else {
-						System.out.println("Number of tutorial groups for this course: " + course.get(i).getTut());
-						System.out.println("Please enter tutorial group of your choice: ");
-						int tutgrpChoice = sc.nextInt();
-						if(tutgrpChoice>course.get(i).getTut() || tutgrpChoice<1) {
+					if(valid) {
+						System.out.println("Number of lecture groups for this course: " + course.get(i).getLec());
+						System.out.println("Please enter lecture group of your choice: ");
+						int lecgrpChoice = sc.nextInt();
+						if(lecgrpChoice>course.get(i).getLec() || lecgrpChoice<1) {
 							System.out.println("Please enter a valid group.");
 							break;
 						}
-						else if(course.get(i).tutGrp.get(tutgrpChoice-1).studIds.size()>=course.get(i).tutGrp.get(tutgrpChoice-1).getSlots()) {
+						else if(course.get(i).lecGrp.get(lecgrpChoice-1).studIds.size()>=course.get(i).lecGrp.get(lecgrpChoice-1).getSlots()) {
 							System.out.println("No more vacancies.");
 							break;
 							}
 						else {
-							System.out.println("Number of lab groups for this course: " + course.get(i).getLab());
-							System.out.println("Please enter lab group of your choice: ");
-							int labgrpChoice = sc.nextInt();
-							if(labgrpChoice>course.get(i).getLab() || labgrpChoice<1) {
+							System.out.println("Number of tutorial groups for this course: " + course.get(i).getTut());
+							System.out.println("Please enter tutorial group of your choice: ");
+							int tutgrpChoice = sc.nextInt();
+							if(tutgrpChoice>course.get(i).getTut() || tutgrpChoice<1) {
 								System.out.println("Please enter a valid group.");
 								break;
 							}
-							else if(course.get(i).labGrp.get(labgrpChoice-1).studIds.size()>=course.get(i).labGrp.get(labgrpChoice-1).getSlots()) {
+							else if(course.get(i).tutGrp.get(tutgrpChoice-1).studIds.size()>=course.get(i).tutGrp.get(tutgrpChoice-1).getSlots()) {
 								System.out.println("No more vacancies.");
 								break;
 								}
 							else {
-								int x = course.get(i).lecGrp.get(lecgrpChoice-1).studIds.size();
-								course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, studId);
-								int y = course.get(i).tutGrp.get(tutgrpChoice-1).studIds.size();
-								course.get(i).tutGrp.get(tutgrpChoice-1).studIds.add(y, studId);
-								int z = course.get(i).labGrp.get(labgrpChoice-1).studIds.size();
-								course.get(i).labGrp.get(labgrpChoice).studIds.add(z, studId);
-								ar[0] = String.valueOf(i);
-								ar[1] = String.valueOf(lecgrpChoice);
-								ar[2] = String.valueOf(tutgrpChoice);
-								ar[3] = String.valueOf(labgrpChoice);
+								System.out.println("Number of lab groups for this course: " + course.get(i).getLab());
+								System.out.println("Please enter lab group of your choice: ");
+								int labgrpChoice = sc.nextInt();
+								if(labgrpChoice>course.get(i).getLab() || labgrpChoice<1) {
+									System.out.println("Please enter a valid group.");
+									break;
+								}
+								else if(course.get(i).labGrp.get(labgrpChoice-1).studIds.size()>=course.get(i).labGrp.get(labgrpChoice-1).getSlots()) {
+									System.out.println("No more vacancies.");
+									break;
+									}
+								else {
+									int x = course.get(i).lecGrp.get(lecgrpChoice-1).studIds.size();
+									course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, studId);
+									int y = course.get(i).tutGrp.get(tutgrpChoice-1).studIds.size();
+									course.get(i).tutGrp.get(tutgrpChoice-1).studIds.add(y, studId);
+									int z = course.get(i).labGrp.get(labgrpChoice-1).studIds.size();
+									course.get(i).labGrp.get(labgrpChoice-1).studIds.add(z, studId);
+									ar[0] = "1";
+									ar[1] = String.valueOf(i);
+									ar[2] = String.valueOf(lecgrpChoice);
+									ar[3] = String.valueOf(tutgrpChoice);
+									ar[4] = String.valueOf(labgrpChoice);
+									System.out.println("Course registered.");
+									break;
+									}
 								}
 							}
 						}
 					}
-				else
-					System.out.println("No more vacancies. ");
+					else
+						System.out.println("No more vacancies. ");
+				}
 			}
-		}
-		if(i>=courseCount)
+		if(courseChoice>courseCount)
 			System.out.println("Please enter a valid Course ID.");
 		return ar;
 	}
