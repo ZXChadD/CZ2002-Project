@@ -152,7 +152,8 @@ public class UniversityApp
 					int slots = Integer.parseInt(tokens[2]);
 					String courseName = tokens[3];
 					String faculty = tokens[4];
-					course[courseCount] = new Course(cId, courseName, faculty, pId, slots);
+					Course tempCourse  = new Course(cId, courseName, faculty, pId, slots);
+					course.add(courseCount, tempCourse);
 					courseCount++;
 					line = reader.readLine();
 				}
@@ -171,9 +172,10 @@ public class UniversityApp
 					int cw = Integer.parseInt(tokens[2]);
 					String gradeC = tokens[3];
 					if(sId == studId) {
-						marks[m] = new Marks(cId);
-						marks[m].setCoursework(cw);
-						marks[m].setGradeC(gradeC);
+						Marks tempMarks = new Marks(cId);
+						marks.add(m, tempMarks);
+						marks.get(m).setCoursework(cw);
+						marks.get(m).setGradeC(gradeC);
 						m++;
 					}
 					line = reader.readLine();
@@ -193,8 +195,8 @@ public class UniversityApp
 					int e = Integer.parseInt(tokens[2]);
 					String gradeE = tokens[3];
 					if(sId == studId) {
-						marks[m].setExam(e);
-						marks[m].setGradeE(gradeE);
+						marks.get(m).setExam(e);
+						marks.get(m).setGradeE(gradeE);
 						m++;
 					}
 					line = reader.readLine();
@@ -212,7 +214,8 @@ public class UniversityApp
 					int classNo = Integer.parseInt(tokens[1]);
 					int pId = Integer.parseInt(tokens[2]);
 					int slots = Integer.parseInt(tokens[3]);
-					course[cId-1].lecGrp[classNo-1] = new LectureGroup(pId, slots);
+					LectureGroup tempLecGrp = new LectureGroup(pId, slots);
+					course.get(cId-1).lecGrp.add(classNo-1, tempLecGrp);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -228,7 +231,8 @@ public class UniversityApp
 					int classNo = Integer.parseInt(tokens[1]);
 					int pId = Integer.parseInt(tokens[2]);
 					int slots = Integer.parseInt(tokens[3]);
-					course[cId-1].tutGrp[classNo-1] = new TutorialGroup (pId, slots);
+					TutorialGroup tempTutGrp = new TutorialGroup(pId, slots);
+					course.get(cId-1).tutGrp.add(classNo-1, tempTutGrp);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -244,7 +248,8 @@ public class UniversityApp
 					int classNo = Integer.parseInt(tokens[1]);
 					int pId = Integer.parseInt(tokens[2]);
 					int slots = Integer.parseInt(tokens[3]);
-					course[cId-1].labGrp[classNo-1] = new LabGroup(pId, slots);
+					LabGroup tempLabGrp = new LabGroup(pId, slots);
+					course.get(cId-1).labGrp.add(classNo-1, tempLabGrp);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -264,7 +269,7 @@ public class UniversityApp
 					int sId = Integer.parseInt(tokens[2]);
 					if(prec!=cId || preclass!=classNo)
 						s=0;
-					course[cId-1].lecGrp[classNo-1].studIds[s] = sId;
+					course.get(cId-1).lecGrp.get(classNo-1).studIds.add(s, sId);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -284,7 +289,7 @@ public class UniversityApp
 					int sId = Integer.parseInt(tokens[2]);
 					if(prec!=cId || preclass!=classNo)
 						s=0;
-					course[cId-1].tutGrp[classNo-1].studIds[s] = sId;
+					course.get(cId-1).tutGrp.get(classNo-1).studIds.add(s, sId);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -304,7 +309,7 @@ public class UniversityApp
 					int sId = Integer.parseInt(tokens[2]);
 					if(prec!=cId || preclass!=classNo)
 						s=0;
-					course[cId-1].labGrp[classNo-1].studIds[s] = sId;
+					course.get(cId-1).labGrp.get(classNo-1).studIds.add(s, sId);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -318,7 +323,7 @@ public class UniversityApp
 					String[] tokens = line.split(", ");
 					int cId = Integer.parseInt(tokens[0]);
 					int eWeightage = Integer.parseInt(tokens[1]);
-					course[cId-1].exam = new Exam(eWeightage);
+					course.get(cId-1).exam = new Exam(eWeightage);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -338,7 +343,8 @@ public class UniversityApp
 					if(precId != cId) {
 						cw = 0;
 					}
-					course[cId-1].coursework[cw] = new Coursework(cwWeightage, cwName);
+					Coursework tempCoursework = new Coursework(cwWeightage, cwName);
+					course.get(cId-1).coursework.add(cw, tempCoursework);
 					cw++;
 					precId = cId;
 					line = reader.readLine();
@@ -349,49 +355,30 @@ public class UniversityApp
 			}
 			switch(studChoice) {
 			case 1: 
-				int a,x;
-				int output = stud.regCourse(course, courseCount);
-				if(output >= 0) {
-					BufferedWriter bw = null;
-					FileWriter fw = null;
-					try {
-						for(a=0;a<=course[output].lecGrp.length;a++) {
-							for(x=0;x<=course[output].lecGrp[a].studIds.length;x++) {
-								if(course[output].lecGrp[a].studIds[x]==stud.getStudId()) {
-									fw = new FileWriter("lecgrplist.txt", true);
-									bw = new BufferedWriter(fw);
-									bw.write((output+1) + ", " + (a+1) + ", " + stud.getStudId());
-									bw.newLine();
-									bw.flush();
-									break;
-								}
-							}
-						}
-						for(a=0;a<=course[output].tutGrp.length;a++) {
-							for(x=0;x<=course[output].tutGrp[a].studIds.length;x++) {
-								if(course[output].tutGrp[a].studIds[x]==stud.getStudId()) {
-									fw = new FileWriter("tutgrplist.txt", true);
-									bw = new BufferedWriter(fw);
-									bw.write((output+1) + ", " + (a+1) + ", " + stud.getStudId());
-									bw.newLine();
-									bw.flush();
-									break;
-								}
-							}
-						}
-						for(a=0;a<=course[output].labGrp.length;a++) {
-							for(x=0;x<=course[output].labGrp[a].studIds.length;x++) {
-								if(course[output].labGrp[a].studIds[x]==stud.getStudId()) {
-									fw = new FileWriter("labgrplist.txt", true);
-									bw = new BufferedWriter(fw);
-									bw.write((output+1) + ", " + (a+1) + ", " + stud.getStudId());
-									bw.newLine();
-									bw.flush();
-									break;
-								}
-							}
-						}
-						System.out.println("Course registered");
+				String[] out = stud.regCourse(course, courseCount);
+				int output = Integer.parseInt(out[0]);
+				int a = Integer.parseInt(out[1]);
+				int b = Integer.parseInt(out[2]);
+				int c = Integer.parseInt(out[2]);
+				BufferedWriter bw = null;
+				FileWriter fw = null;
+				try {
+					fw = new FileWriter("lecgrplist.txt", true);
+					bw = new BufferedWriter(fw);
+					bw.write((output+1) + ", " + (a) + ", " + stud.getStudId());
+					bw.newLine();
+					bw.flush();
+					fw = new FileWriter("tutgrplist.txt", true);
+					bw = new BufferedWriter(fw);
+					bw.write((output+1) + ", " + (b) + ", " + stud.getStudId());
+					bw.newLine();
+					bw.flush();
+					fw = new FileWriter("labgrplist.txt", true);
+					bw = new BufferedWriter(fw);
+					bw.write((output+1) + ", " + (c) + ", " + stud.getStudId());
+					bw.newLine();
+					bw.flush();
+					System.out.println("Course registered");
 
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -406,7 +393,6 @@ public class UniversityApp
 							ex.printStackTrace();
 						}
 					}
-				}
 				break;
 			case 2:
 				stud.checkAvail(course, courseCount);
@@ -415,7 +401,6 @@ public class UniversityApp
 				stud.printTranscript(course, courseCount, marks);
 				break;
 			case 4:
-				System.out.println("Thank you for using the app");
 				System.out.println("Please press 3 again to exit the app");
 				break;
 			default:
@@ -471,7 +456,7 @@ public class UniversityApp
 		System.out.println("8: Exit");
 		ArrayList<Course> course = new ArrayList<>();
 		ArrayList<Student> student = new ArrayList<>();
-		ArrayList<Professor> prof = new ArrayList<>();
+		ArrayList<Professor> professor = new ArrayList<>();
 		do {
 			System.out.println("Please enter your choice: ");
 			profChoice = sc.nextInt();
@@ -486,7 +471,8 @@ public class UniversityApp
 					int slots = Integer.parseInt(tokens[2]);
 					String courseName = tokens[3];
 					String faculty = tokens[4];
-					course[courseCount] = new Course(cId, courseName, faculty, pId, slots);
+					Course tempCourse  = new Course(cId, courseName, faculty, pId, slots);
+					course.add(courseCount, tempCourse);
 					courseCount++;
 					line = reader.readLine();
 				}
@@ -506,7 +492,8 @@ public class UniversityApp
 					String sEmail = tokens[3];
 					String sPhoneNo = tokens[4];
 					String sFaculty = tokens[5];
-					student[studentCount] = new Student(sId, studFName, studLName, sEmail, sPhoneNo, sFaculty);
+					Student tempStudent  = new Student(sId, studFName, studLName, sEmail, sPhoneNo, sFaculty);
+					student.add(studentCount, tempStudent);
 					studentCount++;
 					line = reader.readLine();
 				}
@@ -527,7 +514,8 @@ public class UniversityApp
 					String pPhoneNo = tokens[4];
 					String pOfficeRm = tokens[5];
 					String pFaculty = tokens[6];
-					professor[profCount] = new Professor(pId, profFName, profLName, pEmail, pPhoneNo, pOfficeRm, pFaculty);
+					Professor tempProf  = new Professor(pId, profFName, profLName, pEmail, pPhoneNo, pOfficeRm, pFaculty);
+					professor.add(profCount, tempProf);
 					profCount++;
 					line = reader.readLine();
 				}
@@ -544,7 +532,8 @@ public class UniversityApp
 					int classNo = Integer.parseInt(tokens[1]);
 					int pId = Integer.parseInt(tokens[2]);
 					int slots = Integer.parseInt(tokens[3]);
-					course[cId-1].lecGrp[classNo-1] = new LectureGroup(pId, slots);
+					LectureGroup tempLecGrp = new LectureGroup(pId, slots);
+					course.get(cId-1).lecGrp.add(classNo-1, tempLecGrp);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -560,7 +549,8 @@ public class UniversityApp
 					int classNo = Integer.parseInt(tokens[1]);
 					int pId = Integer.parseInt(tokens[2]);
 					int slots = Integer.parseInt(tokens[3]);
-					course[cId-1].tutGrp[classNo-1] = new TutorialGroup (pId, slots);
+					TutorialGroup tempTutGrp = new TutorialGroup(pId, slots);
+					course.get(cId-1).tutGrp.add(classNo-1, tempTutGrp);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -576,7 +566,8 @@ public class UniversityApp
 					int classNo = Integer.parseInt(tokens[1]);
 					int pId = Integer.parseInt(tokens[2]);
 					int slots = Integer.parseInt(tokens[3]);
-					course[cId-1].labGrp[classNo-1] = new LabGroup(pId, slots);
+					LabGroup tempLabGrp = new LabGroup(pId, slots);
+					course.get(cId-1).labGrp.add(classNo-1, tempLabGrp);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -596,7 +587,7 @@ public class UniversityApp
 					int sId = Integer.parseInt(tokens[2]);
 					if(prec!=cId || preclass!=classNo)
 						s=0;
-					course[cId-1].lecGrp[classNo-1].studIds[s] = sId;
+					course.get(cId-1).lecGrp.get(classNo-1).studIds.add(s, sId);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -616,7 +607,7 @@ public class UniversityApp
 					int sId = Integer.parseInt(tokens[2]);
 					if(prec!=cId || preclass!=classNo)
 						s=0;
-					course[cId-1].tutGrp[classNo-1].studIds[s] = sId;
+					course.get(cId-1).tutGrp.get(classNo-1).studIds.add(s, sId);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -636,7 +627,7 @@ public class UniversityApp
 					int sId = Integer.parseInt(tokens[2]);
 					if(prec!=cId || preclass!=classNo)
 						s=0;
-					course[cId-1].labGrp[classNo-1].studIds[s] = sId;
+					course.get(cId-1).labGrp.get(classNo-1).studIds.add(s, sId);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -650,7 +641,7 @@ public class UniversityApp
 					String[] tokens = line.split(", ");
 					int cId = Integer.parseInt(tokens[0]);
 					int eWeightage = Integer.parseInt(tokens[1]);
-					course[cId-1].exam = new Exam(eWeightage);
+					course.get(cId-1).exam = new Exam(eWeightage);
 					line = reader.readLine();
 				}
 				reader.close();
@@ -670,7 +661,8 @@ public class UniversityApp
 					if(precId != cId) {
 						cw = 0;
 					}
-					course[cId-1].coursework[cw] = new Coursework(cwWeightage, cwName);
+					Coursework tempCoursework = new Coursework(cwWeightage, cwName);
+					course.get(cId-1).coursework.add(cw, tempCoursework);
 					cw++;
 					precId = cId;
 					line = reader.readLine();
@@ -692,9 +684,10 @@ public class UniversityApp
 					String gradeC = tokens[3];
 					if(presId != sId)
 						c=0;
-					student[sId-1].mark[c] = new Marks(cId);
-					student[sId-1].mark[c].setCoursework(coursework);
-					student[sId-1].mark[c].setGradeC(gradeC);
+					Marks tempMarks = new Marks(cId);
+					student.get(sId-1).mark.add(c, tempMarks);
+					student.get(sId-1).mark.get(c).setCoursework(coursework);
+					student.get(sId-1).mark.get(c).setGradeC(gradeC);
 					c++;
 					line = reader.readLine();
 				}
@@ -715,8 +708,8 @@ public class UniversityApp
 					String gradeE = tokens[3];
 					if(presId != sId)
 						c=0;
-					student[sId-1].mark[c].setExam(exam);
-					student[sId-1].mark[c].setGradeE(gradeE);
+					student.get(sId-1).mark.get(c).setExam(exam);
+					student.get(sId-1).mark.get(c).setGradeE(gradeE);
 					c++;
 					line = reader.readLine();
 				}
@@ -731,14 +724,14 @@ public class UniversityApp
 				FileWriter fw = null;
 				if(x>=0)
 					try {
-						int studId = student[x].getStudId();
-						String studName = student[x].getStudName();
+						int studId = student.get(x).getStudId();
+						String studName = student.get(x).getStudName();
 						String [] tokens = studName.split(" ");
 						String studFName = tokens[0];
 						String studLName = tokens[1];
-						String email = student[x].getStudEmail();
-						String phoneNo = student[x].getPhoneNo();
-						String faculty = student[x].getFaculty();
+						String email = student.get(x).getStudEmail();
+						String phoneNo = student.get(x).getPhoneNo();
+						String faculty = student.get(x).getFaculty();
 
 						fw = new FileWriter("student.txt", true);
 						bw = new BufferedWriter(fw);
@@ -766,11 +759,11 @@ public class UniversityApp
 				FileWriter fw2 = null;
 				if(y>=0) {
 					try {
-						int cId = course[y].getCourseId();
-						int pId = course[y].getProfId();
-						int slots = course[y].getSlots();
-						String cName = course[y].getCourseName();
-						String cFac = course[y].getFaculty();
+						int cId = course.get(y).getCourseId();
+						int pId = course.get(y).getProfId();
+						int slots = course.get(y).getSlots();
+						String cName = course.get(y).getCourseName();
+						String cFac = course.get(y).getFaculty();
 
 						fw2 = new FileWriter("course.txt", true);
 						bw2 = new BufferedWriter(fw2);
@@ -789,12 +782,12 @@ public class UniversityApp
 						}
 					}
 					if(l>0) {
-						for(int a=0; a<course[y].labGrp.length;a++) {
+						for(int a=0; a<course.get(y).labGrp.size();a++) {
 						try {
-							System.out.println(course[y].labGrp.length);
-							int cId = course[y].getCourseId();
-							int pId = course[y].labGrp[a].getProfId();
-							int slots = course[y].labGrp[a].getSlots();
+							System.out.println(course.get(y).labGrp.size());
+							int cId = course.get(y).getCourseId();
+							int pId = course.get(y).labGrp.get(a).getProfId();
+							int slots = course.get(y).labGrp.get(a).getSlots();
 	
 							fw2 = new FileWriter("labgroup.txt", true);
 							bw2 = new BufferedWriter(fw2);
@@ -814,12 +807,12 @@ public class UniversityApp
 						}
 						}
 					}
-					if(course[y].lecGrp.length>0) {
-						for(int a=0; a<course[y].lecGrp.length;a++) {
+					if(course.get(y).lecGrp.size()>0) {
+						for(int a=0; a<course.get(y).lecGrp.size();a++) {
 							try {
-								int cId = course[y].getCourseId();
-								int pId = course[y].lecGrp[a].getProfId();
-								int slots = course[y].lecGrp[a].getSlots();
+								int cId = course.get(y).getCourseId();
+								int pId = course.get(y).lecGrp.get(a).getProfId();
+								int slots = course.get(y).lecGrp.get(a).getSlots();
 	
 								fw2 = new FileWriter("lecturegroup.txt", true);
 								bw2 = new BufferedWriter(fw2);
@@ -840,11 +833,11 @@ public class UniversityApp
 							}
 					}
 					if(t>0) {
-						for(int a=0; a<course[y].tutGrp.length;a++) {
+						for(int a=0; a<course.get(y).tutGrp.size();a++) {
 							try {
-								int cId = course[y].getCourseId();
-								int pId = course[y].tutGrp[a].getProfId();
-								int slots = course[y].tutGrp[a].getSlots();
+								int cId = course.get(y).getCourseId();
+								int pId = course.get(y).tutGrp.get(a).getProfId();
+								int slots = course.get(y).tutGrp.get(a).getSlots();
 	
 								fw2 = new FileWriter("tutorialgroup.txt", true);
 								bw2 = new BufferedWriter(fw2);
@@ -878,18 +871,18 @@ public class UniversityApp
 						int i = 0;
 						fw3 = new FileWriter("coursework.txt", true);
 						bw3 = new BufferedWriter(fw3);
-						while(course[z].coursework[i]!=null) {
-							int cId = course[z].getCourseId();
-							int cwWeightage = course[z].coursework[i].getPercentage();
-							String cwName = course[z].coursework[i].getName();
+						while(course.get(z).coursework.get(i)!=null) {
+							int cId = course.get(z).getCourseId();
+							int cwWeightage = course.get(z).coursework.get(i).getPercentage();
+							String cwName = course.get(z).coursework.get(i).getName();
 	
 							bw3.write(cId + ", " + cwWeightage + ", " + cwName);
 							bw3.newLine();
 							i++;
 							bw3.flush();
 						}
-						int cId = course[z].getCourseId();
-						int eWeightage = course[z].exam.getPercentage();
+						int cId = course.get(z).getCourseId();
+						int eWeightage = course.get(z).exam.getPercentage();
 						fw3 = new FileWriter("exam.txt", true);
 						bw3 = new BufferedWriter(fw3);
 						bw3.write(cId + ", " + eWeightage);
@@ -916,14 +909,14 @@ public class UniversityApp
 				BufferedWriter bw4 = null;
 				FileWriter fw4 = null;
 				try {
-					int sId = student[s1].getStudId();
-					int cId = course[c1].getCourseId();
-					for(i=0;i<student[s1].mark.length;i++) {
-						if(cId==student[s1].mark[i].getCourseId())
+					int sId = student.get(s1).getStudId();
+					int cId = course.get(c1).getCourseId();
+					for(i=0;i<student.get(s1).mark.size();i++) {
+						if(cId==student.get(s1).mark.get(i).getCourseId())
 							break;
 					}
-					int cwMark = student[s1].mark[i].getCoursework();
-					String cwGrade = student[s1].mark[i].getGradeC();
+					int cwMark = student.get(s1).mark.get(i).getCoursework();
+					String cwGrade = student.get(s1).mark.get(i).getGradeC();
 					
 					fw4 = new FileWriter("cwMarks.txt", true);
 					bw4 = new BufferedWriter(fw4);
@@ -950,14 +943,14 @@ public class UniversityApp
 				BufferedWriter bw5 = null;
 				FileWriter fw5 = null;
 				try {
-					int sId = student[s2].getStudId();
-					int cId = course[c2].getCourseId();
-					for(j=0;j<student[s2].mark.length;j++) {
-						if(cId==student[s2].mark[j].getCourseId())
+					int sId = student.get(s2).getStudId();
+					int cId = course.get(c2).getCourseId();
+					for(j=0;j<student.get(s2).mark.size();j++) {
+						if(cId==student.get(s2).mark.get(j).getCourseId())
 							break;
 					}
-					int eMark = student[s2].mark[j].getExam();
-					String eGrade = student[s2].mark[j].getGradeE();
+					int eMark = student.get(s2).mark.get(j).getExam();
+					String eGrade = student.get(s2).mark.get(j).getGradeE();
 					
 					fw5 = new FileWriter("eMarks.txt", true);
 					bw5 = new BufferedWriter(fw5);
@@ -980,7 +973,6 @@ public class UniversityApp
 				prof.printStats(course, courseCount, student, studentCount);
 				break;
 			case 8:
-				System.out.println("Thank you for using the app");
 				System.out.println("Please press 3 again to exit the app");
 				break;
 			default:
