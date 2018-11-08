@@ -8,7 +8,10 @@ public class Student
 	private int studId;
 	private String studFName, studLName, studEmail, phoneNo, faculty;
 	ArrayList<Marks> mark = new ArrayList<>();
-	
+
+	/**
+	 *  Creates a student based on various attributes
+	 **/
 	public Student(int studId, String studFName, String studLName, String studEmail, String phoneNo, String faculty)
 	{
 		this.studId = studId;
