@@ -370,17 +370,32 @@ public class UniversityApp
 						bw.write((output+1) + ", " + (a) + ", " + stud.getStudId());
 						bw.newLine();
 						bw.flush();
-						fw = new FileWriter("tutgrplist.txt", true);
+						if(b>0) {
+							fw = new FileWriter("tutgrplist.txt", true);
+							bw = new BufferedWriter(fw);
+							bw.write((output+1) + ", " + (b) + ", " + stud.getStudId());
+							bw.newLine();
+							bw.flush();
+						}
+						if (c>0) {
+							fw = new FileWriter("labgrplist.txt", true);
+							bw = new BufferedWriter(fw);
+							bw.write((output+1) + ", " + (c) + ", " + stud.getStudId());
+							bw.newLine();
+							bw.flush();
+						}
+						if(course.get(output+1).coursework.size()>0) {
+							fw = new FileWriter("cwMarks.txt", true);
+							bw = new BufferedWriter(fw);
+							bw.write(stud.getStudId() + ", " + (output+1) + ", " + "0, E");
+							bw.newLine();
+							bw.flush();
+						}
+						fw = new FileWriter("eMarks.txt", true);
 						bw = new BufferedWriter(fw);
-						bw.write((output+1) + ", " + (b) + ", " + stud.getStudId());
+						bw.write(stud.getStudId() + ", " + (output+1) + ", " + "0, E");
 						bw.newLine();
 						bw.flush();
-						fw = new FileWriter("labgrplist.txt", true);
-						bw = new BufferedWriter(fw);
-						bw.write((output+1) + ", " + (c) + ", " + stud.getStudId());
-						bw.newLine();
-						bw.flush();
-
 						} catch (IOException e) {
 							e.printStackTrace();
 						} finally {
@@ -865,23 +880,27 @@ public class UniversityApp
 				prof.printStud(student, studentCount, course, courseCount);
 				break;
 			case 4:
-				int z = prof.weightage(course, courseCount);
+				String[] out = prof.weightage(course, courseCount);
+				int cwC = Integer.parseInt(out[0]);
+				int z = Integer.parseInt(out[1]);
 				BufferedWriter bw3 = null;
 				FileWriter fw3 = null;
 				if(z>=0)
 					try {
-						int i = 0;
-						fw3 = new FileWriter("coursework.txt", true);
-						bw3 = new BufferedWriter(fw3);
-						while(course.get(z).coursework.get(i)!=null) {
-							int cId = course.get(z).getCourseId();
-							int cwWeightage = course.get(z).coursework.get(i).getPercentage();
-							String cwName = course.get(z).coursework.get(i).getName();
-	
-							bw3.write(cId + ", " + cwWeightage + ", " + cwName);
-							bw3.newLine();
-							i++;
-							bw3.flush();
+						if(cwC > 0) {
+							int i = 0;
+							fw3 = new FileWriter("coursework.txt", true);
+							bw3 = new BufferedWriter(fw3);
+							while(course.get(z).coursework.get(i)!=null) {
+								int cId = course.get(z).getCourseId();
+								int cwWeightage = course.get(z).coursework.get(i).getPercentage();
+								String cwName = course.get(z).coursework.get(i).getName();
+		
+								bw3.write(cId + ", " + cwWeightage + ", " + cwName);
+								bw3.newLine();
+								i++;
+								bw3.flush();
+							}
 						}
 						int cId = course.get(z).getCourseId();
 						int eWeightage = course.get(z).exam.getPercentage();
@@ -905,59 +924,57 @@ public class UniversityApp
 				break;
 			case 5:
 				String[] cwString = prof.cwMark(student, studentCount, course, courseCount);
-				int s1 = Integer.parseInt(cwString[0]);
-				int c1 = Integer.parseInt(cwString[1]);
-				int i;
-				BufferedWriter bw4 = null;
-				FileWriter fw4 = null;
-				try {
-					int sId = student.get(s1).getStudId();
-					int cId = course.get(c1).getCourseId();
-					for(i=0;i<student.get(s1).mark.size();i++) {
-						if(cId==student.get(s1).mark.get(i).getCourseId())
-							break;
-					}
-					int cwMark = student.get(s1).mark.get(i).getCoursework();
-					String cwGrade = student.get(s1).mark.get(i).getGradeC();
-					
-					fw4 = new FileWriter("cwMarks.txt", true);
-					bw4 = new BufferedWriter(fw4);
-					bw4.write(sId + ", "+ cId + ", " + cwMark + ", " + cwGrade);
-					bw4.newLine();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} finally {
+				int valid = Integer.parseInt(cwString[0]);
+				for(int a=0;a<student.size();a++)
+					for(int b=0;b<student.get(a).mark.size();b++)
+						System.out.println(student.get(a).getStudId() +", "+student.get(a).mark.get(b).getCourseId()+", "+student.get(a).mark.get(b).getCoursework()+", "+student.get(a).mark.get(b).getGradeC());
+				if(valid==1) {
+					BufferedWriter bw4 = null;
+					FileWriter fw4 = null;
 					try {
-						if (bw4 != null)
-							bw4.close();
-						if (fw4 != null)
-							fw4.close();
-					} catch (IOException ex) {
-						ex.printStackTrace();
+						fw4 = new FileWriter("cwMarks.txt");
+						bw4 = new BufferedWriter(fw4);
+
+						for(int studSize=0;studSize<student.size();studSize++)
+							for(int markSize=0;markSize<student.get(studSize).mark.size();markSize++) {
+								int a = student.get(studSize).getStudId();
+								int b = student.get(studSize).mark.get(markSize).getCourseId();
+								int e = student.get(studSize).mark.get(markSize).getCoursework();
+								String f = student.get(studSize).mark.get(markSize).getGradeC();
+								bw4.write(a + ", " + b + ", " + e + ", " + f);
+								bw4.newLine();
+							}
+					} catch (IOException e) {
+						e.printStackTrace();
+					} finally {
+						try {
+							if (bw4 != null)
+								bw4.close();
+							if (fw4 != null)
+								fw4.close();
+						} catch (IOException ex) {
+							ex.printStackTrace();
+						}
 					}
 				}
 				break;
 			case 6:
-				String[] eString = prof.examMark(student, studentCount, course, courseCount);
-				int s2 = Integer.parseInt(eString[0]);
-				int c2 = Integer.parseInt(eString[1]);
-				int j;
+				prof.examMark(student, studentCount, course, courseCount);
 				BufferedWriter bw5 = null;
 				FileWriter fw5 = null;
 				try {
-					int sId = student.get(s2).getStudId();
-					int cId = course.get(c2).getCourseId();
-					for(j=0;j<student.get(s2).mark.size();j++) {
-						if(cId==student.get(s2).mark.get(j).getCourseId())
-							break;
-					}
-					int eMark = student.get(s2).mark.get(j).getExam();
-					String eGrade = student.get(s2).mark.get(j).getGradeE();
-					
-					fw5 = new FileWriter("eMarks.txt", true);
+					fw5 = new FileWriter("eMarks.txt");
 					bw5 = new BufferedWriter(fw5);
-					bw5.write(sId + ", "+ cId + ", " + eMark + ", " + eGrade);
-					bw5.newLine();
+					
+					for(int studSize=0;studSize<student.size();studSize++)
+						for(int markSize=0;markSize<student.get(studSize).mark.size();markSize++) {
+							int a = student.get(studSize).getStudId();
+							int b = student.get(studSize).mark.get(markSize).getCourseId();
+							int e = student.get(studSize).mark.get(markSize).getCoursework();
+							String f = student.get(studSize).mark.get(markSize).getGradeC();
+							bw5.write(a + ", " + b + ", " + e + ", " + f);
+							bw5.newLine();
+						}
 				} catch (IOException e) {
 					e.printStackTrace();
 				} finally {
