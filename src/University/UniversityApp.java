@@ -355,7 +355,7 @@ public class UniversityApp
 			}
 			switch(studChoice) {
 			case 1: 
-				String[] out = stud.regCourse(course);
+				String[] out = stud.regCourse(course, courseCount);
 				int result = Integer.parseInt(out[0]);
 				if(result == 1) {
 					int output = Integer.parseInt(out[1]);
