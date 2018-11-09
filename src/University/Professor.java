@@ -259,6 +259,7 @@ public class Professor
 			Course tempC = new Course(courseId, courseName, faculty, profId, slots);
 			course.add(countC, tempC);
 			countC++;
+
 			valid = false;
 			while(valid == false)
 			{
@@ -271,9 +272,9 @@ public class Professor
 				else
 				{
 					valid = true;
+					int professorId = 0, slotId = 0, j = 0;
 					for(i = 0; i < lec; i++)
 					{
-						int professorId = 0, slotId = 0, j = 0;
 						boolean id = false;
 						
 						while(id == false)
@@ -297,32 +298,14 @@ public class Professor
 								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
 						
-						id = false;
-						while(id == false)
-						{
-							System.out.print("Number of Slots for Lecture #" + (i + 1) + ": ");
-							slotId = input.nextInt();
-							if(slotId < 1)
-								System.out.println("Invalid Number of Slots! Each Lecture Group must have atleast 1 Slot.");
-							else if(slotId > 6)
-								System.out.println("Invalid Number of Slots! Each Lecture Group must not have more than 6 Slots.");
-							else
-								id = true;
-						}
+						if(i == (lec - 1))
+							slotId = slots - (slotId * i);
+						else
+							slotId = slots / lec;
 						LectureGroup tempLec = new LectureGroup(professorId, slotId);
 						course.get(countC-1).lecGrp.add(i, tempLec);
+						System.out.println("Number of Slots for Lecture #" + (i + 1) + ": " + slotId);
 					}
-					
-					int temp = 0;
-					for(i = 0; i < lec; i++)
-						temp += course.get(countC-1).lecGrp.get(i).getSlots();
-					if(temp != slots)
-					{
-						System.out.println("\nNumber of Slots did not tally! Please re-enter the Number of Slots per Lecture Group again.");
-						valid = false;
-					}
-					else
-						System.out.println("\nLectures added!");
 				}
 			}
 			
@@ -339,9 +322,9 @@ public class Professor
 				else
 				{
 					valid = true;
+					int professorId = 0, slotId = 0, j = 0;
 					for(i = 0; i < lab; i++)
 					{
-						int professorId = 0, slotId = 0, j = 0;
 						boolean id = false;
 						
 						while(id == false)
@@ -364,36 +347,14 @@ public class Professor
 							else
 								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
-						
-						id = false;
-						while(id == false)
-						{
-							System.out.print("Number of Slots for Lab #" + (i + 1) + ": ");
-							slotId = input.nextInt();
-							if(slotId < 1)
-								System.out.println("Invalid Number of Slots! Each Lab Group must have atleast 1 Slot.");
-							else if(slotId > 4)
-								System.out.println("Invalid Number of Slots! Each Lab Group must not have more than 4 Slots.");
-							else
-								id = true;
-						}
-						
+												
+						if(i == (lab - 1))
+							slotId = slots - (slotId * i);
+						else
+							slotId = slots / lab;
 						LabGroup tempLab = new LabGroup(professorId, slotId);
 						course.get(countC-1).labGrp.add(i, tempLab);
-					}
-					
-					if(lab != 0)
-					{
-						int temp = 0;
-						for(i = 0; i < lab; i++)
-							temp += course.get(countC-1).labGrp.get(i).getSlots();
-						if(temp != slots)
-						{
-							System.out.println("\nNumber of Slots did not tally! Please re-enter the Number of Slots per Lab Group again.");
-							valid = false;
-						}
-						else
-							System.out.println("\nLabs added!");
+						System.out.println("Number of Slots for Lab #" + (i + 1) + ": " + slotId);
 					}
 				}
 			}
@@ -411,9 +372,9 @@ public class Professor
 				else
 				{
 					valid = true;
+					int professorId = 0, slotId = 0, j = 0;
 					for(i = 0; i < tut; i++)
 					{
-						int professorId = 0, slotId = 0, j = 0;
 						boolean id = false;
 						
 						while(id == false)
@@ -436,40 +397,18 @@ public class Professor
 							else
 								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
-						
-						id = false;
-						while(id == false)
-						{
-							System.out.print("Number of Slots for Tutorial #" + (i + 1) + ": ");
-							slotId = input.nextInt();
-							if(slotId < 1)
-								System.out.println("Invalid Number of Slots! Each Tutorial Group must have atleast 1 Slot.");
-							else if(slotId > 3)
-								System.out.println("Invalid Number of Slots! Each Tutorial Group must not have more than 3 Slots.");
-							else
-								id = true;
-						}
-						
+												
+						if(i == (tut - 1))
+							slotId = slots - (slotId * i);
+						else
+							slotId = slots / tut;
 						TutorialGroup tempTut = new TutorialGroup(professorId, slotId);
 						course.get(countC-1).tutGrp.add(i, tempTut);
-					}
-					
-					if(tut != 0)
-					{
-						int temp = 0;
-						for(i = 0; i < tut; i++)
-							temp += course.get(countC-1).tutGrp.get(i).getSlots();
-						if(temp != slots)
-						{
-							System.out.println("\nNumber of Slots did not tally! Please re-enter the Number of Slots per Tutorial Group  again.");
-							valid = false;
-						}
-						else
-							System.out.println("\nTutorials added!");
+						System.out.println("Number of Slots for Tutorial #" + (i + 1) + ": " + slotId);
 					}
 				}
 			}
-
+			
 			System.out.println("\nCourse #" + courseId + " added!");
 			System.out.println("\nCurrently Available Courses: ");
 			for(i = 0; i < countC; i++)
@@ -480,14 +419,14 @@ public class Professor
 				System.out.println("Faculty: " + course.get(i).getFaculty());
 			}
 		}
-		/*catch(NullPointerException e)
+		catch(NullPointerException e)
 		{
 			System.out.println("An Unexpected Error has Occurred!");
 		}
 		catch(Exception ex)
 		{
 			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
-		}*/
+		}
 		finally
 		{
 			System.out.println("=================================================");
@@ -961,6 +900,7 @@ public class Professor
 				else
 					System.out.println("Invalid Student ID! Student ID must be from #1 to #99.");
 			}
+			
 			for(i = 0; i < stud.get(indexS).mark.size(); i++)
 			{
 				if(stud.get(indexS).mark.get(i) != null)
