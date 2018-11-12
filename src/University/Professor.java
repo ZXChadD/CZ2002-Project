@@ -5,10 +5,9 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class Professor
+public class Professor extends User
 {
-	private int profId;
-	private String profFName, profLName, profEmail, phoneNo, officeRm, faculty;
+	private String officeRm;
 	Scanner input = new Scanner(System.in);
 
 	/**
@@ -16,10 +15,10 @@ public class Professor
 	**/
 	public Professor(int profId, String profFName, String profLName, String profEmail, String phoneNo, String officeRm, String faculty)
 	{
-		this.profId = profId;
-		this.profFName = profFName;
-		this.profLName = profLName;
-		this.profEmail = profEmail;
+		this.id = profId;
+		this.fName = profFName;
+		this.lName = profLName;
+		this.email = profEmail;
 		this.phoneNo = phoneNo;
 		this.officeRm = officeRm;
 		this.faculty = faculty;
@@ -44,7 +43,7 @@ public class Professor
 					valid = true;
 					for(i = 0; i < countS; i++)
 					{
-						if(studId == stud.get(i).getStudId())
+						if(studId == stud.get(i).getId())
 						{
 							valid = false;
 							System.out.println("Invalid Student ID! Student ID #" + studId + " already exists!");
@@ -101,7 +100,7 @@ public class Professor
 					valid = true;
 					for(i = 0; i < countS; i++)
 					{
-						if(studEmail.equals(stud.get(i).getStudEmail()))
+						if(studEmail.equals(stud.get(i).getEmail()))
 						{
 							valid = false;
 							System.out.println("Invalid Student E-Mail Address! E-Mail Address already exists!");
@@ -155,11 +154,11 @@ public class Professor
 			System.out.println("\nCurrently Available Students: ");
 			for(i = 0; i < countS; i++)
 			{
-				System.out.println("\nID: " + stud.get(i).getStudId());
-				System.out.println("Name: " + stud.get(i).getStudName());
+				System.out.println("\nID: " + stud.get(i).getId());
+				System.out.println("Name: " + stud.get(i).getName());
 				System.out.println("Faculty: " + stud.get(i).getFaculty());
 				System.out.println("Phone Number: " + stud.get(i).getPhoneNo());
-				System.out.println("E-Mail Address: " + stud.get(i).getStudEmail());
+				System.out.println("E-Mail Address: " + stud.get(i).getEmail());
 			}
 		}
 		catch(NullPointerException e)
@@ -231,7 +230,7 @@ public class Professor
 				{
 					for(i = 0; i < countP; i++)
 					{
-						if(profId == prof.get(i).getProfId())
+						if(profId == prof.get(i).getId())
 						{
 							valid = true;
 							break;
@@ -285,7 +284,7 @@ public class Professor
 							{
 								for(j = 0; j < countP; j++)
 								{
-									if(professorId == prof.get(j).getProfId())
+									if(professorId == prof.get(j).getId())
 									{
 										id = true;
 										break;
@@ -335,7 +334,7 @@ public class Professor
 							{
 								for(j = 0; j < countP; j++)
 								{
-									if(professorId == prof.get(j).getProfId())
+									if(professorId == prof.get(j).getId())
 									{
 										id = true;
 										break;
@@ -385,7 +384,7 @@ public class Professor
 							{
 								for(j = 0; j < countP; j++)
 								{
-									if(professorId == prof.get(j).getProfId())
+									if(professorId == prof.get(j).getId())
 									{
 										id = true;
 										break;
@@ -488,10 +487,10 @@ public class Professor
 								tempId = course.get(index).lecGrp.get(i).studIds.get(j);
 								for(k = 0; k < countS; k++)
 								{
-									if(tempId == stud.get(k).getStudId())
+									if(tempId == stud.get(k).getId())
 									{
 										System.out.println("\nStudent ID: " + tempId);
-										System.out.println("Name: " + stud.get(k).getStudName());
+										System.out.println("Name: " + stud.get(k).getName());
 										System.out.println("Faculty: " + stud.get(k).getFaculty());
 										break;
 									}
@@ -514,10 +513,10 @@ public class Professor
 								tempId = course.get(index).labGrp.get(i).studIds.get(j);
 								for(k = 0; k < countS; k++)
 								{
-									if(tempId == stud.get(k).getStudId())
+									if(tempId == stud.get(k).getId())
 									{
 										System.out.println("\nStudent ID: " + tempId);
-										System.out.println("Name: " + stud.get(k).getStudName());
+										System.out.println("Name: " + stud.get(k).getName());
 										System.out.println("Faculty: " + stud.get(k).getFaculty());
 										break;
 									}
@@ -540,10 +539,10 @@ public class Professor
 								tempId = course.get(index).tutGrp.get(i).studIds.get(j);
 								for(k = 0; k < countS; k++)
 								{
-									if(tempId == stud.get(k).getStudId())
+									if(tempId == stud.get(k).getId())
 									{
 										System.out.println("\nStudent ID: " + tempId);
-										System.out.println("Name: " + stud.get(k).getStudName());
+										System.out.println("Name: " + stud.get(k).getName());
 										System.out.println("Faculty: " + stud.get(k).getFaculty());
 										break;
 									}
@@ -739,7 +738,7 @@ public class Professor
 					{
 						for(i = 0; i < countS; i++)
 						{
-							if(studentId == stud.get(i).getStudId())
+							if(studentId == stud.get(i).getId())
 							{
 								for(j = 0; j < course.get(indexC).getLec(); j++)
 								{
@@ -875,7 +874,7 @@ public class Professor
 				{
 					for(i = 0; i < countS; i++)
 					{
-						if(studentId == stud.get(i).getStudId())
+						if(studentId == stud.get(i).getId())
 						{
 							for(j = 0; j < course.get(indexC).getLec(); j++)
 							{
@@ -1002,7 +1001,7 @@ public class Professor
 				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
-					if(studentId == stud.get(i).getStudId())
+					if(studentId == stud.get(i).getId())
 					{
 						indexS = i;
 						break;
@@ -1042,7 +1041,7 @@ public class Professor
 				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
-					if(studentId == stud.get(i).getStudId())
+					if(studentId == stud.get(i).getId())
 					{	
 						indexS = i;
 						break;
@@ -1099,7 +1098,7 @@ public class Professor
 				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
-					if(studentId == stud.get(i).getStudId())
+					if(studentId == stud.get(i).getId())
 					{
 						indexS = i;
 						break;
@@ -1136,7 +1135,7 @@ public class Professor
 				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
-					if(studentId == stud.get(i).getStudId())
+					if(studentId == stud.get(i).getId())
 					{
 						indexS = i;
 						break;
@@ -1191,7 +1190,7 @@ public class Professor
 				studentId = course.get(indexC).lecGrp.get(0).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
-					if(studentId == stud.get(i).getStudId())
+					if(studentId == stud.get(i).getId())
 					{
 						indexS = i;
 						break;
@@ -1228,7 +1227,7 @@ public class Professor
 				studentId = course.get(indexC).lecGrp.get(1).studIds.get(j);
 				for(i = 0; i < countS; i++)
 				{
-					if(studentId == stud.get(i).getStudId())
+					if(studentId == stud.get(i).getId())
 					{
 						indexS = i;
 						break;
@@ -1290,61 +1289,13 @@ public class Professor
 		}
 	}
 	
-	public int getProfId()
-	{
-		return profId;
-	}
-	
-	public String getProfName()
-	{
-		return ("PROF. " + profFName + " " + profLName);
-	}
-	
-	public String getProfEmail()
-	{
-		return profEmail;
-	}
-	
-	public String getPhoneNo()
-	{
-		return phoneNo;
-	}
-	
 	public String getOfficeRm()
 	{
 		return officeRm;
 	}
-	
-	public String getFaculty()
+
+	public void setOfficeRm(String officeRm)
 	{
-		return faculty;
-	}
-	
-	public void setProfId(int profId) {
-		this.profId=profId;
-	}
-	
-	public void setProfFName(String profFName) {
-		this.profFName=profFName;
-	}
-	
-	public void setProfLName(String profLName) {
-		this.profLName=profLName;
-	}
-	
-	public void setProfEmail(String profEmail) {
-		this.profEmail=profEmail;
-	}
-	
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo=phoneNo;
-	}
-	
-	public void setOfficeRm(String officeRm) {
-		this.officeRm=officeRm;
-	}
-	
-	public void setFaculty(String faculty) {
-		this.faculty=faculty;
+		this.officeRm = officeRm;
 	}
 }
