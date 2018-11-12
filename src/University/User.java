@@ -1,25 +1,62 @@
 package University;
 
-public abstract class User 
+public class User 
 {
-	private int id;
-	private String fName, lName, email, phoneNo, faculty;
+	protected int id;
+	protected String fName, lName, email, phoneNo, faculty;
 	
-	public abstract int getId();
+	public int getId()
+	{
+		return id;
+	};
 	
-	public abstract String getName();
+	public String getName()
+	{
+		return(fName + lName);
+	};
 	
-	public abstract String getEmail();
+	public String getEmail()
+	{
+		return email;
+	};
 	
-	public abstract String getPhoneNo();
+	public String getPhoneNo()
+	{
+		return phoneNo;
+	};
 	
-	public abstract String getFaculty();
+	public String getFaculty()
+	{
+		return faculty;
+	};
 	
-	public abstract void setId(int studId);
+	public void setFName(String fName)
+	{
+		this.fName = fName;
+	}
 	
-	public abstract void setEmail(String studEmail);
+	public void setLName(String lName)
+	{
+		this.lName = lName;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	};
 	
-	public abstract void setPhoneNo(String phoneNo);
+	public void setEmail(String email)
+	{
+		this.email = email;
+	};
 	
-	public abstract void setFaculty(String faculty);
+	public void setPhoneNo(String phoneNo)
+	{
+		this.phoneNo = phoneNo;
+	};
+	
+	public void setFaculty(String faculty)
+	{
+		this.faculty = faculty;
+	};
 }

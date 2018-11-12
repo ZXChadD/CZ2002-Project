@@ -3,10 +3,8 @@ package University;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Student
+public class Student extends User
 {
-	private int studId;
-	private String studFName, studLName, studEmail, phoneNo, faculty;
 	ArrayList<Marks> mark = new ArrayList<>();
 
 	/**
@@ -14,10 +12,10 @@ public class Student
 	 **/
 	public Student(int studId, String studFName, String studLName, String studEmail, String phoneNo, String faculty)
 	{
-		this.studId = studId;
-		this.studFName = studFName;
-		this.studLName = studLName;
-		this.studEmail = studEmail;
+		this.id = studId;
+		this.fName = studFName;
+		this.lName = studLName;
+		this.email = studEmail;
 		this.phoneNo = phoneNo;
 		this.faculty = faculty;
 	}
@@ -44,7 +42,7 @@ public class Student
 					for(int b=0; b<course.get(i).lecGrp.size(); b++) {
 						for(int a=0;a<course.get(i).lecGrp.get(b).studIds.size();a++) {
 							if(course.get(i).lecGrp.get(b).studIds.size()>0) {
-								if(studId == course.get(i).lecGrp.get(b).studIds.get(a)){
+								if(id == course.get(i).lecGrp.get(b).studIds.get(a)){
 									System.out.println("You are already registered for this course.");
 									valid = false;
 									break;
@@ -91,11 +89,11 @@ public class Student
 										}
 									else {
 										int x = course.get(i).lecGrp.get(lecgrpChoice-1).studIds.size();
-										course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, studId);
+										course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, id);
 										int y = course.get(i).tutGrp.get(tutgrpChoice-1).studIds.size();
-										course.get(i).tutGrp.get(tutgrpChoice-1).studIds.add(y, studId);
+										course.get(i).tutGrp.get(tutgrpChoice-1).studIds.add(y, id);
 										int z = course.get(i).labGrp.get(labgrpChoice-1).studIds.size();
-										course.get(i).labGrp.get(labgrpChoice-1).studIds.add(z, studId);
+										course.get(i).labGrp.get(labgrpChoice-1).studIds.add(z, id);
 										ar[0] = "1";
 										ar[1] = String.valueOf(i);
 										ar[2] = String.valueOf(lecgrpChoice);
@@ -120,9 +118,9 @@ public class Student
 									}
 								else {
 									int x = course.get(i).lecGrp.get(lecgrpChoice-1).studIds.size();
-									course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, studId);
+									course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, id);
 									int y = course.get(i).tutGrp.get(tutgrpChoice-1).studIds.size();
-									course.get(i).tutGrp.get(tutgrpChoice-1).studIds.add(y, studId);
+									course.get(i).tutGrp.get(tutgrpChoice-1).studIds.add(y, id);
 									ar[0] = "1";
 									ar[1] = String.valueOf(i);
 									ar[2] = String.valueOf(lecgrpChoice);
@@ -146,9 +144,9 @@ public class Student
 									}
 								else {
 									int x = course.get(i).lecGrp.get(lecgrpChoice-1).studIds.size();
-									course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, studId);
+									course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, id);
 									int z = course.get(i).labGrp.get(labgrpChoice-1).studIds.size();
-									course.get(i).labGrp.get(labgrpChoice-1).studIds.add(z, studId);
+									course.get(i).labGrp.get(labgrpChoice-1).studIds.add(z, id);
 									ar[0] = "1";
 									ar[1] = String.valueOf(i);
 									ar[2] = String.valueOf(lecgrpChoice);
@@ -160,7 +158,7 @@ public class Student
 							}
 							else {
 								int x = course.get(i).lecGrp.get(lecgrpChoice-1).studIds.size();
-								course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, studId);
+								course.get(i).lecGrp.get(lecgrpChoice-1).studIds.add(x, id);
 								ar[0] = "1";
 								ar[1] = String.valueOf(i);
 								ar[2] = String.valueOf(lecgrpChoice);
@@ -230,13 +228,13 @@ public class Student
 	public void printTranscript(ArrayList<Course> course, int courseCount, ArrayList<Marks> marks)
 	{
 		int k;
-		System.out.println("Name: " + studFName + " " + studLName);
-		System.out.println("Student ID: " + studId);
+		System.out.println("Name: " + fName + " " + lName);
+		System.out.println("Student ID: " + id);
 		System.out.println("Faculty: " + faculty);
 		for(int i=0; i<courseCount; i++) {
 			for(int l=0; l<course.get(i).lecGrp.size();l++) {
 				for(int j=0; j<course.get(i).lecGrp.get(l).studIds.size();j++) {
-					if(studId == course.get(i).lecGrp.get(l).studIds.get(j)) {
+					if(id == course.get(i).lecGrp.get(l).studIds.get(j)) {
 						for(k=0; k<marks.size(); k++) {
 							if(course.get(i).getCourseId()==marks.get(k).getCourseId())
 								break;
@@ -260,54 +258,5 @@ public class Student
 			}
 		}
 		System.out.println("=================================================");
-	}
-	
-	public int getStudId()
-	{
-		return studId;
-	}
-	
-	public String getStudName()
-	{
-		return studFName + " " + studLName;
-	}
-	
-	public String getStudEmail()
-	{
-		return studEmail;
-	}
-	
-	public String getPhoneNo()
-	{
-		return phoneNo;
-	}
-	
-	public String getFaculty()
-	{
-		return faculty;
-	}
-	
-	public void setStudId(int studId) {
-		this.studId = studId;
-	}
-	
-	public void setStudFName(String studFName) {
-		this.studFName = studFName;
-	}
-	
-	public void setStudLName(String studLName) {
-		this.studLName = studLName;
-	}
-	
-	public void setStudEmail(String studEmail) {
-		this.studEmail = studEmail;
-	}
-	
-	public void setStudPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-	
-	public void setStudFaculty(String faculty) {
-		this.faculty = faculty;
 	}
 }

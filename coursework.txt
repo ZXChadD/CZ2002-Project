@@ -2,4 +2,3 @@
 2, 20, Quiz
 2, 20, Assignment
 3, 30, Quiz
-10, 50, Quiz1

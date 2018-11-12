@@ -116,12 +116,12 @@ public class UniversityApp
 				String sPhoneNo = tokens[4];
 				String sFaculty = tokens[5];
 				if(sId == studId) {
-					stud.setStudId(sId);
-					stud.setStudFName(studFName);
-					stud.setStudLName(studLName);
-					stud.setStudEmail(sEmail);
-					stud.setStudPhoneNo(sPhoneNo);
-					stud.setStudFaculty(sFaculty);
+					stud.setId(sId);
+					stud.setFName(studFName);
+					stud.setLName(studLName);
+					stud.setEmail(sEmail);
+					stud.setPhoneNo(sPhoneNo);
+					stud.setFaculty(sFaculty);
 					break;
 				}
 				line = reader.readLine();
@@ -130,7 +130,7 @@ public class UniversityApp
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Welcome " + stud.getStudName());
+		System.out.println("Welcome " + stud.getName());
 		ArrayList<Course> course = new ArrayList<>();
 		ArrayList<Marks> marks = new ArrayList<>();
 		do {
@@ -367,33 +367,33 @@ public class UniversityApp
 					try {
 						fw = new FileWriter("lecgrplist.txt", true);
 						bw = new BufferedWriter(fw);
-						bw.write((output+1) + ", " + (a) + ", " + stud.getStudId());
+						bw.write((output+1) + ", " + (a) + ", " + stud.getId());
 						bw.newLine();
 						bw.flush();
 						if(b>0) {
 							fw = new FileWriter("tutgrplist.txt", true);
 							bw = new BufferedWriter(fw);
-							bw.write((output+1) + ", " + (b) + ", " + stud.getStudId());
+							bw.write((output+1) + ", " + (b) + ", " + stud.getId());
 							bw.newLine();
 							bw.flush();
 						}
 						if (c>0) {
 							fw = new FileWriter("labgrplist.txt", true);
 							bw = new BufferedWriter(fw);
-							bw.write((output+1) + ", " + (c) + ", " + stud.getStudId());
+							bw.write((output+1) + ", " + (c) + ", " + stud.getId());
 							bw.newLine();
 							bw.flush();
 						}
 						if(course.get(output+1).coursework.size()>0) {
 							fw = new FileWriter("cwMarks.txt", true);
 							bw = new BufferedWriter(fw);
-							bw.write(stud.getStudId() + ", " + (output+1) + ", " + "0, E");
+							bw.write(stud.getId() + ", " + (output+1) + ", " + "0, E");
 							bw.newLine();
 							bw.flush();
 						}
 						fw = new FileWriter("eMarks.txt", true);
 						bw = new BufferedWriter(fw);
-						bw.write(stud.getStudId() + ", " + (output+1) + ", " + "0, E");
+						bw.write(stud.getId() + ", " + (output+1) + ", " + "0, E");
 						bw.newLine();
 						bw.flush();
 						} catch (IOException e) {
@@ -446,10 +446,10 @@ public class UniversityApp
 				String pOfficeRm = tokens[5];
 				String pFaculty = tokens[6];
 				if(pId == profId) {
-					prof.setProfId(pId);
-					prof.setProfFName(profFName);
-					prof.setProfLName(profLName);
-					prof.setProfEmail(pEmail);
+					prof.setId(pId);
+					prof.setFName(profFName);
+					prof.setLName(profLName);
+					prof.setEmail(pEmail);
 					prof.setPhoneNo(pPhoneNo);
 					prof.setOfficeRm(pOfficeRm);
 					prof.setFaculty(pFaculty);
@@ -461,7 +461,7 @@ public class UniversityApp
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Welcome  " + prof.getProfName());
+		System.out.println("Welcome  " + prof.getName());
 		ArrayList<Course> course = new ArrayList<>();
 		ArrayList<Student> student = new ArrayList<>();
 		ArrayList<Professor> professor = new ArrayList<>();
@@ -741,12 +741,12 @@ public class UniversityApp
 				FileWriter fw = null;
 				if(x>=0)
 					try {
-						int studId = student.get(x).getStudId();
-						String studName = student.get(x).getStudName();
+						int studId = student.get(x).getId();
+						String studName = student.get(x).getName();
 						String [] tokens = studName.split(" ");
 						String studFName = tokens[0];
 						String studLName = tokens[1];
-						String email = student.get(x).getStudEmail();
+						String email = student.get(x).getEmail();
 						String phoneNo = student.get(x).getPhoneNo();
 						String faculty = student.get(x).getFaculty();
 
@@ -927,7 +927,7 @@ public class UniversityApp
 				int valid = Integer.parseInt(cwString[0]);
 				for(int a=0;a<student.size();a++)
 					for(int b=0;b<student.get(a).mark.size();b++)
-						System.out.println(student.get(a).getStudId() +", "+student.get(a).mark.get(b).getCourseId()+", "+student.get(a).mark.get(b).getCoursework()+", "+student.get(a).mark.get(b).getGradeC());
+						System.out.println(student.get(a).getId() +", "+student.get(a).mark.get(b).getCourseId()+", "+student.get(a).mark.get(b).getCoursework()+", "+student.get(a).mark.get(b).getGradeC());
 				if(valid==1) {
 					BufferedWriter bw4 = null;
 					FileWriter fw4 = null;
@@ -937,7 +937,7 @@ public class UniversityApp
 
 						for(int studSize=0;studSize<student.size();studSize++)
 							for(int markSize=0;markSize<student.get(studSize).mark.size();markSize++) {
-								int a = student.get(studSize).getStudId();
+								int a = student.get(studSize).getId();
 								int b = student.get(studSize).mark.get(markSize).getCourseId();
 								int e = student.get(studSize).mark.get(markSize).getCoursework();
 								String f = student.get(studSize).mark.get(markSize).getGradeC();
@@ -968,7 +968,7 @@ public class UniversityApp
 					
 					for(int studSize=0;studSize<student.size();studSize++)
 						for(int markSize=0;markSize<student.get(studSize).mark.size();markSize++) {
-							int a = student.get(studSize).getStudId();
+							int a = student.get(studSize).getId();
 							int b = student.get(studSize).mark.get(markSize).getCourseId();
 							int e = student.get(studSize).mark.get(markSize).getExam();
 							String f = student.get(studSize).mark.get(markSize).getGradeE();
