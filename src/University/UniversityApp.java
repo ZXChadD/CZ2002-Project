@@ -384,7 +384,7 @@ public class UniversityApp
 							bw.newLine();
 							bw.flush();
 						}
-						if(course.get(output+1).coursework.size()>0) {
+						if(course.get(output).coursework.size()>0) {
 							fw = new FileWriter("cwMarks.txt", true);
 							bw = new BufferedWriter(fw);
 							bw.write(stud.getId() + ", " + (output+1) + ", " + "0, E");
@@ -891,7 +891,7 @@ public class UniversityApp
 							int i = 0;
 							fw3 = new FileWriter("coursework.txt", true);
 							bw3 = new BufferedWriter(fw3);
-							while(course.get(z).coursework.get(i)!=null) {
+							while(course.get(z).coursework.size() > i) {
 								int cId = course.get(z).getCourseId();
 								int cwWeightage = course.get(z).coursework.get(i).getPercentage();
 								String cwName = course.get(z).coursework.get(i).getName();

@@ -12,7 +12,7 @@ public class User
 	
 	public String getName()
 	{
-		return(fName + lName);
+		return(fName + " " + lName);
 	};
 	
 	public String getEmail()
