@@ -25,7 +25,7 @@ public class Professor extends User
 		
 		try
 		{
-			int studId = countS, i = 0;
+			int studId = countS +1, i = 0;
 			String studFName = null, studLName = null, studEmail = null, phoneNo = null, faculty = null, nric = null;
 			boolean valid = false;
 			
@@ -168,7 +168,7 @@ public class Professor extends User
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Invalid Student ID! Student ID must only contain Numbers.");
+			System.out.println("Invalid Input! Input must only contain Numbers when appropriate.");
 		}
 		finally
 		{
