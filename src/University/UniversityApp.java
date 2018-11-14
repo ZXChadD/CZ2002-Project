@@ -101,7 +101,7 @@ public class UniversityApp
 	public static void studFunc(int studId)
 	{
 		int studChoice;
-		Student stud = new Student(0, null, null, null, null, null);
+		Student stud = new Student(0, null, null, null, null, null, null);
 		Scanner sc = new Scanner(System.in);
 		BufferedReader reader;
 		try {
@@ -115,6 +115,7 @@ public class UniversityApp
 				String sEmail = tokens[3];
 				String sPhoneNo = tokens[4];
 				String sFaculty = tokens[5];
+				String snric = tokens[6];
 				if(sId == studId) {
 					stud.setId(sId);
 					stud.setFName(studFName);
@@ -122,6 +123,7 @@ public class UniversityApp
 					stud.setEmail(sEmail);
 					stud.setPhoneNo(sPhoneNo);
 					stud.setFaculty(sFaculty);
+					stud.setNRIC(snric);
 					break;
 				}
 				line = reader.readLine();
@@ -509,7 +511,8 @@ public class UniversityApp
 					String sEmail = tokens[3];
 					String sPhoneNo = tokens[4];
 					String sFaculty = tokens[5];
-					Student tempStudent  = new Student(sId, studFName, studLName, sEmail, sPhoneNo, sFaculty);
+					String sNric = tokens[6];
+					Student tempStudent  = new Student(sId, studFName, studLName, sEmail, sPhoneNo, sFaculty, sNric);
 					student.add(studentCount, tempStudent);
 					studentCount++;
 					line = reader.readLine();
@@ -752,10 +755,11 @@ public class UniversityApp
 						String email = student.get(x).getEmail();
 						String phoneNo = student.get(x).getPhoneNo();
 						String faculty = student.get(x).getFaculty();
+						String nric = student.get(x).getNRIC();
 
 						fw = new FileWriter("student.txt", true);
 						bw = new BufferedWriter(fw);
-						bw.write(studId + ", " + studFName + ", " + studLName + ", " + email + ", " + phoneNo + ", " + faculty);
+						bw.write(studId + ", " + studFName + ", " + studLName + ", " + email + ", " + phoneNo + ", " + faculty + ", " + nric);
 						bw.newLine();
 					} catch (IOException e) {
 						e.printStackTrace();

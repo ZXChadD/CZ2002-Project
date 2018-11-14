@@ -5,14 +5,16 @@ import java.util.Scanner;
 
 public class Student extends User
 {
+	private String nric;
 	ArrayList<Marks> mark = new ArrayList<>();
 
 	/**
 	 *  Creates a student based on various attributes
 	 **/
-	public Student(int studId, String studFName, String studLName, String studEmail, String studPhoneNo, String studFaculty)
+	public Student(int studId, String studFName, String studLName, String studEmail, String studPhoneNo, String studFaculty, String nric)
 	{
 		super(studId, studFName, studLName, studEmail, studPhoneNo, studFaculty);
+		this.nric = nric;
 	}
 	
 	public String[] regCourse(ArrayList<Course> course, int courseCount)
@@ -273,5 +275,15 @@ public class Student extends User
 	public String getName()
 	{
 		return (fName + " " + lName);
+	}
+	
+	public String getNRIC()
+	{
+		return nric;
+	}
+	
+	public void setNRIC(String nric)
+	{
+		this.nric = nric;
 	}
 }
