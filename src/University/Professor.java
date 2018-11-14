@@ -13,15 +13,10 @@ public class Professor extends User
 	/**
 	 *  Creates a professor based on various attributes
 	**/
-	public Professor(int profId, String profFName, String profLName, String profEmail, String phoneNo, String officeRm, String faculty)
+	public Professor(int profId, String profFName, String profLName, String profEmail, String profPhoneNo, String officeRm, String profFaculty)
 	{
-		this.id = profId;
-		this.fName = profFName;
-		this.lName = profLName;
-		this.email = profEmail;
-		this.phoneNo = phoneNo;
+		super(profId, profFName, profLName, profEmail, profPhoneNo, profFaculty);
 		this.officeRm = officeRm;
-		this.faculty = faculty;
 	}
 	
 	public int addStud(ArrayList<Student> stud, int countS)
@@ -1287,6 +1282,11 @@ public class Professor extends User
 		{
 			System.out.println("=================================================");
 		}
+	}
+	
+	public String getName()
+	{
+		return ("Prof. " + fName + " " + lName);
 	}
 	
 	public String getOfficeRm()

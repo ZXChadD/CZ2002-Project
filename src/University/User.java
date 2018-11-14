@@ -1,18 +1,25 @@
 package University;
 
-public class User 
+public abstract class User
 {
 	protected int id;
 	protected String fName, lName, email, phoneNo, faculty;
 	
+	public User(int id, String fName, String lName, String email, String phoneNo, String faculty)
+	{
+		this.id = id;
+		this.fName = fName;
+		this.lName = lName;
+		this.email = email;
+		this.phoneNo = phoneNo;
+		this.faculty = faculty;
+	}
+	
+	public abstract String getName();
+	
 	public int getId()
 	{
 		return id;
-	};
-	
-	public String getName()
-	{
-		return(fName + " " + lName);
 	};
 	
 	public String getEmail()

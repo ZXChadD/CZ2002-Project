@@ -10,14 +10,9 @@ public class Student extends User
 	/**
 	 *  Creates a student based on various attributes
 	 **/
-	public Student(int studId, String studFName, String studLName, String studEmail, String phoneNo, String faculty)
+	public Student(int studId, String studFName, String studLName, String studEmail, String studPhoneNo, String studFaculty)
 	{
-		this.id = studId;
-		this.fName = studFName;
-		this.lName = studLName;
-		this.email = studEmail;
-		this.phoneNo = phoneNo;
-		this.faculty = faculty;
+		super(studId, studFName, studLName, studEmail, studPhoneNo, studFaculty);
 	}
 	
 	public String[] regCourse(ArrayList<Course> course, int courseCount)
@@ -273,5 +268,10 @@ public class Student extends User
 			}
 		}
 		System.out.println("=================================================");
+	}
+	
+	public String getName()
+	{
+		return (fName + " " + lName);
 	}
 }
