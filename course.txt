@@ -1,5 +1,3 @@
-1, 1, 12, EngineeringMathematics, SCSE
-2, 2, 12, Algorithms, SCSE
-3, 3, 12, Astronomy, EEE
-4, 1, 1, DiscreteMathetics, SCSE
-5, 1, 12, DataStructure, SCSE
+1, 1, 16, Algorithms, SCSE
+2, 1, 12, DataStructure, SCSE
+3, 1, 5, DiscreteMath, SCSE

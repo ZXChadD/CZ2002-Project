@@ -272,6 +272,8 @@ public class UniversityApp
 					if(prec!=cId || preclass!=classNo)
 						s=0;
 					course.get(cId-1).lecGrp.get(classNo-1).studIds.add(s, sId);
+                    prec=cId;
+                    preclass=classNo;
 					line = reader.readLine();
 				}
 				reader.close();
@@ -292,6 +294,8 @@ public class UniversityApp
 					if(prec!=cId || preclass!=classNo)
 						s=0;
 					course.get(cId-1).tutGrp.get(classNo-1).studIds.add(s, sId);
+                    prec=cId;
+                    preclass=classNo;
 					line = reader.readLine();
 				}
 				reader.close();
@@ -312,6 +316,8 @@ public class UniversityApp
 					if(prec!=cId || preclass!=classNo)
 						s=0;
 					course.get(cId-1).labGrp.get(classNo-1).studIds.add(s, sId);
+                    prec=cId;
+                    preclass=classNo;
 					line = reader.readLine();
 				}
 				reader.close();
@@ -608,6 +614,8 @@ public class UniversityApp
 					if(prec!=cId || preclass!=classNo)
 						s=0;
 					course.get(cId-1).lecGrp.get(classNo-1).studIds.add(s, sId);
+					prec=cId;
+					preclass=classNo;
 					line = reader.readLine();
 				}
 				reader.close();
@@ -628,6 +636,8 @@ public class UniversityApp
 					if(prec!=cId || preclass!=classNo)
 						s=0;
 					course.get(cId-1).tutGrp.get(classNo-1).studIds.add(s, sId);
+                    prec=cId;
+                    preclass=classNo;
 					line = reader.readLine();
 				}
 				reader.close();
@@ -648,6 +658,8 @@ public class UniversityApp
 					if(prec!=cId || preclass!=classNo)
 						s=0;
 					course.get(cId-1).labGrp.get(classNo-1).studIds.add(s, sId);
+                    prec=cId;
+                    preclass=classNo;
 					line = reader.readLine();
 				}
 				reader.close();
@@ -711,6 +723,7 @@ public class UniversityApp
 					student.get(sId-1).mark.get(c).setExam(exam);
 					student.get(sId-1).mark.get(c).setGradeE(gradeE);
 					c++;
+					presId = sId;
 					line = reader.readLine();
 				}
 				reader.close();
@@ -733,6 +746,7 @@ public class UniversityApp
 					student.get(sId-1).mark.get(c).setCoursework(coursework);
 					student.get(sId-1).mark.get(c).setGradeC(gradeC);
 					c++;
+					presId=sId;
 					line = reader.readLine();
 				}
 				reader.close();
@@ -808,7 +822,6 @@ public class UniversityApp
 					if(l>0) {
 						for(int a=0; a<course.get(y).labGrp.size();a++) {
 						try {
-							System.out.println(course.get(y).labGrp.size());
 							int cId = course.get(y).getCourseId();
 							int pId = course.get(y).labGrp.get(a).getProfId();
 							int slots = course.get(y).labGrp.get(a).getSlots();

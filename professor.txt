@@ -1,4 +1,4 @@
-1, Lea, Wagner, LWAGNER1@e.uni.edu.sg, 91234567, S-B1-01, SCSE
+1, Chadd, Lim, LWAGNER1@e.uni.edu.sg, 91234567, S-B1-01, SCSE
 2, Pascal, Finch, PFINCH2@e.uni.edu.sg, 91234566, S-B1-02, SCSE
 3, Savannah, Lang, SLANG3@e.uni.edu.sg, 91234565, S-B1-03, SCSE
 4, Loki, Werner, LWERNER4@e.uni.edu.sg, 91234564, S-B1-04, SCSE

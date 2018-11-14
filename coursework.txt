@@ -1,6 +1,5 @@
-1, 40, Quiz
-2, 20, Quiz
-2, 20, Assignment
-3, 30, Quiz
-5, 20, Quiz1
-5, 20, Quiz2
+1, 20, Quiz1
+1, 20, Quiz2
+2, 40, Quiz
+3, 10, Quiz
+3, 30, Project
