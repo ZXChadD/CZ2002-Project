@@ -693,6 +693,8 @@ public class UniversityApp
 			try {
 				reader = new BufferedReader(new FileReader("cwMarks.txt"));
 				String line = reader.readLine();
+				for(int i=0; i<student.size();i++)
+					student.get(i).mark.clear();
 				while (line != null) {
 					String[] tokens = line.split(", ");
 					int sId = Integer.parseInt(tokens[0]);
@@ -716,6 +718,8 @@ public class UniversityApp
 			c=0;
 			try {
 				reader = new BufferedReader(new FileReader("eMarks.txt"));
+//				for(int i=0; i<student.size();i++)
+//					student.get(i).mark.clear();
 				String line = reader.readLine();
 				while (line != null) {
 					String[] tokens = line.split(", ");
@@ -925,9 +929,6 @@ public class UniversityApp
 			case 5:
 				String[] cwString = prof.cwMark(student, studentCount, course, courseCount);
 				int valid = Integer.parseInt(cwString[0]);
-				for(int a=0;a<student.size();a++)
-					for(int b=0;b<student.get(a).mark.size();b++)
-						System.out.println(student.get(a).getId() +", "+student.get(a).mark.get(b).getCourseId()+", "+student.get(a).mark.get(b).getCoursework()+", "+student.get(a).mark.get(b).getGradeC());
 				if(valid==1) {
 					BufferedWriter bw4 = null;
 					FileWriter fw4 = null;

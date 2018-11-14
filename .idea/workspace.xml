@@ -3,22 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5932d94a-0d83-4377-9448-0a84e489a069" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/University/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/University/Course.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/University/Professor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/University/Professor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/University/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/University/Student.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/University/UniversityApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/University/UniversityApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/University/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/University/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course.txt" beforeDir="false" afterPath="$PROJECT_DIR$/course.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coursework.txt" beforeDir="false" afterPath="$PROJECT_DIR$/coursework.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cwMarks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cwMarks.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eMarks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/eMarks.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exam.txt" beforeDir="false" afterPath="$PROJECT_DIR$/exam.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labgroup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/labgroup.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecgrplist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lecgrplist.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecturegroup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lecturegroup.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/University/UniversityApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/UniversityApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/University/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student.txt" beforeDir="false" afterPath="$PROJECT_DIR$/student.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tutorialgroup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tutorialgroup.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,8 +36,8 @@
           <entry key="class" value="2" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="2" />
-          <entry key="java" value="47" />
-          <entry key="txt" value="23" />
+          <entry key="java" value="48" />
+          <entry key="txt" value="24" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
@@ -57,8 +45,8 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="IDEA_MODULE" value="2" />
-          <entry key="JAVA" value="47" />
-          <entry key="PLAIN_TEXT" value="25" />
+          <entry key="JAVA" value="48" />
+          <entry key="PLAIN_TEXT" value="26" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -67,27 +55,39 @@
       <usages-collector id="statistics.spring.boot.mvc.usages" />
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1840" />
-          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="JAVA" value="1888" />
+          <entry key="PLAIN_TEXT" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="3" />
-          <entry key="java" value="1840" />
-          <entry key="txt" value="2" />
+          <entry key="java" value="1888" />
+          <entry key="txt" value="7" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/University/Professor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="458">
+              <caret line="834" column="5" selection-start-line="834" selection-start-column="5" selection-end-line="834" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/University/UniversityApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="386" column="44" selection-start-line="386" selection-start-column="44" selection-end-line="386" selection-end-column="44" />
+            <state relative-caret-position="148">
+              <caret line="695" column="16" selection-start-line="695" selection-start-column="16" selection-end-line="695" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,26 +114,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tutgrplist.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eMarks.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cwMarks.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -147,15 +142,6 @@
                 <element signature="e#301#302#0" expanded="true" />
                 <element signature="e#322#323#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coursework.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -194,6 +180,8 @@
       <find>addLec</find>
       <find>addCour</find>
       <find />
+      <find>total cou</find>
+      <find>case 5</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,21 +197,22 @@
         <option value="$PROJECT_DIR$/src/University/Course.java" />
         <option value="$PROJECT_DIR$/src/University/LabGroup.java" />
         <option value="$PROJECT_DIR$/src/University/LectureGroup.java" />
-        <option value="$PROJECT_DIR$/src/University/Professor.java" />
         <option value="$PROJECT_DIR$/src/University/Marks.java" />
         <option value="$PROJECT_DIR$/src/University/TutorialGroup.java" />
         <option value="$PROJECT_DIR$/src/University/Student.java" />
         <option value="$PROJECT_DIR$/course.txt" />
-        <option value="$PROJECT_DIR$/eMarks.txt" />
         <option value="$PROJECT_DIR$/exam.txt" />
         <option value="$PROJECT_DIR$/lecturegroup.txt" />
         <option value="$PROJECT_DIR$/coursework.txt" />
         <option value="$PROJECT_DIR$/src/University/User.java" />
         <option value="$PROJECT_DIR$/student.txt" />
-        <option value="$PROJECT_DIR$/src/University/UniversityApp.java" />
         <option value="$PROJECT_DIR$/labgrplist.txt" />
         <option value="$PROJECT_DIR$/lecgrplist.txt" />
         <option value="$PROJECT_DIR$/tutgrplist.txt" />
+        <option value="$PROJECT_DIR$/src/University/Professor.java" />
+        <option value="$PROJECT_DIR$/cwMarks.txt" />
+        <option value="$PROJECT_DIR$/src/University/UniversityApp.java" />
+        <option value="$PROJECT_DIR$/eMarks.txt" />
       </list>
     </option>
   </component>
@@ -276,7 +265,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541689574073" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542176496809" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -326,18 +315,17 @@
       <workItem from="1541638628535" duration="16068000" />
       <workItem from="1541689064668" duration="814000" />
       <workItem from="1542166175537" duration="74000" />
-      <workItem from="1542166298248" duration="1829000" />
+      <workItem from="1542166298248" duration="3974000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18785000" />
+    <option name="totallyTimeSpent" value="20930000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="846" y="0" width="834" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26010102" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.26010102" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -346,7 +334,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27857143" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27857143" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -366,6 +354,36 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26010102" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27857143" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32959184" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -417,6 +435,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#122#123#0" expanded="true" />
+            <element signature="e#157#158#0" expanded="true" />
+            <element signature="e#190#191#0" expanded="true" />
+            <element signature="e#214#215#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -461,16 +486,6 @@
           <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/University/Professor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -546,20 +561,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eMarks.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cwMarks.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labgrplist.txt">
+    <entry file="file://$PROJECT_DIR$/tutgrplist.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/University/Professor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="834" column="5" selection-start-line="834" selection-start-column="5" selection-end-line="834" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/University/UniversityApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="695" column="16" selection-start-line="695" selection-start-column="16" selection-end-line="695" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -570,20 +595,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tutgrplist.txt">
+    <entry file="file://$PROJECT_DIR$/labgrplist.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/University/UniversityApp.java">
+    <entry file="file://$PROJECT_DIR$/eMarks.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="386" column="44" selection-start-line="386" selection-start-column="44" selection-end-line="386" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cwMarks.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
