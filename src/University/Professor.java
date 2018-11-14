@@ -25,29 +25,35 @@ public class Professor extends User
 		
 		try
 		{
-			int studId = 0, i = 0;
-			String studFName = null, studLName = null, studEmail = null, phoneNo = null, faculty = null;
+			int studId = countS, i = 0;
+			String studFName = null, studLName = null, studEmail = null, phoneNo = null, faculty = null, nric = null;
 			boolean valid = false;
 			
 			while(valid == false)
 			{
-				System.out.print("Student ID (#1 - #99): ");
-				studId = input.nextInt();
-				if(studId >= 1 && studId <= 99)
+				System.out.print("NRIC: ");
+				nric = input.next();
+				Pattern patternNRIC = Pattern.compile("[A-Z]+[0-9]+[A-Z]");
+				Matcher matNRIC = patternNRIC.matcher(nric);
+				if(!matNRIC.matches())
+				{
+					System.out.println("Invalid NRIC! NRIC must be in this format: X_______X");
+					System.out.println("where X is an Uppercase Letter and _______ is exactly 7 digits long");
+					System.out.println("Example: S1234567A");
+				}
+				else
 				{
 					valid = true;
 					for(i = 0; i < countS; i++)
 					{
-						if(studId == stud.get(i).getId())
+						if(nric.equals(stud.get(i).getNRIC()))
 						{
 							valid = false;
-							System.out.println("Invalid Student ID! Student ID #" + studId + " already exists!");
+							System.out.println("Student already exists!");
 							break;
 						}
 					}
 				}
-				else
-					System.out.println("Invalid Student ID! Student ID must be from #1 to #99.");
 			}
 			
 			valid = false;
@@ -142,7 +148,7 @@ public class Professor extends User
 					valid = true;
 			}
 			
-			Student tempStud = new Student(studId, studFName, studLName, studEmail, phoneNo, faculty);
+			Student tempStud = new Student(studId, studFName, studLName, studEmail, phoneNo, faculty, nric);
 			stud.add(countS, tempStud);
 			countS++;
 			System.out.println("Student #" + studId + " added!");

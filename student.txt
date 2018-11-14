@@ -1,15 +1,15 @@
-1, Harriett, Bains, HBAINS1@e.uni.edu.sg, 98765431, SCSE
-2, Rayyan, Reynolds, RREYNOLDS2@e.uni.edu.sg, 98765432, SCSE
-3, Anabelle, Diaz, ADIAZ3@e.uni.edu.sg, 98765433, SCSE
-4, Marcel, Stanton, MSTANTON4@e.uni.edu.sg, 98765434, SCSE
-5, Davina, Thorpe, DTHORPE5@e.uni.edu.sg, 98765435, SCSE
-6, Sabrina, Farley, SFARLEY6@e.uni.edu.sg, 98765436, SCSE
-7, Malak, Beltran, MBELTRAN7@e.uni.edu.sg, 98765437, SCSE
-8, Robbie, Leigh, RLEIGH8@e.uni.edu.sg, 98765438, SCSE
-9, Alexandre, Busby, ABUSBY9@e.uni.edu.sg, 98765439, SCSE
-10, Lianne, Terrell, LTERRELL10@e.uni.edu.sg, 98765430, SCSE
-11, Franklyn, Barron, FBARRON11@e.uni.edu.sg, 98765421, SCSE
-12, Juliana, Martins, JMARTINS12@e.uni.edu.sg, 98765422, SCSE
-13, Lila, Kane, LKANE13@e.uni.edu.sg, 98765423, SCSE
-14, Ewan, Crane, ECRANE13@e.uni.edu.sg, 98765424, SCSE
-15, Akshaya, Muthu, AKSHAYA@e.uni.edu.sg, 90295919, SCSE
+1, Harriett, Bains, HBAINS1@e.uni.edu.sg, 98765431, SCSE, S1234567A
+2, Rayyan, Reynolds, RREYNOLDS2@e.uni.edu.sg, 98765432, SCSE, S1234568A
+3, Anabelle, Diaz, ADIAZ3@e.uni.edu.sg, 98765433, SCSE, S1234569A
+4, Marcel, Stanton, MSTANTON4@e.uni.edu.sg, 98765434, SCSE, S1234560A
+5, Davina, Thorpe, DTHORPE5@e.uni.edu.sg, 98765435, SCSE, S1234566A
+6, Sabrina, Farley, SFARLEY6@e.uni.edu.sg, 98765436, SCSE, S1234565A
+7, Malak, Beltran, MBELTRAN7@e.uni.edu.sg, 98765437, SCSE, S1234564A
+8, Robbie, Leigh, RLEIGH8@e.uni.edu.sg, 98765438, SCSE, S1234563A
+9, Alexandre, Busby, ABUSBY9@e.uni.edu.sg, 98765439, SCSE, S1234562A
+10, Lianne, Terrell, LTERRELL10@e.uni.edu.sg, 98765430, SCSE, S1234561A
+11, Franklyn, Barron, FBARRON11@e.uni.edu.sg, 98765421, SCSE, S1234571A
+12, Juliana, Martins, JMARTINS12@e.uni.edu.sg, 98765422, SCSE, S1234572A
+13, Lila, Kane, LKANE13@e.uni.edu.sg, 98765423, SCSE, S1234573A
+14, Ewan, Crane, ECRANE13@e.uni.edu.sg, 98765424, SCSE, S1234573A
+15, Akshaya, Muthu, AKSHAYA@e.uni.edu.sg, 90295919, SCSE, S1234574A
