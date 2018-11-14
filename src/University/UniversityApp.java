@@ -163,19 +163,19 @@ public class UniversityApp
 			}
 			int m = 0;
 			try {
-				reader = new BufferedReader(new FileReader("cwMarks.txt"));
+				reader = new BufferedReader(new FileReader("eMarks.txt"));
 				String line = reader.readLine();
 				while (line != null) {
 					String[] tokens = line.split(", ");
 					int sId = Integer.parseInt(tokens[0]);
 					int cId = Integer.parseInt(tokens[1]);
-					int cw = Integer.parseInt(tokens[2]);
-					String gradeC = tokens[3];
+					int e = Integer.parseInt(tokens[2]);
+					String gradeE = tokens[3];
 					if(sId == studId) {
 						Marks tempMarks = new Marks(cId);
 						marks.add(m, tempMarks);
-						marks.get(m).setCoursework(cw);
-						marks.get(m).setGradeC(gradeC);
+						marks.get(m).setExam(e);
+						marks.get(m).setGradeE(gradeE);
 						m++;
 					}
 					line = reader.readLine();
@@ -186,17 +186,17 @@ public class UniversityApp
 			}
 			m = 0;
 			try {
-				reader = new BufferedReader(new FileReader("eMarks.txt"));
+				reader = new BufferedReader(new FileReader("cwMarks.txt"));
 				String line = reader.readLine();
 				while (line != null) {
 					String[] tokens = line.split(", ");
 					int sId = Integer.parseInt(tokens[0]);
 					int cId = Integer.parseInt(tokens[1]);
-					int e = Integer.parseInt(tokens[2]);
-					String gradeE = tokens[3];
+					int cw = Integer.parseInt(tokens[2]);
+					String gradeC = tokens[3];
 					if(sId == studId) {
-						marks.get(m).setExam(e);
-						marks.get(m).setGradeE(gradeE);
+						marks.get(m).setCoursework(cw);
+						marks.get(m).setGradeC(gradeC);
 						m++;
 					}
 					line = reader.readLine();
@@ -691,7 +691,7 @@ public class UniversityApp
 			int presId = 0;
 			int c=0;
 			try {
-				reader = new BufferedReader(new FileReader("cwMarks.txt"));
+				reader = new BufferedReader(new FileReader("eMarks.txt"));
 				String line = reader.readLine();
 				for(int i=0; i<student.size();i++)
 					student.get(i).mark.clear();
@@ -699,14 +699,14 @@ public class UniversityApp
 					String[] tokens = line.split(", ");
 					int sId = Integer.parseInt(tokens[0]);
 					int cId = Integer.parseInt(tokens[1]);
-					int coursework = Integer.parseInt(tokens[2]);
-					String gradeC = tokens[3];
+					int exam = Integer.parseInt(tokens[2]);
+					String gradeE = tokens[3];
 					if(presId != sId)
 						c=0;
 					Marks tempMarks = new Marks(cId);
 					student.get(sId-1).mark.add(c, tempMarks);
-					student.get(sId-1).mark.get(c).setCoursework(coursework);
-					student.get(sId-1).mark.get(c).setGradeC(gradeC);
+					student.get(sId-1).mark.get(c).setExam(exam);
+					student.get(sId-1).mark.get(c).setGradeE(gradeE);
 					c++;
 					line = reader.readLine();
 				}
@@ -717,20 +717,18 @@ public class UniversityApp
 			presId = 0;
 			c=0;
 			try {
-				reader = new BufferedReader(new FileReader("eMarks.txt"));
-//				for(int i=0; i<student.size();i++)
-//					student.get(i).mark.clear();
+				reader = new BufferedReader(new FileReader("cwMarks.txt"));
 				String line = reader.readLine();
 				while (line != null) {
 					String[] tokens = line.split(", ");
 					int sId = Integer.parseInt(tokens[0]);
 					int cId = Integer.parseInt(tokens[1]);
-					int exam = Integer.parseInt(tokens[2]);
-					String gradeE = tokens[3];
+					int coursework = Integer.parseInt(tokens[2]);
+					String gradeC = tokens[3];
 					if(presId != sId)
 						c=0;
-					student.get(sId-1).mark.get(c).setExam(exam);
-					student.get(sId-1).mark.get(c).setGradeE(gradeE);
+					student.get(sId-1).mark.get(c).setCoursework(coursework);
+					student.get(sId-1).mark.get(c).setGradeC(gradeC);
 					c++;
 					line = reader.readLine();
 				}
@@ -738,6 +736,7 @@ public class UniversityApp
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+	
 			switch(profChoice) {
 			case 1: 
 				int x = prof.addStud(student, studentCount);

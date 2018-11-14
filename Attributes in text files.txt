@@ -1,0 +1,13 @@
+course(course Id, professor Id, slots, name, faculty);
+coursework(course Id, weightage, name);
+cwMarks(student Id, course Id, marks, grades);
+eMarks(student Id, course Id, marks, grades);
+exam(course Id, weightage);
+labgroup(course Id, class number, professor Id, slots);
+labgrplist(course Id, class number, student Id);
+lecgrplist(course Id, class number, student Id);
+lecturegroup(course Id, class number, professor Id, slots);
+professor(professor Id, prof firstname, prof lastname, email, phone number, office, faculty);
+student(student Id, student firstname, student lastname, email, phone number, faculty, nric);
+tutgrplist(course Id, class number, student Id);
+tutorialgroup(course Id, class number, professor Id, slots);

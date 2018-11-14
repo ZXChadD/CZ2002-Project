@@ -51,7 +51,26 @@ public class Student extends User
 							}
 						}
 					if(valid) {
-						System.out.println("Number of lecture groups for this course: " + course.get(i).getLec());
+						System.out.println("=======================================");
+						System.out.println("Group No:              Slots Available:");
+						System.out.println("_______________________________________");
+						for(int x=0;x<course.get(i).lecGrp.size();x++)
+							System.out.println("Lecture Group " + (x+1) + ":" + "                    " + (course.get(i).lecGrp.get(x).getSlots() - course.get(i).lecGrp.get(x).studIds.size()) + "/" + course.get(i).lecGrp.get(x).getSlots());
+						System.out.println("_______________________________________");
+						if(course.get(i).tutGrp.size()==0)
+							System.out.println("No tutorial group for this course. ");
+						else {
+							for(int y=0;y<course.get(i).tutGrp.size();y++)
+								System.out.println("Tutorial Group " + (y+1) + ":" + "                   " + (course.get(i).tutGrp.get(y).getSlots() - course.get(i).tutGrp.get(y).studIds.size()) + "/" + course.get(i).tutGrp.get(y).getSlots());
+						}
+						System.out.println("_______________________________________");
+						if(course.get(i).labGrp.size()==0)
+							System.out.println("No lab group for this course. ");
+						else {
+							for(int z=0;z<course.get(i).labGrp.size();z++)
+								System.out.println("Lab Group " + (z+1) + ":" + "                        " + (course.get(i).labGrp.get(z).getSlots() - course.get(i).labGrp.get(z).studIds.size()) + "/" + course.get(i).labGrp.get(z).getSlots());
+						}
+						System.out.println("=======================================");
 						System.out.println("Please enter lecture group of your choice: ");
 						int lecgrpChoice = sc.nextInt();
 						if(lecgrpChoice>course.get(i).getLec() || lecgrpChoice<1) {
@@ -64,7 +83,6 @@ public class Student extends User
 							}
 						else {
 							if(course.get(i).tutGrp.size()>0 && course.get(i).labGrp.size()>0) {
-								System.out.println("Number of tutorial groups for this course: " + course.get(i).getTut());
 								System.out.println("Please enter tutorial group of your choice: ");
 								int tutgrpChoice = sc.nextInt();
 								if(tutgrpChoice>course.get(i).getTut() || tutgrpChoice<1) {
@@ -76,7 +94,6 @@ public class Student extends User
 									break;
 									}
 								else {
-									System.out.println("Number of lab groups for this course: " + course.get(i).getLab());
 									System.out.println("Please enter lab group of your choice: ");
 									int labgrpChoice = sc.nextInt();
 									if(labgrpChoice>course.get(i).getLab() || labgrpChoice<1) {
@@ -105,7 +122,6 @@ public class Student extends User
 									}
 								}
 							else if(course.get(i).labGrp.size()==0 && course.get(i).tutGrp.size()>0) {
-								System.out.println("Number of tutorial groups for this course: " + course.get(i).getTut());
 								System.out.println("Please enter tutorial group of your choice: ");
 								int tutgrpChoice = sc.nextInt();
 								if(tutgrpChoice>course.get(i).getTut() || tutgrpChoice<1) {
@@ -131,7 +147,6 @@ public class Student extends User
 								}
 							}
 							else if(course.get(i).labGrp.size()>0 && course.get(i).tutGrp.size()==0) {
-								System.out.println("Number of lab groups for this course: " + course.get(i).getLab());
 								System.out.println("Please enter lab group of your choice: ");
 								int labgrpChoice = sc.nextInt();
 								if(labgrpChoice>course.get(i).getLab() || labgrpChoice<1) {
