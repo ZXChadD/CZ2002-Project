@@ -8,7 +8,7 @@ public class Marks
 {
 	private int courseId, coursework, exam, overall;
 	private String gradeC, gradeE, gradeO;
-
+	
 	/**
 	 * Create marking scheme for a course
 	 * Coursework and exam components initialised to 0
@@ -75,11 +75,10 @@ public class Marks
 	{
 		return gradeE;
 	}
-
+	
     /**
      * Calculate the grade a student obtains based on marks
      */
-	
 	public void calcGradesO()
 	{
 		if(overall >= 80)

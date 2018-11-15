@@ -2,7 +2,6 @@
  * Represent a course which a student can choose to be enrolled in
  * Student can be enrolled in multiple courses
  */
-
 package University;
 
 import java.util.ArrayList;
@@ -11,18 +10,18 @@ public class Course
 {
 	private int courseId, profId;
 	private String courseName, faculty;
-
+	
     /**
      *  The number of slots for a course
      */
 	private int slots;
-
+	
 	ArrayList<LectureGroup> lecGrp = new ArrayList<>();
 	ArrayList<LabGroup> labGrp = new ArrayList<>();
 	ArrayList<TutorialGroup> tutGrp = new ArrayList<>();
 	Exam exam;
 	ArrayList<Coursework> coursework = new ArrayList<>();
-
+	
     /**
      * Creates a new course
      * @param courseId course code

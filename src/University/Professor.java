@@ -9,7 +9,7 @@ public class Professor extends User
 {
 	private String officeRm;
 	Scanner input = new Scanner(System.in);
-
+	
 	/**
 	 *  Creates a professor based on various attributes
 	**/
@@ -186,7 +186,7 @@ public class Professor extends User
 			int courseId = countC + 1, profId = 0, slots = -1, lec = -1, lab = -1, tut = -1, i = 0;
 			String courseName = null; faculty = null;
 			boolean valid = false;
-
+			
 			while(valid == false)
 			{
 				System.out.print("Course Name(no space in between words, eg. DataStructure): ");
@@ -239,19 +239,19 @@ public class Professor extends User
 			valid = false;
 			while(valid == false)
 			{
-				System.out.print("Number of Slots (1 - 12): ");
+				System.out.print("Number of Slots (1 - 16): ");
 				slots = input.nextInt();
 				if(slots < 1)
 					System.out.println("Invalid Number of Slots! Each Course must have atleast 1 Slot.");
-				else if(slots > 12)
-					System.out.println("Invalid Number of Slots! Each Course must not have more than 12 Slots.");
+				else if(slots > 16)
+					System.out.println("Invalid Number of Slots! Each Course must not have more than 16 Slots.");
 				else
 					valid = true;
 			}
 			Course tempC = new Course(courseId, courseName, faculty, profId, slots);
 			course.add(countC, tempC);
 			countC++;
-
+			
 			valid = false;
 			while(valid == false)
 			{
@@ -339,7 +339,7 @@ public class Professor extends User
 							else
 								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
-												
+						
 						if(i == (lab - 1))
 							slotId = slots - (slotId * i);
 						else
@@ -389,7 +389,7 @@ public class Professor extends User
 							else
 								System.out.println("Invalid Professor ID! Professor ID must be from #1 to #10.");
 						}
-												
+						
 						if(i == (tut - 1))
 							slotId = slots - (slotId * i);
 						else
@@ -514,7 +514,7 @@ public class Professor extends User
 										break;
 									}
 								}
-							}							
+							}
 						}
 					}
 				}
@@ -540,7 +540,7 @@ public class Professor extends User
 										break;
 									}
 								}
-							}							
+							}
 						}
 					}
 				}
@@ -694,12 +694,12 @@ public class Professor extends User
 		String [] ar = new String[1];
 		ar[0] = "0";
 		System.out.println("=================================================");
-
+		
 		try
 		{
 			int courseId = 0, indexC = 0, studentId = 0, indexS = 0, indexM = 0, ans = 0, full = 0, i = 0, j = 0, k = 0;
 			boolean  valid = false;
-
+			
 			while(valid == false)
 			{
 				System.out.print("Student ID: ");
@@ -721,7 +721,7 @@ public class Professor extends User
 				else
 					System.out.println("Invalid Student ID! Student ID must be from #1 to #99.");
 			}
-
+			
 			valid = false;
 			while(valid == false)
 			{
@@ -756,7 +756,7 @@ public class Professor extends User
 				else
 					System.out.println("Invalid Course ID! Course ID must be from #1 to #10.");
 			}
-
+			
 			if(course.get(indexC).coursework.size()>0)
 			{
 				for(i = 0; i < stud.get(indexS).mark.size(); i++)
@@ -770,7 +770,7 @@ public class Professor extends User
 						}
 					}
 				}
-
+				
 				i = 0;
 				while(i<course.get(indexC).coursework.size())
 				{
@@ -805,7 +805,7 @@ public class Professor extends User
 						stud.get(indexS).mark.get(indexM).setGradeC("E");
 					i++;
 				}
-
+				
 				stud.get(indexS).mark.get(indexM).setCoursework(ans);
 				System.out.println("\nCoursework Marks for Course#" + courseId + ": ");
 				System.out.println("Total Coursework Component Marks: " + stud.get(indexS).mark.get(indexM).getCoursework() + "/" + full);
@@ -813,7 +813,7 @@ public class Professor extends User
 			}
 			else
 				System.out.println("This course does not have coursework.");
-			
+		
 		}
 		catch(NullPointerException e)
 		{
@@ -904,7 +904,7 @@ public class Professor extends User
 					{
 						indexM = i;
 						break;
-					}					
+					}
 				}
 			}
 			
@@ -921,17 +921,17 @@ public class Professor extends User
 					valid = true;
 			}
 			
-				if(marks >= 80)
-					stud.get(indexS).mark.get(indexM).setGradeE("A");
-				else if(marks >= 70)
-					stud.get(indexS).mark.get(indexM).setGradeE("B");
-				else if(marks >= 60)
-					stud.get(indexS).mark.get(indexM).setGradeE("C");
-				else if(marks >= 50)
-					stud.get(indexS).mark.get(indexM).setGradeE("D");
-				else
-					stud.get(indexS).mark.get(indexM).setGradeE("E");
-
+			if(marks >= 80)
+				stud.get(indexS).mark.get(indexM).setGradeE("A");
+			else if(marks >= 70)
+				stud.get(indexS).mark.get(indexM).setGradeE("B");
+			else if(marks >= 60)
+				stud.get(indexS).mark.get(indexM).setGradeE("C");
+			else if(marks >= 50)
+				stud.get(indexS).mark.get(indexM).setGradeE("D");
+			else
+				stud.get(indexS).mark.get(indexM).setGradeE("E");
+			
 			int percent = course.get(indexC).exam.getPercentage();
 			double marksTemp = (double)(marks) * (double)(percent) / (double)100;
 			int finalMarks = (int)(marksTemp);
@@ -964,7 +964,7 @@ public class Professor extends User
 			double ans = 0.0;
 			String answer = null;
 			boolean  valid = false;
-					
+			
 			while(valid == false)
 			{
 				System.out.print("Course ID: ");
@@ -1004,7 +1004,7 @@ public class Professor extends User
 							break;
 						}
 					}
-
+					
 					for(i = 0; i < stud.get(indexS).mark.size(); i++)
 					{
 						if(stud.get(indexS).mark.get(i).getCourseId() == courseId)
@@ -1013,11 +1013,11 @@ public class Professor extends User
 							break;
 						}
 					}
-
+					
 					stud.get(indexS).mark.get(indexM).calcOverall();
 					stud.get(indexS).mark.get(indexM).calcGradesO();
 					full++;
-
+					
 					if(stud.get(indexS).mark.get(indexM).getGradeO() == "A")
 						a++;
 					else if(stud.get(indexS).mark.get(indexM).getGradeO() == "B")
@@ -1028,12 +1028,11 @@ public class Professor extends User
 						d++;
 					else if(stud.get(indexS).mark.get(indexM).getGradeO() == "F")
 						f++;
-
 					j++;
 				}
 				j = 0;
 			}
-
+			
 			System.out.println("\nGrade Percentage for Overall Marks: ");
 			ans = (double)a / (double)full * 100;
 			answer = String.format("%.1f", ans);
@@ -1050,7 +1049,7 @@ public class Professor extends User
 			ans = (double)f / (double)full * 100;
 			answer = String.format("%.1f", ans);
 			System.out.println("F: " + answer + "%");
-
+			
 			full = a = b = c = d = f = 0;
 			for(l = 0; l < course.get(indexC).getLec(); l++)
 			{
@@ -1065,7 +1064,7 @@ public class Professor extends User
 							break;
 						}
 					}
-
+					
 					for(i = 0; i < stud.get(indexS).mark.size(); i++)
 					{
 						if(stud.get(indexS).mark.get(i).getCourseId() == courseId)
@@ -1074,7 +1073,7 @@ public class Professor extends User
 							break;
 						}
 					}
-
+					
 					full++;
 					if(stud.get(indexS).mark.get(indexM).getGradeE().equals("A"))
 						a++;
@@ -1086,12 +1085,11 @@ public class Professor extends User
 						d++;
 					else if(stud.get(indexS).mark.get(indexM).getGradeE().equals("E"))
 						f++;
-
 					j++;
 				}
 				j = 0;
 			}
-
+			
 			System.out.println("\nGrade Percentage for Exam Marks Only: ");
 			ans = (double)a / (double)full * 100;
 			answer = String.format("%.1f", ans);
@@ -1108,7 +1106,7 @@ public class Professor extends User
 			ans = (double)f / (double)full * 100;
 			answer = String.format("%.1f", ans);
 			System.out.println("F: " + answer + "%");
-
+			
 			full = a = b = c = d = f = 0;
 			for(l = 0; l < course.get(indexC).getLec(); l++)
 			{
@@ -1123,7 +1121,7 @@ public class Professor extends User
 							break;
 						}
 					}
-
+					
 					for(i = 0; i < stud.get(indexS).mark.size(); i++)
 					{
 						if(stud.get(indexS).mark.get(i).getCourseId() == courseId)
@@ -1132,7 +1130,7 @@ public class Professor extends User
 							break;
 						}
 					}
-
+					
 					full++;
 					if(stud.get(indexS).mark.get(indexM).getGradeC().equals("A"))
 						a++;
@@ -1144,12 +1142,11 @@ public class Professor extends User
 						d++;
 					else if(stud.get(indexS).mark.get(indexM).getGradeC().equals("E"))
 						f++;
-
 					j++;
 				}
 				j = 0;
 			}
-
+			
 			System.out.println("\nGrade Percentage for Coursework Marks Only: ");
 			ans = (double)a / (double)full * 100;
 			answer = String.format("%.1f", ans);
@@ -1190,7 +1187,7 @@ public class Professor extends User
 	{
 		return officeRm;
 	}
-
+	
 	public void setOfficeRm(String officeRm)
 	{
 		this.officeRm = officeRm;

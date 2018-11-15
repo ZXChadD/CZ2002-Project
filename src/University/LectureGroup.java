@@ -9,7 +9,7 @@ public class LectureGroup
 {
 	private int profId, slots;
 	public ArrayList<Integer> studIds = new ArrayList<>();
-
+	
 	/**
 	 * Creates a lab group
 	 * @param profId professor who is in-charged of this lecture group

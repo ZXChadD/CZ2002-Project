@@ -46,7 +46,7 @@ public abstract class User
 	{
 		this.lName = lName;
 	}
-
+	
 	public void setId(int id)
 	{
 		this.id = id;

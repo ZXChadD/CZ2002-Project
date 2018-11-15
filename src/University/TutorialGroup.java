@@ -9,7 +9,7 @@ public class TutorialGroup
 {
 	private int profId, slots;
 	public ArrayList<Integer> studIds = new ArrayList<>();
-
+	
     /**
      * Creates a tutorial group
      * @param profId professor who is in-charged of this tutorial group
