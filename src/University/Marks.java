@@ -55,7 +55,11 @@ public class Marks
 	{
 		return (overall);
 	}
-	
+
+	/**
+	 * Set grade for coursework
+	 * @param letter grade
+	 */
 	public void setGradeC(String letter)
 	{
 		gradeC = letter;
@@ -65,7 +69,11 @@ public class Marks
 	{
 		return gradeC;
 	}
-	
+
+	/**
+	 * Set grade for exam
+	 * @param letter grade
+	 */
 	public void setGradeE(String letter)
 	{
 		gradeE = letter;
