@@ -97,6 +97,11 @@ public class UniversityApp
 			}
 		} while (userType != 3);
 	}
+
+	/**
+	 * Controls the actions a student can carry out
+	 * @param studId student id
+	 */
 	
 	public static void studFunc(int studId)
 	{
@@ -434,6 +439,11 @@ public class UniversityApp
 		}
 		}while(studChoice!=4);
 	}
+
+	/**
+	 * Controls the actions which a professor can carry out
+	 * @param profId professor id
+	 */
 	
 	public static void profFunc(int profId)
 	{

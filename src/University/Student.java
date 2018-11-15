@@ -16,6 +16,13 @@ public class Student extends User
 		super(studId, studFName, studLName, studEmail, studPhoneNo, studFaculty);
 		this.nric = nric;
 	}
+
+	/**
+	 * Student register for a course
+	 * @param course all courses
+	 * @param courseCount total number of courses
+	 * @return details of course that the student registered for
+	 */
 	
 	public String[] regCourse(ArrayList<Course> course, int courseCount)
 	{
@@ -223,6 +230,12 @@ public class Student extends User
 			System.out.println("=================================================");
 			return ar;
 	}
+
+	/**
+	 * Check the availability for a particular course
+	 * @param course all courses
+	 * @param courseCount total number of courses
+	 */
 	
 	public void checkAvail(ArrayList<Course> course, int courseCount)
 	{
@@ -271,6 +284,13 @@ public class Student extends User
 			System.out.println("Please enter a valid Course ID.");
 		System.out.println("=================================================");
 	}
+
+	/**
+	 * Print student transcript
+	 * @param course all courses
+	 * @param courseCount total number of courses
+	 * @param marks all marks
+	 */
 	
 	public void printTranscript(ArrayList<Course> course, int courseCount, ArrayList<Marks> marks)
 	{

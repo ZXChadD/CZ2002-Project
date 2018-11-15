@@ -4,6 +4,16 @@ public abstract class User
 {
 	protected int id;
 	protected String fName, lName, email, phoneNo, faculty;
+
+	/**
+	 * Creates a user
+	 * @param id id
+	 * @param fName first name
+	 * @param lName last name
+	 * @param email email
+	 * @param phoneNo phone number
+	 * @param faculty faculty that the user belongs to
+	 */
 	
 	public User(int id, String fName, String lName, String email, String phoneNo, String faculty)
 	{

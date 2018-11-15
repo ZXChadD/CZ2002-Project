@@ -18,7 +18,13 @@ public class Professor extends User
 		super(profId, profFName, profLName, profEmail, profPhoneNo, profFaculty);
 		this.officeRm = officeRm;
 	}
-	
+
+	/**
+	 * Add a student
+	 * @param stud all students
+	 * @param countS total count of students
+	 * @return count
+	 */
 	public int addStud(ArrayList<Student> stud, int countS)
 	{
 		System.out.println("=================================================");
@@ -176,6 +182,15 @@ public class Professor extends User
 		}
 		return countS-1;
 	}
+
+	/**
+	 * Add a course
+	 * @param course all courses
+	 * @param countC course count
+	 * @param prof professor id
+	 * @param countP professor count
+	 * @return array of details
+	 */
 	
 	public String[] addCourse(ArrayList<Course> course, int countC, ArrayList<Professor> prof, int countP)
 	{
@@ -426,6 +441,14 @@ public class Professor extends User
 		ar[2] = String.valueOf(countC-1);
 		return ar;
 	}
+
+	/**
+	 * Print all students that are registered for a course based on lecture/tutorial/lab groups
+	 * @param stud students
+	 * @param countS student count
+	 * @param course courses
+	 * @param countC course count
+	 */
 	
 	public void printStud(ArrayList<Student> stud, int countS, ArrayList<Course> course, int countC)
 	{
@@ -561,6 +584,13 @@ public class Professor extends User
 			System.out.println("=================================================");
 		}
 	}
+
+	/**
+	 * Ensures the corectness of the weightage of exam/coursework components entered by the professor
+	 * @param course courses
+	 * @param countC course count
+	 * @return array of details 
+	 */
 	
 	public String[] weightage(ArrayList<Course> course, int countC)
 	{
@@ -688,6 +718,15 @@ public class Professor extends User
 		}
 		return ar;
 	}
+
+	/**
+	 * Enter the marks for coursework components of a particular course
+	 * @param stud students
+	 * @param countS student count
+	 * @param course courses
+	 * @param countC course count
+	 * @return marks
+	 */
 	
 	public String[] cwMark(ArrayList<Student> stud, int countS, ArrayList<Course> course, int countC)
 	{
@@ -829,7 +868,14 @@ public class Professor extends User
 		}
 		return ar;
 	}
-	
+
+	/**
+	 * Enter the marks for the exam component of a particular course
+	 * @param stud students
+	 * @param countS student count
+	 * @param course courses
+	 * @param countC course count
+	 */
 	public void examMark(ArrayList<Student> stud, int countS, ArrayList<Course> course, int countC)
 	{
 		System.out.println("=================================================");
@@ -952,7 +998,14 @@ public class Professor extends User
 			System.out.println("=================================================");
 		}
 	}
-	
+
+	/**
+	 * Prints the statistics of a chosen course
+	 * @param course courses
+	 * @param countC course count
+	 * @param stud student id
+	 * @param countS student count
+	 */
 	public void printStats(ArrayList<Course> course, int countC, ArrayList<Student> stud, int countS)
 	{
 		System.out.println("=================================================");
